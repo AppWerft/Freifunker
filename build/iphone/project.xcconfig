@@ -1,0 +1,6 @@
+TI_VERSION=4.0.1
+TI_SDK_DIR=/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/$(TI_VERSION).v20150529150210/iphone
+TI_APPID=de.appwerft.freifunker
+OTHER_LDFLAGS[sdk=iphoneos*]=$(inherited) -weak_framework iAd
+OTHER_LDFLAGS[sdk=iphonesimulator*]=$(inherited) -weak_framework iAd
+#include "module"
