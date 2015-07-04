@@ -4,17 +4,10 @@ module.exports = function() {// create tab group
 		fullscreen : true
 	});
 
-	var win1 = Titanium.UI.createWindow({
-		title : 'Tab 1',
-		backgroundColor : '#fff'
-	});
-	var tab1 = Titanium.UI.createTab({
-
+	var tab1 = Ti.UI.createTab({
 		title : 'Karte',
-		window : win1
+		window : require('ui/map.window')()
 	});
-
-	
 
 	//
 	// create controls tab and root window
@@ -28,14 +21,12 @@ module.exports = function() {// create tab group
 		window : win2
 	});
 
-	
-
 	//
 	//  add tabs
 	//
 	tabGroup.addTab(tab1);
 	tabGroup.addTab(tab2);
-
+	tabGroup.addEventListener('open', require('ui/main.actionbar'));
 	// open tab group
 	tabGroup.open();
 };

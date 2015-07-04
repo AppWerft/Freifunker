@@ -6,28 +6,19 @@ var Module = function(args) {
 };
 
 Module.prototype = {
-    loadNodes : function(done) {
+    loadNodes : function() {
         var args = arguments[0] || {};
+        console.log(args);
         var xhr = Ti.Network.createHTTPClient({
             timeout : 30000,
             onload : function() {
-                var nodesobj = JSON.parse(this.responseText).nodes;
-                var nodes = [];
-                Object.getOwnPropertyNames(nodesobj).forEach(function(key) {
-                    nodesobj[key].nodeinfo.location && nodes.push({
-                        hostname : nodesobj[key].nodeinfo.hostname,
-                        location : nodesobj[key].nodeinfo.location,
-                        lastseen : nodesobj[key].flags.lastseen,
-                        firstseen : nodesobj[key].flags.firstseen,
-                        model : nodesobj[key].nodeinfo.hardware.model,
-                        id : key,
-                        statistics : nodesobj[key].statistics
-                    });
+                var nodes = JSON.parse(this.responseText).nodes.filter(function(n){
+                	return n.geo ?true:false;
                 });
                 args.done && args.done(nodes);
             }
         });
-        xhr.open('GET', url);
+        xhr.open('GET', args.url);
         xhr.setRequestHeader('Accept', 'text/javascript, application/javascript');
         xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
         xhr.send();
