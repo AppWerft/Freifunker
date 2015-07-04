@@ -23,7 +23,7 @@ var Map = require('ti.map');
 
 var Module = function(options) {
     this.name = options.name;
-    this.maxannotations = options.maxannotations || 100;
+    this.maxannotations = options.maxannotations || 60;
     if ( typeof options.map == 'object' && options.map.apiName && options.map.apiName == 'Ti.Proxy')
         this.map = options.map;
     this.points = options.points;
@@ -95,6 +95,7 @@ Module.prototype = {
         });
         var t_end = new Date().getTime();
         console.log('MarkerManger: ' + array_of_markers_in_range.length + ' marker found in region (unfiltered)');
+        if (!array_of_markers_in_range.length) return;
         // grouping in object_of_tiles_with_markers (RASTER in every direction => max. RASTER*RASTER on map)
         var markers = {
             to_render : {}, // this markers we will see
