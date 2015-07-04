@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>de.appwerft.freifunker</id>
     <name>Freifunker</name>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <publisher>fuerst</publisher>
     <url>http://hamburger.-appwerft.de</url>
     <description>undefined</description>
