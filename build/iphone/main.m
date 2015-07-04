@@ -10,10 +10,10 @@
 NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
 NSString * const TI_APPLICATION_ID = @"de.appwerft.freifunker";
 NSString * const TI_APPLICATION_PUBLISHER = @"fuerst";
-NSString * const TI_APPLICATION_URL = @"http://";
+NSString * const TI_APPLICATION_URL = @"http://hamburger.-appwerft.de";
 NSString * const TI_APPLICATION_NAME = @"Freifunker";
-NSString * const TI_APPLICATION_VERSION = @"1.0";
-NSString * const TI_APPLICATION_DESCRIPTION = @"";
+NSString * const TI_APPLICATION_VERSION = @"1.0.1";
+NSString * const TI_APPLICATION_DESCRIPTION = @"undefined";
 NSString * const TI_APPLICATION_COPYRIGHT = @"2015 by fuerst";
 NSString * const TI_APPLICATION_GUID = @"7f91c6fb-f458-4138-9222-90b2a81c831d";
 BOOL const TI_APPLICATION_ANALYTICS = true;
