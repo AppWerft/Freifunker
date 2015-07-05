@@ -33,21 +33,12 @@ module.exports = [{
 }, {
 	"name" : "Darmstadt",
 	"url" : "http://map.darmstadt.freifunk.net/nodes.json"
-}, {
-	"name" : "Frankfurt/Main",
-	"url" : "http://map.ffm.freifunk.net/ffmap-d3/nodes.json"
-}, {
+},{
 	"name" : "Aachen",
 	"url" : "http://map.freifunk-aachen.de/nodes.json"
 }, {
 	"name" : "Bielefeld",
 	"url" : "http://map.freifunk-bielefeld.de/nodes.json"
-}, {
-	"name" : "Braunschweig",
-	"url" : "http://map.freifunk-bs.de/nodes.json"
-}, {
-	"name" : "Ehinngen",
-	"url" : "http://map.freifunk-ehingen.de/nodes.json"
 }, {
 	"name" : "Fulda",
 	"url" : "http://map.freifunk-fulda.de/nodes.json"
@@ -87,7 +78,4 @@ module.exports = [{
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
-}, {
-	"name" : "Mayen Koblenz",
-	"url" : "http://status.freifunk-myk.de/nodes.json"
 }]; 

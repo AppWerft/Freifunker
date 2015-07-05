@@ -10,10 +10,10 @@ function calcCenter(nodes) {
 	var lats = 0,
 	    lngs = 0;
 	nodes.forEach(function(n) {
-		lats += parseFloat(n[0]);
-		lngs += parseFloat(n[1]);
+		lats += (parseFloat(n.geo[0] / nodes.length));
+		lngs += (parseFloat(n.geo[1] / nodes.length));
 	});
-	return [lats / nodes.length, lngs /nodes.length];
+	return [lats, lngs];
 }
 
 var Module = function(args) {
@@ -43,11 +43,11 @@ Module.prototype = {
 						node.nodeinfo.location && barnodes.push({
 							name : node.nodeinfo.hostname,
 							geo : [node.nodeinfo.location.latitude, node.nodeinfo.location.longitude],
-							lastseen : node.flags.lastseen,
-							firstseen : node.flags.firstseen,
-							model : node.nodeinfo.hardware.model,
+							//	lastseen : node.flags.lastseen,
+							//	firstseen : node.flags.firstseen,
+							//	model : node.nodeinfo.hardware.model,
 							id : key,
-							statistics : node.statistics
+							//	statistics : node.statistics
 						});
 					});
 					args.done && args.done({

@@ -28,6 +28,7 @@ module.exports = function(_event) {
 	Freifunk.loadNodes({
 		url : require('model/cities')[lastcityid].url,
 		done : function(_args) {
+			console.log(_args.center);
 			_event.source.tabs[0].window.progress.setRefreshing(false);
 			var points = _args.nodes.map(function(node) {
 				return {
@@ -87,7 +88,7 @@ module.exports = function(_event) {
 								title : node.name,
 							};
 						});
-
+						console.log(_args.center);
 						_event.source.tabs[0].window.mapView.setRegion({
 							latitude : _args.center[0],
 							longitude : _args.center[1],
@@ -95,7 +96,7 @@ module.exports = function(_event) {
 							longitudeDelta : 0.5
 						});
 						Ti.UI.createNotification({
-							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe parat'
+							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe in '+require('model/cities')[i].name + 'parat'
 						}).show();
 						MM_Freifunk = new MarkerManager({
 							name : 'freifunk',
