@@ -1,7 +1,7 @@
 module.exports = function() {// create tab group
 	var tabGroup = Titanium.UI.createTabGroup({
 		exitOnClose : true,
-		fullscreen : true
+		fullscreen : false
 	});
 
 	var tab1 = Ti.UI.createTab({

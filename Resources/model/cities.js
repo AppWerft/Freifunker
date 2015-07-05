@@ -1,7 +1,4 @@
 module.exports = [{
-	"name" : "Flensburg",
-	"url" : "http://map.freifunk-flensburg.de/nodes.json"
-}, {
 	"name" : "Hamburg",
 	"url" : "https://graph.hamburg.freifunk.net/nodes.json",
 	"center" : [53.558572,9.9278215]
@@ -9,9 +6,6 @@ module.exports = [{
 	"name" : "Kiel",
 	"url" : "http://map.freifunk.in-kiel.de/json/nodes.json",
 	
-}, {
-	"name" : "Lübeck",
-	"url" : "http://map.luebeck.freifunk.net/nodes.json"
 }, {
 	"name" : "Münster",
 	"url" : "https://freifunk-muenster.de/map/nodes.json"
