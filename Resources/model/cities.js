@@ -1,17 +1,26 @@
 module.exports = [{
 	"name" : "Hamburg",
 	"url" : "https://graph.hamburg.freifunk.net/nodes.json",
-	"center" : [53.558572,9.9278215]
+	"center" : [53.558572, 9.9278215]
 }, {
 	"name" : "Kiel",
 	"url" : "http://map.freifunk.in-kiel.de/json/nodes.json",
-	
+
 }, {
 	"name" : "Münster",
 	"url" : "https://freifunk-muenster.de/map/nodes.json"
 }, {
 	"name" : "Paderborn",
 	"url" : "http://map.paderborn.freifunk.net/nodes.json"
+}, {
+	"name" : "Jena",
+	"url" : "https://freifunk-jena.de/ffmap/nodes.json"
+}, {
+	"name" : "Ingolstadt",
+	"url" : "https://freifunk-ingolstadt.de/map/nodes.json"
+}, {
+	"name" : "Karlsruhe",
+	"url" : "http://www.freifunk-karlsruhe.de/map/nodes.json"
 }, {
 	"name" : "Göttingen",
 	"url" : "https://cccgoe.de/map/nodes.json"
@@ -33,7 +42,7 @@ module.exports = [{
 }, {
 	"name" : "Darmstadt",
 	"url" : "http://map.darmstadt.freifunk.net/nodes.json"
-},{
+}, {
 	"name" : "Aachen",
 	"url" : "http://map.freifunk-aachen.de/nodes.json"
 }, {
@@ -78,4 +87,4 @@ module.exports = [{
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
-}]; 
+}];

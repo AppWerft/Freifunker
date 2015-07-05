@@ -21,6 +21,11 @@
 
     <style name="Theme.Freifunker" parent="@style/Theme.AppCompat.Light">
         <item name="actionBarItemBackground">@drawable/selectable_background_freifunker</item>
+         
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        
         <item name="popupMenuStyle">@style/PopupMenu.Freifunker</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Freifunker</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Freifunker</item>

@@ -23,13 +23,12 @@ module.exports = function(_event) {
 	ActionBar.setSubtitle(lastcity);
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
-	_event.source.tabs[0].window.progress.setRefreshing(true);
+	_event.source.progress.setRefreshing(true);
 
 	Freifunk.loadNodes({
 		url : require('model/cities')[lastcityid].url,
 		done : function(_args) {
-			console.log(_args.center);
-			_event.source.tabs[0].window.progress.setRefreshing(false);
+			_event.source.progress.setRefreshing(false);
 			var points = _args.nodes.map(function(node) {
 				return {
 					lat : node.geo[0],
@@ -38,7 +37,7 @@ module.exports = function(_event) {
 					title : node.name,
 				};
 			});
-			_event.source.tabs[0].window.mapView.setRegion({
+			_event.source.mapView.setRegion({
 				latitude : _args.center[0],
 				longitude : _args.center[1],
 				latitudeDelta : 0.5,
@@ -49,7 +48,7 @@ module.exports = function(_event) {
 			}).show();
 			MM_Freifunk = new MarkerManager({
 				name : 'freifunk',
-				map : _event.source.tabs[0].window.mapView,
+				map : _event.source.mapView,
 				image : '/images/freifunk.png',
 				points : points
 			});
@@ -61,6 +60,14 @@ module.exports = function(_event) {
 		return;
 	activity.onCreateOptionsMenu = function(_menuevent) {
 		_menuevent.menu.clear();
+		_menuevent.menu.add({
+			title : 'RSS',
+			itemId : 999,
+			icon : Ti.App.Android.R.drawable.ic_action_rss,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+		}).addEventListener("click", function() {
+			require('ui/rss.window')();
+		});
 		require('model/cities').forEach(function(city, i) {
 			_menuevent.menu.add({
 				title : city.name,
@@ -75,11 +82,11 @@ module.exports = function(_event) {
 				Ti.App.Properties.setInt('LASTCITYID', i);
 				Ti.App.Properties.setString('LASTCITY', _menuevent.menu.findItem(i).title);
 				ActionBar.setSubtitle(_menuevent.menu.findItem(i).title);
-				_event.source.tabs[0].window.progress.setRefreshing(true);
+				_event.source.progress.setRefreshing(true);
 				Freifunk.loadNodes({
 					url : require('model/cities')[i].url,
 					done : function(_args) {
-						_event.source.tabs[0].window.progress.setRefreshing(false);
+						_event.source.progress.setRefreshing(false);
 						var points = _args.nodes.map(function(node) {
 							return {
 								lat : node.geo[0],
@@ -89,18 +96,18 @@ module.exports = function(_event) {
 							};
 						});
 						console.log(_args.center);
-						_event.source.tabs[0].window.mapView.setRegion({
+						_event.source.mapView.setRegion({
 							latitude : _args.center[0],
 							longitude : _args.center[1],
 							latitudeDelta : 0.5,
 							longitudeDelta : 0.5
 						});
 						Ti.UI.createNotification({
-							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe in '+require('model/cities')[i].name + 'parat'
+							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + require('model/cities')[i].name + ' parat'
 						}).show();
 						MM_Freifunk = new MarkerManager({
 							name : 'freifunk',
-							map : _event.source.tabs[0].window.mapView,
+							map : _event.source.mapView,
 							image : '/images/freifunk.png',
 							points : points
 						});
