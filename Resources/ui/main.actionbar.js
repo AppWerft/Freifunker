@@ -14,19 +14,22 @@ if (!String.prototype.rtrim) {! function() {
 		};
 	}();
 }
+var cities = require('model/cities').sort(function(a,b) {
+	return a.name > b.name ? 1 : -1;
+});
+console.log(cities);
 
 module.exports = function(_event) {
 	var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
 	var lastcityid = Ti.App.Properties.getInt('LASTCITYID', 1);
-	ActionBar.setTitle('Freifunker');
+	ActionBar.setTitle('Freifunk');
 	ActionBar.setFont('Roboto Condensed');
 	ActionBar.setSubtitle(lastcity);
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	_event.source.progress.setRefreshing(true);
-
 	Freifunk.loadNodes({
-		url : require('model/cities')[lastcityid].url,
+		url : cities[lastcityid].url,
 		done : function(_args) {
 			_event.source.progress.setRefreshing(false);
 			var points = _args.nodes.map(function(node) {
@@ -63,7 +66,7 @@ module.exports = function(_event) {
 		}).addEventListener("click", function() {
 			require('ui/rss.window')().open();
 		});
-		require('model/cities').forEach(function(city, i) {
+		cities.forEach(function(city, i) {
 			_menuevent.menu.add({
 				title : city.name,
 				itemId : i,
@@ -79,7 +82,7 @@ module.exports = function(_event) {
 				ActionBar.setSubtitle(_menuevent.menu.findItem(i).title);
 				_event.source.progress.setRefreshing(true);
 				Freifunk.loadNodes({
-					url : require('model/cities')[i].url,
+					url : cities[i].url,
 					done : function(_args) {
 						_event.source.progress.setRefreshing(false);
 						var points = _args.nodes.map(function(node) {
@@ -90,10 +93,10 @@ module.exports = function(_event) {
 								title : node.name,
 							};
 						});
-						
+
 						_event.source.mapView.setRegion(_args.region);
 						Ti.UI.createNotification({
-							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + require('model/cities')[i].name + ' parat'
+							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + cities[i].name + ' parat'
 						}).show();
 						MM_Freifunk = new MarkerManager({
 							name : 'freifunk',

@@ -13,7 +13,6 @@ function calcRegion(nodes) {
 	nodes.forEach(function(n) {
 		var lat = parseFloat(n.geo[0]);
 		var lng = parseFloat(n.geo[1]);
-		console.log(lat + '   ' + lng );
 		if (lat > 10 && lat < 70 && lng > 2 && lng < 20) {
 			lats += lat;
 			lngs += lng;
