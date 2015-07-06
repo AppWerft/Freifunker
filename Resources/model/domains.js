@@ -95,6 +95,9 @@ module.exports = [{
 	"name" : "Westpfalz",
 	"url" : "http://map.freifunk-westpfalz.de/nodes.json"
 }, {
+	"name" : "Wiesbaden",
+	"url" : "http://map.wiesbaden.freifunk.net/data/nodes.json"
+}, {
 	"name" : "Wuppertal",
 	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
 }]; 
