@@ -87,4 +87,7 @@ module.exports = [{
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
+},
+	"name" : "Niersufer",
+	"url" : "http://map.freifunk-niersufer.de/data/nodes.json"
 }];
