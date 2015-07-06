@@ -87,4 +87,7 @@ module.exports = [{
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
+}, {
+	"name" : "Dortmund",
+	"url" : "http://map.ffdo.de/data/nodes.json"
 }];
