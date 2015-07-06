@@ -86,6 +86,9 @@ module.exports = [{
 	"name" : "Ruhrgebiet",
 	"url" : "http://map.freifunk-ruhrgebiet.de/nodes.json"
 }, {
+	"name" : "Stormarn",
+	"url" : "http://map.ffod.org/data/nodes.json"
+}, {
 	"name" : "Troisdorf",
 	"url" : "http://map.freifunk-troisdorf.de/nodes.json"
 }, {
