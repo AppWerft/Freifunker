@@ -5,10 +5,15 @@ module.exports = [{
 }, {
 	"name" : "Kiel",
 	"url" : "http://map.freifunk.in-kiel.de/json/nodes.json",
-
+}, {
+	name : 'Hildesheim',
+	url : 'http://map.freifunk-hi.de/json/nodes.json'
 }, {
 	"name" : "Münster",
 	"url" : "https://freifunk-muenster.de/map/nodes.json"
+}, {
+	"name" : "Radevormwald",
+	"url" : "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"
 }, {
 	"name" : "Paderborn",
 	"url" : "http://map.paderborn.freifunk.net/nodes.json"
@@ -79,6 +84,15 @@ module.exports = [{
 	"name" : "Köln/Bonn",
 	"url" : "http://map.kbu.freifunk.net/nodes.json"
 }, {
+	"name" : "Gütersloh",
+	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
+}, {
+	"name" : "Möhne",
+	"url" : "http://map.freifunk-moehne.de/data/nodes.json"
+}, {
+	"name" : "Dortmund",
+	"url" : "http://map.ffdo.de/data/nodes.json"
+}, {
 	"name" : "Magdeburg",
 	"url" : "http://map.md.freifunk.net/nodes.json"
 }, {
@@ -87,4 +101,7 @@ module.exports = [{
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
+}, {
+	"name" : "Wuppertal",
+	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
 }];

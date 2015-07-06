@@ -6,14 +6,26 @@ if (!Array.isArray) {
 
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
 
-function calcCenter(nodes) {
+function calcRegion(nodes) {
 	var lats = 0,
-	    lngs = 0;
+	    lngs = 0,
+	    total = 0;
 	nodes.forEach(function(n) {
-		lats += (parseFloat(n.geo[0] / nodes.length));
-		lngs += (parseFloat(n.geo[1] / nodes.length));
+		var lat = parseFloat(n.geo[0]);
+		var lng = parseFloat(n.geo[1]);
+		console.log(lat + '   ' + lng );
+		if (lat > 10 && lat < 70 && lng > 2 && lng < 20) {
+			lats += lat;
+			lngs += lng;
+			total++;
+		}
 	});
-	return [lats, lngs];
+	return {
+		latitude : lats / total,
+		longitude : lngs / total,
+		latitudeDelta : 1,
+		longitudeDelta : 1
+	};
 }
 
 var Module = function(args) {
@@ -35,7 +47,7 @@ Module.prototype = {
 					});
 					args.done && args.done({
 						nodes : barnodes,
-						center : calcCenter(barnodes)
+						region : calcRegion(barnodes)
 					});
 				} else {
 					Object.getOwnPropertyNames(nodes).forEach(function(key) {
@@ -52,7 +64,7 @@ Module.prototype = {
 					});
 					args.done && args.done({
 						nodes : barnodes,
-						center : calcCenter(barnodes)
+						region : calcRegion(barnodes)
 					});
 				}
 			}

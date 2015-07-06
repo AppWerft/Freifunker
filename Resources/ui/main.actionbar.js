@@ -37,12 +37,7 @@ module.exports = function(_event) {
 					title : node.name,
 				};
 			});
-			_event.source.mapView.setRegion({
-				latitude : _args.center[0],
-				longitude : _args.center[1],
-				latitudeDelta : 0.5,
-				longitudeDelta : 0.5
-			});
+			_event.source.mapView.setRegion(_args.region);
 			Ti.UI.createNotification({
 				message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe parat'
 			}).show();
@@ -66,7 +61,7 @@ module.exports = function(_event) {
 			icon : Ti.App.Android.R.drawable.ic_action_rss,
 			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
 		}).addEventListener("click", function() {
-			require('ui/rss.window')();
+			require('ui/rss.window')().open();
 		});
 		require('model/cities').forEach(function(city, i) {
 			_menuevent.menu.add({
@@ -95,13 +90,8 @@ module.exports = function(_event) {
 								title : node.name,
 							};
 						});
-						console.log(_args.center);
-						_event.source.mapView.setRegion({
-							latitude : _args.center[0],
-							longitude : _args.center[1],
-							latitudeDelta : 0.5,
-							longitudeDelta : 0.5
-						});
+						
+						_event.source.mapView.setRegion(_args.region);
 						Ti.UI.createNotification({
 							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + require('model/cities')[i].name + ' parat'
 						}).show();
