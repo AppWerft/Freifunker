@@ -27,7 +27,7 @@ module.exports = [{
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
 }, {
 	"name" : "Hamburg",
-	"url" : "https://graph.hamburg.freifunk.net/nodes.json"
+	"url" : "https://map.hamburg.freifunk.net/nodes.json"
 }, {
 	"name" : "Hannover",
 	"url" : "http://hannover.freifunk.net/karte/nodes.json"
