@@ -76,6 +76,9 @@ module.exports = [{
 	"name" : "Wuppertal",
 	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
 }, {
+	"name" : "Radevormwald",
+	"url" : "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"	
+}, {
 	"name" : "Köln/Bonn",
 	"url" : "http://map.kbu.freifunk.net/nodes.json"
 }, {
