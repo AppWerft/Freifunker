@@ -28,8 +28,8 @@ function calcRegion(nodes) {
 	return {
 		latitude : lats / total,
 		longitude : lons / total,
-		latitudeDelta : maxlat - minlat,
-		longitudeDelta : maxlon - minlon
+		latitudeDelta : 1.2*(maxlat - minlat),
+		longitudeDelta : 1.2*(maxlon - minlon)
 	};
 }
 
@@ -107,7 +107,7 @@ Module.prototype = {
 								//	statistics : node.statistics
 							});
 						});
-
+							console.log(barnodes);
 						args.done && args.done({
 							nodes : barnodes,
 							region : calcRegion(barnodes)

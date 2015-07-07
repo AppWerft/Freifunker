@@ -38,6 +38,7 @@ module.exports = function(_event) {
 					lng : node.lon,
 					id : node.id,
 					title : node.name,
+					subtitle: lastcity
 				};
 			});
 			_event.source.mapView.setRegion(_args.region);
@@ -123,7 +124,7 @@ module.exports = function(_event) {
 								lat : node.lat,
 								lng : node.lon,
 								id : node.id,
-								title : node.name,
+								title : node.name,subtitle:_menuevent.menu.findItem(i).title
 							};
 						});
 
