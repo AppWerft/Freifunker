@@ -85,6 +85,9 @@ module.exports = [{
 }, {
 	"name" : "Ruhrgebiet",
 	"url" : "http://map.freifunk-ruhrgebiet.de/nodes.json"
+}, {	
+	"name" : "Stuttgart"
+	"url" : "http://netinfo.freifunk-stuttgart.de/map/json/global_map.json"
 }, {
 	"name" : "Troisdorf",
 	"url" : "http://map.freifunk-troisdorf.de/nodes.json"
