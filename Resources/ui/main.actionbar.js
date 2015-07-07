@@ -59,6 +59,38 @@ module.exports = function(_event) {
 	activity.onCreateOptionsMenu = function(_menuevent) {
 		_menuevent.menu.clear();
 		_menuevent.menu.add({
+			title : 'GITHUB',
+			itemId : 998,
+			groupId : 1,
+			icon : Ti.App.Android.R.drawable.ic_action_github,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+		}).addEventListener("click", function() {
+			var win = Ti.UI.createWindow({
+				title : 'Github'
+			});
+			var web = Ti.UI.createWebView({
+				top : 74,
+				touchEnabled : true,
+				disableBounce : true,
+				scalesPageToFit : true,
+				enableZoomControls : false,
+				willHandleTouches : false,
+				borderRadius : 1,
+				disableBounce : true,
+				url : 'https://github.com/AppWerft/Freifunker/'
+			});
+			win.add(web);
+			win.addEventListener('open', require('ui/github.actionbar'));
+			win.addEventListener('androidback', function() {
+				if (web.canGoBack()) {
+					web.goBack();
+				} else {
+					win.close();
+				}
+			});
+			win.open();
+		});
+		_menuevent.menu.add({
 			title : 'RSS',
 			itemId : 999,
 			groupId : 0,
