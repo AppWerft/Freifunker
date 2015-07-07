@@ -23,10 +23,10 @@ exports.feed = {
 		properties : {
 			width : Ti.UI.FILL,
 			layout : 'vertical',
-			left : 10,
+			left : 10,bottom:10,
 			top : 0,
 			height : Ti.UI.SIZE,
-			right : 15
+			right : 25
 		},
 		childTemplates : [{
 			type : 'Ti.UI.Label',

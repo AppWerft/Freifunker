@@ -5,6 +5,9 @@ module.exports = [{
 	"name" : "Bielefeld",
 	"url" : "http://map.freifunk-bielefeld.de/nodes.json"
 }, {
+	name : "Chemnitz",
+	url : "http://map.chemnitz.freifunk.net/nodes.json"
+}, {
 	"name" : "Darmstadt",
 	"url" : "http://map.darmstadt.freifunk.net/nodes.json"
 }, {
@@ -17,8 +20,11 @@ module.exports = [{
 	"name" : "Freiburg",
 	"url" : "http://freiburg.freifunk.net/ffmap-d3/nodes.json"
 }, {
-	"name" : "Fulda",
-	"url" : "http://map.freifunk-fulda.de/nodes.json"
+	name : "Gera/Greiz",
+	url : "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
+}, {
+	name : "Gronau",
+	url : "http://freifunk.liztv.net/batmap/json.php?lat=52.210773525324925&lon=7.047603455200169&f="
 }, {
 	"name" : "Göttingen",
 	"url" : "https://cccgoe.de/map/nodes.json"
@@ -83,11 +89,14 @@ module.exports = [{
 	"name" : "Rheinland",
 	"url" : "http://ffmap.freifunk-rheinland.net/nodes.json"
 }, {
+	name : "Rothenburg ob der Tauber",
+	url : "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"
+}, {
 	"name" : "Ruhrgebiet",
 	"url" : "http://map.freifunk-ruhrgebiet.de/nodes.json"
 }, {
-	"name" : "Troisdorf",
-	"url" : "http://map.freifunk-troisdorf.de/nodes.json"
+	name : "Stuttgart",
+	url : "http://netinfo.freifunk-stuttgart.de/map/json/global_map.json"
 }, {
 	"name" : "Uelzen",
 	"url" : "http://map.freifunk-uelzen.de/nodes.json"
@@ -95,6 +104,12 @@ module.exports = [{
 	"name" : "Westpfalz",
 	"url" : "http://map.freifunk-westpfalz.de/nodes.json"
 }, {
+	"name" : "Wien",
+	"url" : "https://map.funkfeuer.at/wien/data.php"
+}, {
+	"name" : "Wiesbaden",
+	"url" : "http://map.wiesbaden.freifunk.net/nodes.json"
+}, {
 	"name" : "Wuppertal",
 	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
-}]; 
+}];

@@ -5,7 +5,7 @@ Moment.locale('de');
 module.exports = function(_event) {
 	ActionBar.setTitle('Freifunker');
 	ActionBar.setFont('Roboto Condensed');
-	ActionBar.setSubtitle('News');
+	ActionBar.setSubtitle('Neuheiten aus den Gemeinden');
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	var activity = _event.source.getActivity();
@@ -13,7 +13,6 @@ module.exports = function(_event) {
 		return;
 	activity.onCreateOptionsMenu = function(_menuevent) {
 		_menuevent.menu.clear();
-		
 		activity.actionBar.displayHomeAsUp = true;
 	};
 	activity && activity.invalidateOptionsMenu();

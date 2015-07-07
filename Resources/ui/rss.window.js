@@ -19,10 +19,39 @@ module.exports = function() {
 
 	});
 	self.add(listview);
+	listview.addEventListener('itemclick', function(_e) {
+		var options = JSON.parse(_e.itemId);
+		var win = Ti.UI.createWindow({
+			title : options.title
+		});
+		var web = Ti.UI.createWebView({
+			top : 74,
+			touchEnabled : true,
+			disableBounce : true,
+			scalesPageToFit : true,
+			enableZoomControls : false,
+			willHandleTouches : false,
+			borderRadius : 1,
+			disableBounce : true,
+			url : options.link
+		});
+		win.add(web);
+		win.addEventListener('open',require('ui/web.actionbar'));
+		win.open();
+
+	});
 	require('adapter/feed')({
 		done : function(_result) {
 			listview.sections[0].setItems(_result.feed.map(function(_item) {
 				return {
+					properties : {
+						itemId : JSON.stringify({
+							link : _item.link,
+							title : _item.title,
+							pubdate : _item.pubDate
+						}),
+						accessoryType : Ti.UI.LIST_ACCESSORY_TYPE_DISCLOSURE
+					},
 					description : {
 						html : _item.description
 					},
@@ -33,7 +62,7 @@ module.exports = function() {
 			}));
 		}
 	});
-	
+
 	Ti.Android && self.addEventListener('open', require('ui/rss.actionbar'));
 	return self;
 };

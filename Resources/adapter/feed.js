@@ -1,11 +1,22 @@
 var url = "http://freifunk.net/fffeed/feed.php";
 
 module.exports = function(_args) {
+	if (!Ti.App.Properties.hasProperty('FEED'))
+		Ti.UI.createNotification({
+			duration : 5000,
+			message : 'Das kann jetzt dauern.'
+		}).show();
 	var xhr = Ti.Network.createHTTPClient({
-		timeout : 30000,
+		timeout : 120000,
+		onerror : function() {
+			Ti.UI.createNotification({
+				duration : 10000,
+				message : 'Feedserver antwortet leider gerade nicht.\nVielleicht später wieder …'
+			}).show();
+		},
 		onload : function() {
 			var xml = new (require('vendor/XMLTools'))(this.responseXML);
-			console.log(xml.toObject().feed);
+			
 			var feed = xml.toObject().channel.item.map(function(i) {
 				return {
 					description : i.description,

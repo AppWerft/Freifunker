@@ -14,10 +14,10 @@ if (!String.prototype.rtrim) {! function() {
 		};
 	}();
 }
-var cities = require('model/cities').sort(function(a,b) {
+var domains = require('model/domains').sort(function(a, b) {
 	return a.name > b.name ? 1 : -1;
 });
-console.log(cities);
+console.log(domains);
 
 module.exports = function(_event) {
 	var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
@@ -29,13 +29,13 @@ module.exports = function(_event) {
 	ActionBar.setBackgroundColor('#F9EABA');
 	_event.source.progress.setRefreshing(true);
 	Freifunk.loadNodes({
-		url : cities[lastcityid].url,
+		url : domains[lastcityid].url,
 		done : function(_args) {
 			_event.source.progress.setRefreshing(false);
 			var points = _args.nodes.map(function(node) {
 				return {
-					lat : node.geo[0],
-					lng : node.geo[1],
+					lat : node.lat,
+					lng : node.lon,
 					id : node.id,
 					title : node.name,
 				};
@@ -61,12 +61,13 @@ module.exports = function(_event) {
 		_menuevent.menu.add({
 			title : 'RSS',
 			itemId : 999,
+			groupId : 0,
 			icon : Ti.App.Android.R.drawable.ic_action_rss,
 			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
 		}).addEventListener("click", function() {
 			require('ui/rss.window')().open();
 		});
-		cities.forEach(function(city, i) {
+		domains.forEach(function(city, i) {
 			_menuevent.menu.add({
 				title : city.name,
 				itemId : i,
@@ -82,13 +83,13 @@ module.exports = function(_event) {
 				ActionBar.setSubtitle(_menuevent.menu.findItem(i).title);
 				_event.source.progress.setRefreshing(true);
 				Freifunk.loadNodes({
-					url : cities[i].url,
+					url : domains[i].url,
 					done : function(_args) {
 						_event.source.progress.setRefreshing(false);
 						var points = _args.nodes.map(function(node) {
 							return {
-								lat : node.geo[0],
-								lng : node.geo[1],
+								lat : node.lat,
+								lng : node.lon,
 								id : node.id,
 								title : node.name,
 							};
@@ -96,7 +97,7 @@ module.exports = function(_event) {
 
 						_event.source.mapView.setRegion(_args.region);
 						Ti.UI.createNotification({
-							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + cities[i].name + ' parat'
+							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + domains[i].name + ' parat'
 						}).show();
 						MM_Freifunk = new MarkerManager({
 							name : 'freifunk',
