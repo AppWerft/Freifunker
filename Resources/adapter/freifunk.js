@@ -28,17 +28,17 @@ function calcRegion(nodes) {
 	return {
 		latitude : lats / total,
 		longitude : lons / total,
-		latitudeDelta : 1.2*(maxlat - minlat),
-		longitudeDelta : 1.2*(maxlon - minlon)
+		latitudeDelta : 1.2 * (maxlat - minlat),
+		longitudeDelta : 1.2 * (maxlon - minlon)
 	};
 }
 
-var Module = function(args) {
+var FFModule = function() {
 	this.eventhandlers = {};
 	return this;
 };
 
-Module.prototype = {
+FFModule.prototype = {
 	loadNodes : function() {
 		var args = arguments[0] || {};
 		var xhr = Ti.Network.createHTTPClient({
@@ -47,71 +47,94 @@ Module.prototype = {
 				var barnodes = [];
 				/// XML:
 				if (this.responseXML) {
-					var xml = new (require('vendor/XMLTools'))(this.responseXML);
-
-					var barnodes = xml.toObject().node.map(function(node) {
-						return {
-							id : node.nodeid,
-							lat : node.lat,
-							lon : node.lon,
-							name : node.name
-						};
-					});
+					console.log('XML received');
+					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
+					console.log(data);
+					if (data.node) {//Berlin
+						var barnodes = data.node.map(function(node) {
+							return {
+								id : node.nodeid,
+								lat : node.lat,
+								lon : node.lon,
+								name : node.name
+							};
+						});
+					} else {// Leipzig
+						var barnodes = data.marker.map(function(node) {
+							return {
+								id : node.id,
+								lat : node.lat,
+								lon : node.lng,
+								name : node.title
+							};
+						});
+					}
 					args.done && args.done({
 						nodes : barnodes,
 						region : calcRegion(barnodes)
 					});
-				/// JSON:
 				} else {
-
-					var nodes = JSON.parse(this.responseText).nodes;
-					if (Object.prototype.toString.call(nodes) === '[object Array]') {
-						if (nodes[0].lat) {
-							barnodes = nodes.map(function(loc) {
-								return {
-									lat : loc.lat,
-									lon : loc.lon,
-									id : loc.id,
-									name : '#' + loc.id
-								};
+					var json = JSON.parse(this.responseText);
+					if (json.rows) {
+						console.log('OPEN WIFI found');
+						var barnodes = json.rows.map(function(row) {
+							console.log(row);
+							return {
+								name : row.value.hostname,
+								lat : row.value.latlng[0],
+								lon : row.value.latlng[1],
+								id : row.id
+							};
+						});
+						console.log(barnodes);
+						args.done && args.done({
+							nodes : barnodes,
+							region : calcRegion(barnodes)
+						});
+					} else if (json.nodes) {
+						var nodes = json.nodes;
+						if (Object.prototype.toString.call(nodes) === '[object Array]') {
+							if (nodes[0].lat) {
+								barnodes = nodes.map(function(loc) {
+									return {
+										lat : loc.lat,
+										lon : loc.lon,
+										id : loc.id,
+										name : '#' + loc.id
+									};
+								});
+							} else {
+								barnodes = nodes.filter(function(n) {
+									return (n.geo || n.position) ? true : false;
+								});
+								barnodes = barnodes.map(function(loc) {
+									return {
+										lat : loc.geo ? loc.geo[0] : loc.position.lat,
+										lon : loc.geo ? loc.geo[1] : loc.position.long,
+										id : loc.id,
+										name : loc.name
+									};
+								});
+							}
+							args.done && args.done({
+								nodes : barnodes,
+								region : calcRegion(barnodes)
 							});
 						} else {
-							barnodes = nodes.filter(function(n) {
-								return (n.geo || n.position) ? true : false;
+							Object.getOwnPropertyNames(nodes).forEach(function(key) {
+								var node = nodes[key];
+								node.nodeinfo.location && barnodes.push({
+									name : node.nodeinfo.hostname,
+									lat : node.nodeinfo.location.latitude,
+									lon : node.nodeinfo.location.longitude,
+									id : key,
+								});
 							});
-							barnodes = barnodes.map(function(loc) {
-
-								return {
-									lat : loc.geo ? loc.geo[0] : loc.position.lat,
-									lon : loc.geo ? loc.geo[1] : loc.position.long,
-									id : loc.id,
-									name : loc.name
-								};
+							args.done && args.done({
+								nodes : barnodes,
+								region : calcRegion(barnodes)
 							});
 						}
-						args.done && args.done({
-							nodes : barnodes,
-							region : calcRegion(barnodes)
-						});
-					} else {
-						Object.getOwnPropertyNames(nodes).forEach(function(key) {
-							var node = nodes[key];
-							node.nodeinfo.location && barnodes.push({
-								name : node.nodeinfo.hostname,
-								lat : node.nodeinfo.location.latitude,
-								lon : node.nodeinfo.location.longitude,
-								//	lastseen : node.flags.lastseen,
-								//	firstseen : node.flags.firstseen,
-								//	model : node.nodeinfo.hardware.model,
-								id : key,
-								//	statistics : node.statistics
-							});
-						});
-							console.log(barnodes);
-						args.done && args.done({
-							nodes : barnodes,
-							region : calcRegion(barnodes)
-						});
 					}
 				}
 			}
@@ -143,4 +166,4 @@ Module.prototype = {
 	}
 };
 
-module.exports = Module;
+module.exports = FFModule;

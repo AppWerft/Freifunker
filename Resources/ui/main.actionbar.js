@@ -17,7 +17,7 @@ if (!String.prototype.rtrim) {! function() {
 var domains = require('model/domains').sort(function(a, b) {
 	return a.name > b.name ? 1 : -1;
 });
-console.log(domains);
+
 
 module.exports = function(_event) {
 	var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
@@ -67,7 +67,7 @@ module.exports = function(_event) {
 			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
 		}).addEventListener("click", function() {
 			var win = Ti.UI.createWindow({
-				title : 'Github'
+				title : 'Github',backgroundColor : '#F9EABA'
 			});
 			var web = Ti.UI.createWebView({
 				top : 74,

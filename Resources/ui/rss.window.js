@@ -6,6 +6,7 @@ var Map = require('ti.map');
 module.exports = function() {
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
+		backgroundColor : '#F9EABA',
 		orientationModes : []
 	});
 	var listview = Ti.UI.createListView({
@@ -22,7 +23,8 @@ module.exports = function() {
 	listview.addEventListener('itemclick', function(_e) {
 		var options = JSON.parse(_e.itemId);
 		var win = Ti.UI.createWindow({
-			title : options.title
+			title : options.title,
+			backgroundColor : '#F9EABA',
 		});
 		var web = Ti.UI.createWebView({
 			top : 74,
@@ -36,7 +38,7 @@ module.exports = function() {
 			url : options.link
 		});
 		win.add(web);
-		win.addEventListener('open',require('ui/web.actionbar'));
+		win.addEventListener('open', require('ui/web.actionbar'));
 		win.open();
 
 	});

@@ -1,5 +1,5 @@
 module.exports = function() {
-	Ti.UI.backgroundColor='#F9EABA';
+	
 	var self = require('ui/map.window')();
 	self.addEventListener('open', require('ui/main.actionbar'));
 	self.open();

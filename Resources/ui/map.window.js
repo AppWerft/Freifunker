@@ -42,7 +42,27 @@ module.exports = function() {
 		height : 20
 	});
 	self.add(self.mapView);
-
+	require('adapter/ffmap')({
+		done : function(_res) {
+			Object.getOwnPropertyNames(_res.areas).map(function(a) {
+				var area = _res.areas[a];
+				var circle = Map.createCircle({
+					center : {
+						latitude : area.latitude,
+						longitude : area.longitude
+					},
+					radius : area.radius,
+					strokeColor : '#DE2C68',
+					strokeOpacity : 0.6,
+					strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor / 2 || 1,
+					fillColor : 'transparent'
+				});
+				//if (area.radius < 10000)
+				self.mapView.addCircle(circle);
+			});
+			console.log(Ti.Platform.displayCaps.logicalDensityFactor);
+		}
+	});
 	if (Ti.Android) {
 		self.progress = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
 			view : view,
