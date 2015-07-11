@@ -45,8 +45,10 @@ FFModule.prototype = {
 			timeout : 60000,
 			onload : function() {
 				var barnodes = [];
+				console.log( typeof this.responseXML);
 				/// XML:
 				if (this.responseXML) {
+					console.log('Info: XML found');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
 					if (data.node) {//Berlin
 						var barnodes = data.node.map(function(node) {
@@ -72,13 +74,29 @@ FFModule.prototype = {
 						region : calcRegion(barnodes)
 					});
 				} else {
+					console.log('Info: JSON detected');
 					var json = JSON.parse(this.responseText);
-					if (json.rows) {
+					console.log(json);
+					if (json.topo) {// Halle
+						Object.getOwnPropertyNames(json.topo).forEach(function(key) {
+							barnodes.push({
+								lat : json.topo[key].latitude,
+								lon : json.topo[key].longitude,
+								id : key,
+								name : json.topo[key].hostname
+							});
+						});
+						args.done && args.done({
+							nodes : barnodes,
+							region : calcRegion(barnodes)
+						});
+					} else if (json.rows) {
+						console.log('Info: rows detected');
 						var barnodes = json.rows.map(function(row) {
 							return {
 								name : row.value.hostname,
-								lat : row.value.latlng[0],
-								lon : row.value.latlng[1],
+								lat : (row.value.latlng) ? row.value.latlng[0] : row.value.lat,
+								lon : (row.value.latlng) ? row.value.latlng[1] : row.value.lon,
 								id : row.id
 							};
 						});
@@ -107,7 +125,9 @@ FFModule.prototype = {
 										lat : loc.geo ? loc.geo[0] : loc.position.lat,
 										lon : loc.geo ? loc.geo[1] : loc.position.long,
 										id : loc.id,
-										name : loc.name
+										name : loc.name,
+										online : (loc.flags) ? loc.flags.online : undefined,
+										clients : loc.clientcount
 									};
 								});
 							}
@@ -123,6 +143,8 @@ FFModule.prototype = {
 									lat : node.nodeinfo.location.latitude,
 									lon : node.nodeinfo.location.longitude,
 									id : key,
+									online : node.flags && node.flags.online,
+									clients : node.statistics && node.statistics.clients
 								});
 							});
 							args.done && args.done({
@@ -135,7 +157,7 @@ FFModule.prototype = {
 			}
 		});
 		xhr.open('GET', args.url);
-		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript');
+		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript,application/xml');
 		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
 		xhr.send();
 	},

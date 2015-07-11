@@ -23,11 +23,18 @@ module.exports = function(_event) {
 	function renderNodes(_args) {
 		_event.source.progress.setRefreshing(false);
 		var points = _args.nodes.map(function(node) {
+			var subtitles = [];
+			if (node.clients !== undefined)
+				subtitles.push('Clients: ' + node.clients + '             ');
+			if (node.online !== undefined)
+				subtitles.push('online: ' + node.online + '             ');
+
 			return {
 				lat : node.lat,
 				lng : node.lon,
 				id : node.id,
-				title : node.name
+				title : node.name,
+				subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
 			};
 		});
 		_event.source.mapView.setRegion(_args.region);
@@ -55,7 +62,7 @@ module.exports = function(_event) {
 			points : hullpoints,
 			strokeColor : '#DE2C68',
 			fillColor : '#33DE2C68',
-			strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor *2|| 2,
+			strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor * 2 || 2,
 		});
 		MarkerManagerFreifunk = new MarkerManager({
 			name : 'freifunk',
