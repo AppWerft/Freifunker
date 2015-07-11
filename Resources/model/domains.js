@@ -23,6 +23,9 @@ module.exports = [{
 	"name" : "Dresden",
 	"url" : "http://info.freifunk-dresden.de/info/nodes.json"
 }, {
+	"name" : "Flensburg",
+	"url ": "http://map.freifunk-flensburg.de/data/nodelist.json"
+},{	
 	"name" : "Frankfurt am Main",
 	"url" : "http://map.ffm.freifunk.net/nodes.json"
 }, {
