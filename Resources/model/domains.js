@@ -62,6 +62,9 @@ module.exports = [{
 	"name" : "Karlsruhe",
 	"url" : "http://www.freifunk-karlsruhe.de/map/nodes.json"
 }, {
+	name : "Kassel",
+	url : "http://map.ffks.de/meshviewer/nodes.json"
+}, {
 	"name" : "Kiel",
 	"url" : "http://map.freifunk.in-kiel.de/json/nodes.json"
 }, {
@@ -100,6 +103,9 @@ module.exports = [{
 }, {
 	"name" : "Paderborn",
 	"url" : "http://map.paderborn.freifunk.net/nodes.json"
+}, {
+	name : "Pinneberg",
+	url : "http://meshviewer.pinneberg.freifunk.net/data/nodes.json"
 }, {
 	"name" : "Radevormwald",
 	"url" : "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"

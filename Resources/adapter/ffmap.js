@@ -5,44 +5,41 @@ module.exports = function(args) {
 		onload : function() {
 			var json = JSON.parse(this.responseText);
 			var areas = {};
-			var nodes = json.allTheRouters.map(function(n) {
+			console.log('areas received');
+			var nodes = json.allTheRouters.forEach(function(n) {
 				if (!areas[n.community]) {
 					areas[n.community] = {
 						latmin : n.lat,
 						latmax : n.lat,
 						lonmin : n.long,
 						lonmax : n.long,
+						community : n.community,
+						points : [[n.lat, n.long]]
 					};
 				} else {
 					areas[n.community].latmin = Math.min(areas[n.community].latmin, n.lat);
 					areas[n.community].latmax = Math.max(areas[n.community].latmax, n.lat);
 					areas[n.community].lonmin = Math.min(areas[n.community].lonmin, n.long);
 					areas[n.community].lonmax = Math.max(areas[n.community].lonmax, n.long);
+					areas[n.community].points.push([n.lat, n.long]);
 				}
-				return {
-					id : n.id,
-					lat : n.lat,
-					lon : n.long,
-					host : n.name,
-					status : n.status,
-					clients : n.clients,
-					community : json.communities[n.community].name
-				};
 			});
-			Object.getOwnPropertyNames(areas).map(function(a) {
-				areas[a].latitude = (areas[a].latmax + areas[a].latmin) / 2;
-				areas[a].longitude = (areas[a].lonmax + areas[a].lonmin) / 2;
-				areas[a].name = a;
-				areas[a].radius = (Math.min(areas[a].latmax - areas[a].latmin, areas[a].lonmax - areas[a].lonmin)) / 2 / Math.PI * 200000;
-				delete areas[a].latmax;
-				delete areas[a].latmin;
-				delete areas[a].lonmax;
-				delete areas[a].lonmin;
+			Object.getOwnPropertyNames(areas).forEach(function(a) {
+				var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
+				areas[a].points.forEach(function(p) {
+					if (p[0] > 45 && p[0] < 60 && p[1] > 3 && p[1] < 25)
+						convexHull.addPoint(p[1],p[0]);
+				});
+				areas[a].hullpoints = convexHull.getHull().map(function(e) {
+					return {
+						latitude : e.y,
+						longitude : e.x
+					};
+				});
+				convexHull = null;
 			});
-
 			args && args.done && args.done({
 				areas : areas,
-				nodes : nodes
 			});
 		}
 	});
