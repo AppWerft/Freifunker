@@ -25,6 +25,9 @@ module.exports = [{
 }, {
 	"name" : "Flensburg",
 	"url ": "http://map.freifunk-flensburg.de/data/nodelist.json"
+},{
+	"name" : "Frankennetz",
+	"url" : "http://95.85.40.145:5984/libremap-dev/_design/libremap-api/_rewrite/routers_by_location?bbox=9%2C48%2C14%2C51"
 },{	
 	"name" : "Frankfurt am Main",
 	"url" : "http://map.ffm.freifunk.net/nodes.json"
