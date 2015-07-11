@@ -28,8 +28,8 @@ function calcRegion(nodes) {
 	return {
 		latitude : lats / total,
 		longitude : lons / total,
-		latitudeDelta : 1.2 * (maxlat - minlat),
-		longitudeDelta : 1.2 * (maxlon - minlon)
+		latitudeDelta : 1.44 * (maxlat - minlat),
+		longitudeDelta : 1.44 * (maxlon - minlon)
 	};
 }
 
@@ -47,9 +47,7 @@ FFModule.prototype = {
 				var barnodes = [];
 				/// XML:
 				if (this.responseXML) {
-					console.log('XML received');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
-					console.log(data);
 					if (data.node) {//Berlin
 						var barnodes = data.node.map(function(node) {
 							return {
@@ -76,9 +74,7 @@ FFModule.prototype = {
 				} else {
 					var json = JSON.parse(this.responseText);
 					if (json.rows) {
-						console.log('OPEN WIFI found');
 						var barnodes = json.rows.map(function(row) {
-							console.log(row);
 							return {
 								name : row.value.hostname,
 								lat : row.value.latlng[0],
@@ -86,7 +82,6 @@ FFModule.prototype = {
 								id : row.id
 							};
 						});
-						console.log(barnodes);
 						args.done && args.done({
 							nodes : barnodes,
 							region : calcRegion(barnodes)

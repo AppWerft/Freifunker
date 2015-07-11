@@ -23,7 +23,7 @@ var Map = require('ti.map');
 
 var Module = function(options) {
     this.name = options.name;
-    this.maxannotations = options.maxannotations || 60;
+    this.maxannotations = options.maxannotations || 260;
     if ( typeof options.map == 'object' && options.map.apiName && options.map.apiName == 'Ti.Proxy')
         this.map = options.map;
     this.points = options.points;

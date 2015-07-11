@@ -4,9 +4,10 @@ var Moment = require('vendor/moment');
 Moment.locale('de');
 var MarkerManager = require('vendor/markermanager');
 var Freifunk = new (require('adapter/freifunk'))();
-var MM_Freifunk;
-var Geo = new (require('vendor/georoute'))();
-Geo.getLocation();
+var MarkerManagerFreifunk;
+var DomainPolygon;
+//var Geo = new (require('vendor/georoute'))();
+//Geo.getLocation();
 
 if (!String.prototype.rtrim) {! function() {
 		String.prototype.rtrim = function() {
@@ -18,8 +19,52 @@ var domains = require('model/domains').sort(function(a, b) {
 	return a.name > b.name ? 1 : -1;
 });
 
-
 module.exports = function(_event) {
+	function renderNodes(_args) {
+		_event.source.progress.setRefreshing(false);
+		var points = _args.nodes.map(function(node) {
+			return {
+				lat : node.lat,
+				lng : node.lon,
+				id : node.id,
+				title : node.name
+			};
+		});
+		_event.source.mapView.setRegion(_args.region);
+		Ti.UI.createNotification({
+			message : 'Derweil sind ' + points.length + ' Router mit Standortangabe parat'
+		}).show();
+		MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
+
+		var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
+		points.forEach(function(p) {
+			if (p.lat > 45 && p.lat < 60 && p.lng > 3 && p.lng < 25)
+				convexHull.addPoint(p.lng, p.lat);
+		});
+		var hullpoints = convexHull.getHull().map(function(e) {
+			return {
+				latitude : e.y,
+				longitude : e.x
+			};
+		});
+		if (DomainPolygon) {
+			_event.source.mapView.removePolygon(DomainPolygon);
+			DomainPolygon = null;
+		}
+		DomainPolygon = Map.createPolygon({
+			points : hullpoints,
+			strokeColor : '#DE2C68',
+			fillColor : '#33DE2C68',
+			strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor *2|| 2,
+		});
+		MarkerManagerFreifunk = new MarkerManager({
+			name : 'freifunk',
+			map : _event.source.mapView,
+			image : '/images/freifunk.png',
+			points : points
+		});
+		_event.source.mapView.addPolygon(DomainPolygon);
+	};
 	var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
 	var lastcityid = Ti.App.Properties.getInt('LASTCITYID', 1);
 	ActionBar.setTitle('Freifunk');
@@ -30,28 +75,7 @@ module.exports = function(_event) {
 	_event.source.progress.setRefreshing(true);
 	Freifunk.loadNodes({
 		url : domains[lastcityid].url,
-		done : function(_args) {
-			_event.source.progress.setRefreshing(false);
-			var points = _args.nodes.map(function(node) {
-				return {
-					lat : node.lat,
-					lng : node.lon,
-					id : node.id,
-					title : node.name,
-					subtitle: lastcity
-				};
-			});
-			_event.source.mapView.setRegion(_args.region);
-			Ti.UI.createNotification({
-				message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe parat'
-			}).show();
-			MM_Freifunk = new MarkerManager({
-				name : 'freifunk',
-				map : _event.source.mapView,
-				image : '/images/freifunk.png',
-				points : points
-			});
-		}
+		done : renderNodes
 	});
 
 	var activity = _event.source.getActivity();
@@ -65,32 +89,7 @@ module.exports = function(_event) {
 			groupId : 1,
 			icon : Ti.App.Android.R.drawable.ic_action_github,
 			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-		}).addEventListener("click", function() {
-			var win = Ti.UI.createWindow({
-				title : 'Github',backgroundColor : '#F9EABA'
-			});
-			var web = Ti.UI.createWebView({
-				top : 74,
-				touchEnabled : true,
-				disableBounce : true,
-				scalesPageToFit : true,
-				enableZoomControls : false,
-				willHandleTouches : false,
-				borderRadius : 1,
-				disableBounce : true,
-				url : 'https://github.com/AppWerft/Freifunker/'
-			});
-			win.add(web);
-			win.addEventListener('open', require('ui/github.actionbar'));
-			win.addEventListener('androidback', function() {
-				if (web.canGoBack()) {
-					web.goBack();
-				} else {
-					win.close();
-				}
-			});
-			win.open();
-		});
+		}).addEventListener("click", require('ui/github.window'));
 		_menuevent.menu.add({
 			title : 'RSS',
 			itemId : 999,
@@ -117,28 +116,7 @@ module.exports = function(_event) {
 				_event.source.progress.setRefreshing(true);
 				Freifunk.loadNodes({
 					url : domains[i].url,
-					done : function(_args) {
-						_event.source.progress.setRefreshing(false);
-						var points = _args.nodes.map(function(node) {
-							return {
-								lat : node.lat,
-								lng : node.lon,
-								id : node.id,
-								title : node.name,subtitle:_menuevent.menu.findItem(i).title
-							};
-						});
-
-						_event.source.mapView.setRegion(_args.region);
-						Ti.UI.createNotification({
-							message : 'Derweil sind ' + points.length + ' Nodes mit Standortangabe im Netz ' + domains[i].name + ' parat'
-						}).show();
-						MM_Freifunk = new MarkerManager({
-							name : 'freifunk',
-							map : _event.source.mapView,
-							image : '/images/freifunk.png',
-							points : points
-						});
-					}
+					done : renderNodes
 				});
 			});
 		});
