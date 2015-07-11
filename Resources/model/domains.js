@@ -1,5 +1,5 @@
 module.exports = [{
-	name : "Drei-Ländereck",
+	name : "3-Ländereck",
 	url : "https://map.freifunk-3laendereck.net/nodes.json"
 }, {
 	"name" : "Aachen",
@@ -12,7 +12,7 @@ module.exports = [{
 	url : "http://map.chemnitz.freifunk.net/nodes.json"
 }, {
 	name : "Berlin",
-	"url" : "http://openwifimap.net/api/view_nodes_spatial?bbox=13.11286926269531%2C52.41666021079324%2C13.689651489257812%2C52.619308406611545"
+	url : "http://openwifimap.net/api/view_nodes_spatial?bbox=13.11286926269531%2C52.41666021079324%2C13.689651489257812%2C52.619308406611545"
 }, {
 	"name" : "Darmstadt",
 	"url" : "http://map.darmstadt.freifunk.net/nodes.json"
@@ -24,31 +24,25 @@ module.exports = [{
 	"url" : "http://info.freifunk-dresden.de/info/nodes.json"
 }, {
 	"name" : "Flensburg",
-	"url" : "http://map.freifunk-flensburg.de/data/nodelist.json"
-}, {
-	"name" : "Frankennetz",
-	"url" : "http://95.85.40.145:5984/libremap-dev/_design/libremap-api/_rewrite/routers_by_location?bbox=9%2C48%2C14%2C51"
-}, {
-	"name" : "Frankfurt (Main)",
+	"url ": "http://map.freifunk-flensburg.de/data/nodelist.json"
+},{	
+	"name" : "Frankfurt am Main",
 	"url" : "http://map.ffm.freifunk.net/nodes.json"
 }, {
-	"name" : "Freiburg (Breisgau)",
+	"name" : "Freiburg",
 	"url" : "http://freiburg.freifunk.net/ffmap-d3/nodes.json"
 }, {
-	"name" : "Gera/Greiz",
-	"url" : "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
+	name : "Gera/Greiz",
+	url : "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
 }, {
-	"name" : "Gronau",
-	"url" : "http://freifunk.liztv.net/batmap/json.php?lat=52.210773525324925&lon=7.047603455200169&f="
+	name : "Gronau",
+	url : "http://freifunk.liztv.net/batmap/json.php?lat=52.210773525324925&lon=7.047603455200169&f="
 }, {
 	"name" : "Göttingen",
 	"url" : "https://cccgoe.de/map/nodes.json"
 }, {
 	"name" : "Gütersloh",
 	"url" : "http://stats.guetersloh.freifunk.net/map/nodes.json"
-}, {
-	"name" : "Halle (Saale)",
-	"url" : "http://freifunk-halle.org/Tools/JSON.ashx"
 }, {
 	"name" : "Hamburg",
 	"url" : "https://map.hamburg.freifunk.net/nodes.json"
@@ -125,7 +119,7 @@ module.exports = [{
 	"name" : "Rheinland",
 	"url" : "http://ffmap.freifunk-rheinland.net/nodes.json"
 }, {
-	name : "Rothenburg (Tauber)",
+	name : "Rothenburg ob der Tauber",
 	url : "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"
 }, {
 	name : "Ruhr/Straelen",
@@ -133,9 +127,6 @@ module.exports = [{
 }, {
 	"name" : "Ruhrgebiet",
 	"url" : "http://map.freifunk-ruhrgebiet.de/nodes.json"
-}, {
-	name : "Saar",
-	url : "https://saar.freifunk.net/map/nodes.json"
 }, {
 	name : "Stormarn",
 	url : "http://map.ffod.org/data/nodes.json"
@@ -149,9 +140,6 @@ module.exports = [{
 	"name" : "Uelzen",
 	"url" : "http://map.freifunk-uelzen.de/nodes.json"
 }, {
-	name : 'Ulm',
-	url : 'http://vpn6.freifunk-ulm.de/nodes.json'
-}, {
 	"name" : "Westpfalz",
 	"url" : "http://map.freifunk-westpfalz.de/nodes.json"
 }, {
@@ -160,6 +148,9 @@ module.exports = [{
 }, {
 	"name" : "Wiesbaden",
 	"url" : "http://map.wiesbaden.freifunk.net/nodes.json"
+}, {
+	name : "Witten",
+	url : "http://ffmap.freifunk-witten.de/nodes.json"
 }, {
 	"name" : "Wuppertal",
 	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
