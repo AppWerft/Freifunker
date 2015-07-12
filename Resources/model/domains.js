@@ -23,12 +23,15 @@ module.exports = [{
 	"name" : "Dresden",
 	"url" : "http://info.freifunk-dresden.de/info/nodes.json"
 }, {
+	"name" : "Erfurt",
+	"url" : "http://map.erfurt.freifunk.net/nodes.json"
+}, {
 	"name" : "Flensburg",
-	"url ": "http://map.freifunk-flensburg.de/data/nodelist.json"
-},{
+	"url" : "http://map.freifunk-flensburg.de/data/nodelist.json"
+}, {
 	"name" : "Frankennetz",
 	"url" : "http://95.85.40.145:5984/libremap-dev/_design/libremap-api/_rewrite/routers_by_location?bbox=9%2C48%2C14%2C51"
-},{	
+}, {
 	"name" : "Frankfurt am Main",
 	"url" : "http://map.ffm.freifunk.net/nodes.json"
 }, {
@@ -121,6 +124,9 @@ module.exports = [{
 }, {
 	"name" : "Rheinland",
 	"url" : "http://ffmap.freifunk-rheinland.net/nodes.json"
+}, {
+	"name" : "Rostock",
+	"url" : "http://www.opennet-initiative.de/api/nodes/online?bbox=11.908513183593,54.03961197441,12.331486816407,54.120378202872"
 }, {
 	name : "Rothenburg ob der Tauber",
 	url : "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"

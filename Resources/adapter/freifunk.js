@@ -74,9 +74,21 @@ FFModule.prototype = {
 						region : calcRegion(barnodes)
 					});
 				} else {
-					console.log('Info: JSON detected');
 					var json = JSON.parse(this.responseText);
-					console.log(json);
+					if (json.features) {// Rostock
+						json.features.forEach(function(feature) {
+							barnodes.push({
+								lat : feature.geometry.coordinates[1],
+								lon : feature.geometry.coordinates[0],
+								id : feature.properties.id,
+								name : feature.properties.id.replace('192.168', 'OpenNet ')
+							});
+						});
+						args.done && args.done({
+							nodes : barnodes,
+							region : calcRegion(barnodes)
+						});
+					}
 					if (json.topo) {// Halle
 						Object.getOwnPropertyNames(json.topo).forEach(function(key) {
 							barnodes.push({
@@ -157,6 +169,7 @@ FFModule.prototype = {
 			}
 		});
 		xhr.open('GET', args.url);
+		console.log('URL' + args.url);
 		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript,application/xml');
 		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
 		xhr.send();
