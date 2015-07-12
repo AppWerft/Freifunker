@@ -8,6 +8,9 @@ module.exports = [{
 	"name" : "Bielefeld",
 	"url" : "http://map.freifunk-bielefeld.de/nodes.json"
 }, {
+	"name" : "Bremen",
+	"url" : "http://downloads.bremen.freifunk.net/data/ffmap-d3.json"
+}, {
 	name : "Chemnitz",
 	url : "http://map.chemnitz.freifunk.net/nodes.json"
 }, {

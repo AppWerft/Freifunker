@@ -45,7 +45,6 @@ FFModule.prototype = {
 			timeout : 60000,
 			onload : function() {
 				var barnodes = [];
-				console.log( typeof this.responseXML);
 				/// XML:
 				if (this.responseXML) {
 					console.log('Info: XML found');
@@ -74,6 +73,7 @@ FFModule.prototype = {
 						region : calcRegion(barnodes)
 					});
 				} else {
+					// J S O N
 					var json = JSON.parse(this.responseText);
 					if (json.features) {// Rostock
 						json.features.forEach(function(feature) {
@@ -88,8 +88,7 @@ FFModule.prototype = {
 							nodes : barnodes,
 							region : calcRegion(barnodes)
 						});
-					}
-					if (json.topo) {// Halle
+					} else if (json.topo) {// Halle
 						Object.getOwnPropertyNames(json.topo).forEach(function(key) {
 							barnodes.push({
 								lat : json.topo[key].latitude,
@@ -118,8 +117,21 @@ FFModule.prototype = {
 						});
 					} else if (json.nodes) {
 						var nodes = json.nodes;
+						console.log('Info: JSON nodes detected');
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
-							if (nodes[0].lat) {
+							if (nodes[0].owner && nodes[0].statistics) {// Bremen
+								nodes.forEach(function(node) {
+									if (node.location)
+										barnodes.push({
+											lat : node.location.latitude,
+											lon : node.location.longitude,
+											id : node.network.node_id,
+											name : node.hostname,
+											clients : node.statistics.clients,
+											online : node.flags.online
+										});
+								});
+							} else if (nodes[0].lat) {
 								barnodes = nodes.map(function(loc) {
 									return {
 										lat : loc.lat,
