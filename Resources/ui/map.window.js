@@ -1,8 +1,6 @@
 var Moment = require('vendor/moment');
 Moment.locale('de');
-
 var Map = require('ti.map');
-
 module.exports = function() {
 	var region = {
 		latitude : 53.56,
@@ -22,7 +20,6 @@ module.exports = function() {
 		};
 	}
 	var event = arguments[0] || {};
-
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
 		orientationModes : []
@@ -53,12 +50,9 @@ module.exports = function() {
 		});
 		self.add(self.progress);
 	}
-
 	self.mapView && self.mapView.addEventListener('complete', function() {
 		// event pins
-
 	});
-	// Ti.Android && self.addEventListener('open', require('ui/map.actionbar'));
 	self.mapView && self.mapView.addEventListener('regionchanged', onRegionChanged);
 	self.mapView && self.mapView.addEventListener('click', onPinclick);
 	function onPinclick(_e) {
@@ -75,14 +69,11 @@ module.exports = function() {
 			}).open();
 		}
 		self.locked = true;
-		// self.mapView.removeEventListener('regionchanged', onRegionChanged);
 		setTimeout(function() {
 			self.locked = false;
 			var region = self.mapView.getRegion();
 		}, 900);
-
 	}
-
 	function onRegionChanged(_e) {
 		function isIdinList(id) {
 			return false;
@@ -104,6 +95,5 @@ module.exports = function() {
 			}, 50);
 		}
 	}
-
 	return self;
 };

@@ -36,7 +36,7 @@ module.exports = function() {
                 }).show();
             } else if (storeversion == thisversion)
                 Ti.Android && Ti.UI.createNotification({
-                    message : Ti.App.getName() + " ist in neuester Version (" + Ti.App.getVersion() + ")"
+                    message : Ti.App.getName() + " +L('NEWESTVERSION') + (" + Ti.App.getVersion() + ")"
                 }).show();
         }
     });

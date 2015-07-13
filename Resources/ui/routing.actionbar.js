@@ -5,7 +5,7 @@ Moment.locale('de');
 module.exports = function(_event) {
 	ActionBar.setTitle(_event.source.title);
 	ActionBar.setFont('Roboto Condensed');
-	ActionBar.setSubtitle('Weg dahin … ');
+	ActionBar.setSubtitle('Weg zum Freifunkrouter');
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	var activity = _event.source.getActivity();

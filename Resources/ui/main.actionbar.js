@@ -9,84 +9,100 @@ var DomainPolygon;
 //var Geo = new (require('vendor/georoute'))();
 //Geo.getLocation();
 
+var domainlist = require('model/domainlist').sort(function(a, b) {
+	return a.name > b.name ? 1 : -1;
+});
+var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
+var hamburgidid;
+domainlist.forEach(function(d, i) {
+	if (d.name == 'Hamburg')
+		hamburgid = i;
+});
+var lastcityid = (Ti.App.Properties.hasProperty('LASTCITYID') ? Ti.App.Properties.getInt('LASTCITYID') : hamburgid);
+console.log('lastcityid = ' + lastcityid);
+
 if (!String.prototype.rtrim) {! function() {
 		String.prototype.rtrim = function() {
 			return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 		};
 	}();
 }
-var domains = require('model/domains').sort(function(a, b) {
-	return a.name > b.name ? 1 : -1;
-});
 
 module.exports = function(_event) {
 	function renderNodes(_args) {
 		_event.source.progress.setRefreshing(false);
-		var points = _args.nodes.map(function(node) {
-			var subtitles = [];
-			if (node.clients !== undefined)
-				subtitles.push('Clients: ' + node.clients + '             ');
-			if (node.online !== undefined)
-				subtitles.push('online: ' + node.online + '             ');
-
-			return {
-				lat : node.lat,
-				lng : node.lon,
-				id : node.id,
-				title : node.name,
-				subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
-			};
-		});
-		if (!_event.source.mapView) return;
-		_event.source.mapView.setRegion(_args.region);
-		Ti.UI.createNotification({
-			message : 'Derweil sind ' + points.length + ' Router mit Standortangabe parat'
-		}).show();
-		MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
-
-		var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
-		points.forEach(function(p) {
-			if (p.lat > 45 && p.lat < 60 && p.lng > 3 && p.lng < 25)
-				convexHull.addPoint(p.lng, p.lat);
-		});
-		var hullpoints = convexHull.getHull().map(function(e) {
-			return {
-				latitude : e.y,
-				longitude : e.x
-			};
-		});
-		if (DomainPolygon) {
-			_event.source.mapView.removePolygon(DomainPolygon);
-			DomainPolygon = null;
+		if (!_event.source.mapView)
+			return;
+		if (_args != null) {
+			var points = _args.nodes.map(function(node) {
+				var subtitles = [];
+				if (node.clients !== undefined)
+					subtitles.push('Clients: ' + node.clients + '             ');
+				if (node.online !== undefined)
+					subtitles.push('online: ' + node.online + '             ');
+				return {
+					lat : node.lat,
+					lng : node.lon,
+					id : node.id,
+					title : node.name,
+					reldist : node.reldist,
+					subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
+				};
+			});
+			_event.source.mapView.setRegion(_args.region);
+			Ti.UI.createNotification({
+				message : 'Derweil sind ' + points.length + ' Router mit Geoinfo parat'
+			}).show();
+			MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
+			var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
+			points.forEach(function(p) {
+				if (p.reldist < 3)// only points in 'cloud'
+					convexHull.addPoint(p.lng, p.lat);
+			});
+			var hullpoints = convexHull.getHull().map(function(e) {
+				return {
+					latitude : e.y,
+					longitude : e.x
+				};
+			});
+			if (DomainPolygon) {
+				_event.source.mapView.removePolygon(DomainPolygon);
+				DomainPolygon = null;
+			}
+			DomainPolygon = Map.createPolygon({
+				points : hullpoints,
+				strokeColor : '#DE2C68',
+				fillColor : '#22DE2C68',
+				strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor * 2 || 2,
+			});
+			MarkerManagerFreifunk = new MarkerManager({
+				name : 'freifunk',
+				map : _event.source.mapView,
+				image : '/images/freifunk.png',
+				points : points,
+				rightImage : '/images/pfeil.png'
+			});
+			_event.source.mapView.addPolygon(DomainPolygon);
+		} else {
+			Ti.UI.createNotification({
+				message : "Verbindung zum Server gestört."
+			}).show();
 		}
-		DomainPolygon = Map.createPolygon({
-			points : hullpoints,
-			strokeColor : '#DE2C68',
-			fillColor : '#33DE2C68',
-			strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor * 2 || 2,
-		});
-		MarkerManagerFreifunk = new MarkerManager({
-			name : 'freifunk',
-			map : _event.source.mapView,
-			image : '/images/freifunk.png',
-			points : points,
-			rightImage : '/images/pfeil.png'
-		});
-		_event.source.mapView.addPolygon(DomainPolygon);
 	};
-	var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
-	var lastcityid = Ti.App.Properties.getInt('LASTCITYID', 1);
+
 	ActionBar.setTitle('Freifunk');
 	ActionBar.setFont('Roboto Condensed');
 	ActionBar.setSubtitle(lastcity);
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	_event.source.progress.setRefreshing(true);
+	console.log(lastcityid);
+	console.log(domainlist[lastcityid]);
+
 	Freifunk.loadNodes({
-		url : domains[lastcityid].url,
+		url : domainlist[lastcityid].url,
 		done : renderNodes
 	});
-
 	var activity = _event.source.getActivity();
 	if (!activity)
 		return;
@@ -108,7 +124,7 @@ module.exports = function(_event) {
 		}).addEventListener("click", function() {
 			require('ui/rss.window')().open();
 		});
-		domains.forEach(function(city, i) {
+		domainlist.forEach(function(city, i) {
 			_menuevent.menu.add({
 				title : city.name,
 				itemId : i,
@@ -124,7 +140,7 @@ module.exports = function(_event) {
 				ActionBar.setSubtitle(_menuevent.menu.findItem(i).title);
 				_event.source.progress.setRefreshing(true);
 				Freifunk.loadNodes({
-					url : domains[i].url,
+					url : domainlist[i].url,
 					done : renderNodes
 				});
 			});

@@ -3,6 +3,7 @@ if (!Array.isArray) {
 		return Object.prototype.toString.call(arg) === '[object Array]';
 	};
 }
+var GeoTools = require('vendor/geotools');
 
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
 
@@ -15,7 +16,7 @@ function calcRegion(nodes) {
 	nodes.forEach(function(n) {
 		var lat = parseFloat(n.lat);
 		var lon = parseFloat(n.lon);
-		if (lat > 10 && lat < 70 && lon > 2 && lon < 20) {
+		if (n.reldist<10) {
 			lats += lat;
 			lons += lon;
 			minlat = Math.min(minlat, lat);
@@ -42,15 +43,15 @@ FFModule.prototype = {
 	loadNodes : function() {
 		var args = arguments[0] || {};
 		var xhr = Ti.Network.createHTTPClient({
-			timeout : 60000,
+			timeout : 30000,
 			onload : function() {
-				var barnodes = [];
+				var allnodes = [];
 				/// XML:
 				if (this.responseXML) {
 					console.log('Info: XML found');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
 					if (data.node) {//Berlin
-						var barnodes = data.node.map(function(node) {
+						var allnodes = data.node.map(function(node) {
 							return {
 								id : node.nodeid,
 								lat : node.lat,
@@ -59,7 +60,7 @@ FFModule.prototype = {
 							};
 						});
 					} else {// Leipzig
-						var barnodes = data.marker.map(function(node) {
+						var allnodes = data.marker.map(function(node) {
 							return {
 								id : node.id,
 								lat : node.lat,
@@ -68,42 +69,30 @@ FFModule.prototype = {
 							};
 						});
 					}
-					args.done && args.done({
-						nodes : barnodes,
-						region : calcRegion(barnodes)
-					});
 				} else {
 					// J S O N
 					var json = JSON.parse(this.responseText);
 					if (json.features) {// Rostock
 						json.features.forEach(function(feature) {
-							barnodes.push({
+							allnodes.push({
 								lat : feature.geometry.coordinates[1],
 								lon : feature.geometry.coordinates[0],
 								id : feature.properties.id,
-								name : feature.properties.id.replace('192.168', 'OpenNet ')
+								name : feature.properties.id.replace('192.168.', 'OpenNet ')
 							});
-						});
-						args.done && args.done({
-							nodes : barnodes,
-							region : calcRegion(barnodes)
 						});
 					} else if (json.topo) {// Halle
 						Object.getOwnPropertyNames(json.topo).forEach(function(key) {
-							barnodes.push({
+							allnodes.push({
 								lat : json.topo[key].latitude,
 								lon : json.topo[key].longitude,
 								id : key,
 								name : json.topo[key].hostname
 							});
 						});
-						args.done && args.done({
-							nodes : barnodes,
-							region : calcRegion(barnodes)
-						});
 					} else if (json.rows) {
 						console.log('Info: rows detected');
-						var barnodes = json.rows.map(function(row) {
+						var allnodes = json.rows.map(function(row) {
 							return {
 								name : row.value.hostname,
 								lat : (row.value.latlng) ? row.value.latlng[0] : row.value.lat,
@@ -111,10 +100,7 @@ FFModule.prototype = {
 								id : row.id
 							};
 						});
-						args.done && args.done({
-							nodes : barnodes,
-							region : calcRegion(barnodes)
-						});
+
 					} else if (json.nodes) {
 						var nodes = json.nodes;
 						console.log('Info: JSON nodes detected');
@@ -122,7 +108,7 @@ FFModule.prototype = {
 							if (nodes[0].owner && nodes[0].statistics) {// Bremen
 								nodes.forEach(function(node) {
 									if (node.location)
-										barnodes.push({
+										allnodes.push({
 											lat : node.location.latitude,
 											lon : node.location.longitude,
 											id : node.network.node_id,
@@ -132,7 +118,7 @@ FFModule.prototype = {
 										});
 								});
 							} else if (nodes[0].lat) {
-								barnodes = nodes.map(function(loc) {
+								allnodes = nodes.map(function(loc) {
 									return {
 										lat : loc.lat,
 										lon : loc.lon,
@@ -141,10 +127,10 @@ FFModule.prototype = {
 									};
 								});
 							} else {
-								barnodes = nodes.filter(function(n) {
+								allnodes = nodes.filter(function(n) {
 									return (n.geo || n.position) ? true : false;
 								});
-								barnodes = barnodes.map(function(loc) {
+								allnodes = allnodes.map(function(loc) {
 									return {
 										lat : loc.geo ? loc.geo[0] : loc.position.lat,
 										lon : loc.geo ? loc.geo[1] : loc.position.long,
@@ -155,14 +141,11 @@ FFModule.prototype = {
 									};
 								});
 							}
-							args.done && args.done({
-								nodes : barnodes,
-								region : calcRegion(barnodes)
-							});
+
 						} else {
 							Object.getOwnPropertyNames(nodes).forEach(function(key) {
 								var node = nodes[key];
-								node.nodeinfo.location && barnodes.push({
+								node.nodeinfo && node.nodeinfo.location && allnodes.push({
 									name : node.nodeinfo.hostname,
 									lat : node.nodeinfo.location.latitude,
 									lon : node.nodeinfo.location.longitude,
@@ -171,17 +154,36 @@ FFModule.prototype = {
 									clients : node.statistics && node.statistics.clients
 								});
 							});
-							args.done && args.done({
-								nodes : barnodes,
-								region : calcRegion(barnodes)
-							});
 						}
 					}
 				}
+				console.log('Allnodes='+allnodes.length);
+				var nodes = allnodes.filter(function(n) {
+					return (n.lat > 30 && n.lat < 70 && n.lon > 4 && n.lon < 20);
+				});
+				console.log('nodes='+nodes.length);
+				var center = GeoTools.getPolygonCenter(nodes);
+				console.log('CENTER = '+ JSON.stringify(center));
+				var avgdist = 0;
+				nodes.forEach(function(n) {
+					n.dist = GeoTools.distance(n.lat, n.lon, center.lat, center.lon);
+					avgdist += (n.dist / nodes.length);
+				});
+				console.log('AVGdistance='+avgdist);
+				nodes.forEach(function(n) {
+					n.reldist = n.dist / avgdist;
+				});
+				args.done && args.done({
+					nodes : nodes,
+					region : calcRegion(nodes)
+				});
+			},
+			onerror : function() {
+				args.done && args.done(null);
 			}
 		});
 		xhr.open('GET', args.url);
-		console.log('URL' + args.url);
+
 		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript,application/xml');
 		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
 		xhr.send();

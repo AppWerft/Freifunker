@@ -39,15 +39,10 @@ module.exports = function(args) {
 			var region = {
 				latitude : (Math.max(bounds.southwest.lat, bounds.northeast.lat) + Math.min(bounds.southwest.lat, bounds.northeast.lat)) / 2,
 				longitude : (Math.max(bounds.southwest.lng, bounds.northeast.lng) + Math.min(bounds.southwest.lng, bounds.northeast.lng)) / 2,
-				latitudeDelta : (Math.max(bounds.southwest.lat, bounds.northeast.lat) - Math.min(bounds.southwest.lat, bounds.northeast.lat)) * 1.6,
-				longitudeDelta : (Math.max(bounds.southwest.lng, bounds.northeast.lng) - Math.min(bounds.southwest.lng, bounds.northeast.lng)) * 1.6
+				latitudeDelta : (Math.max(bounds.southwest.lat, bounds.northeast.lat) - Math.min(bounds.southwest.lat, bounds.northeast.lat)) * 3,
+				longitudeDelta : (Math.max(bounds.southwest.lng, bounds.northeast.lng) - Math.min(bounds.southwest.lng, bounds.northeast.lng)) * 2
 			};
 			map.setRegion(region);
-			//remove old rotes from map:
-			//while ( route = routes.pop()) {
-			//	map.removeRoute(route);
-			//};
-			// add new ones:
 			routes = [require('ti.map').createRoute({
 				points : require('vendor/decodePolyline')(_e.route.overview_polyline.points),
 				width : 8 * Ti.Platform.displayCaps.logicalDensityFactor,
@@ -63,12 +58,13 @@ module.exports = function(args) {
 				map.addRoute(route);
 			});
 			map.addAnnotation(require('ti.map').createAnnotation({
-				
+				image : '/images/nerd.png',
 				latitude : leg.start_location.lat,
 				longitude : leg.start_location.lng,
 			}));
 			map.addAnnotation(require('ti.map').createAnnotation({
 				latitude : leg.end_location.lat,
+				image : '/images/wifi.png',
 				longitude : leg.end_location.lng,
 			}));
 		});
@@ -82,10 +78,17 @@ module.exports = function(args) {
 		var leg = _e.route.legs[0];
 		var data = [];
 		var startrow = Ti.UI.createTableViewRow();
+		startrow.add(Ti.UI.createView({
+			backgroundImage : '/images/nerd.png',
+			width : 70,
+			height : 70,
+			top : 5,
+			left : 5
+		}));
 		startrow.add(Ti.UI.createLabel({
 			html : leg.start_address,
 			text : (Ti.Android) ? '' : leg.start_address,
-			left : 10,
+			left : 90,
 			top : 5,
 			bottom : 5,
 			color : '#DA1068',
@@ -118,7 +121,7 @@ module.exports = function(args) {
 				text : step.distance.text,
 				left : 5,
 				top : 0,
-				color : '#DA1068',
+				color : '#999',
 				width : Ti.UI.FILL,
 				textAlign : 'left',
 				font : {
@@ -131,9 +134,16 @@ module.exports = function(args) {
 
 		});
 		var endrow = Ti.UI.createTableViewRow();
+		endrow.add(Ti.UI.createView({
+			backgroundImage : '/images/wifi.png',
+			width : 50,
+			height : 60,
+			top : 5,
+			left : 5
+		}));
 		endrow.add(Ti.UI.createLabel({
 			html : leg.end_address,
-			left : 10,
+			left : 90,
 			top : 5,
 			bottom : 5,
 			color : '#DA1068',
