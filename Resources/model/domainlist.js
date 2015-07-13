@@ -171,7 +171,7 @@ module.exports = [{
 	"url" : "http://map.wiesbaden.freifunk.net/nodes.json"
 }, {
 	"name" : "Witten",
-	"url" : "http://ffmap.freifunk-witten.de/nodes.json"
+	"url" : "http://map.freifunk-ruhrgebiet.de/WIT/nodes.json"
 }, {
 	"name" : "Wuppertal",
 	"url" : "http://map.freifunk-wuppertal.net/nodes.json"
