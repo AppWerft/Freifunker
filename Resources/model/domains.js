@@ -1,4 +1,4 @@
-module.exports = [{
+﻿module.exports = [{
 	"name" : "3-Ländereck",
 	"url" : "https://map.freifunk-3laendereck.net/nodes.json"
 }, {
@@ -145,6 +145,9 @@ module.exports = [{
 }, {
 	"name" : "Ruhrgebiet",
 	"url" : "http://map.freifunk-ruhrgebiet.de/nodes.json"
+}, {
+	"name" : "Saar",
+	"url" : "https://saar.freifunk.net/map/nodes.json"
 }, {
 	"name" : "Stormarn",
 	"url" : "http://map.ffod.org/data/nodes.json"
