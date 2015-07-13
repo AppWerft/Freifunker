@@ -9,9 +9,11 @@ var DomainPolygon;
 //var Geo = new (require('vendor/georoute'))();
 //Geo.getLocation();
 
-var domainlist = require('model/domainlist').sort(function(a, b) {
-	return a.name > b.name ? 1 : -1;
-});
+if (!Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').exists()) {
+	Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').write(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read());
+}
+var domainlist = JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').read().getText());
+
 var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
 var hamburgidid;
 domainlist.forEach(function(d, i) {
