@@ -27,38 +27,23 @@ module.exports = function() {
 		fullscreen : false,
 		orientationModes : []
 	});
-	self.mapView = Map.createView({
-		region : region,
-		top : 0,
-		animate : true,
-		compassEnabled : false,
-		userLocation : true,
-		enableZoomControls : false,
-		userLocationButton : false,
-		mapType : Map.NORMAL_TYPE,
-	});
+	if (require('vendor/gms.test')()) {
+		self.mapView = Map.createView({
+			region : region,
+			top : 0,
+			animate : true,
+			compassEnabled : false,
+			userLocation : true,
+			enableZoomControls : false,
+			userLocationButton : false,
+			mapType : Map.NORMAL_TYPE,
+		});
+	}
 	var view = Ti.UI.createView({
 		top : 64,
 		height : 20
 	});
-	self.add(self.mapView);
-	/*
-	 require('adapter/ffmap')({
-	 done : function(_res) {
-	 Object.getOwnPropertyNames(_res.areas).map(function(a) {
-	 console.log(a + '  ' + _res.areas[a].hullpoints.length);
-	 if (_res.areas[a].hullpoints.length < 7)
-	 self.mapView.addPolygon(Map.createPolygon({
-	 points : _res.areas[a].hullpoints,
-	 strokeColor : '333',
-	 strokeOpacity : 0.6,
-	 fillColor : '#11DE2C68',
-	 strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor || 1,
-	 //	fillColor : 'transparent'
-	 }));
-	 });
-	 }
-	 });*/
+	self.mapView && self.add(self.mapView);
 	if (Ti.Android) {
 		self.progress = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
 			view : view,
@@ -69,27 +54,32 @@ module.exports = function() {
 		self.add(self.progress);
 	}
 
-	self.mapView.addEventListener('complete', function() {
+	self.mapView && self.mapView.addEventListener('complete', function() {
 		// event pins
 
 	});
 	// Ti.Android && self.addEventListener('open', require('ui/map.actionbar'));
-	self.mapView.addEventListener('regionchanged', onRegionChanged);
-	self.mapView.addEventListener('click', onPinclick);
+	self.mapView && self.mapView.addEventListener('regionchanged', onRegionChanged);
+	self.mapView && self.mapView.addEventListener('click', onPinclick);
 	function onPinclick(_e) {
 		self.mapView.removeEventListener('click', onPinclick);
 		setTimeout(function() {
 			self.mapView.addEventListener('click', onPinclick);
 		}, 700);
 		if (_e.clicksource != null && _e.annotation && _e.annotation.name && _e.clicksource != 'pin') {
+			require('ui/routing.window')({
+				title : _e.annotation.title,
+				lat : _e.annotation.latitude,
+				lon : _e.annotation.longitude,
+
+			}).open();
 		}
 		self.locked = true;
 		// self.mapView.removeEventListener('regionchanged', onRegionChanged);
 		setTimeout(function() {
 			self.locked = false;
 			var region = self.mapView.getRegion();
-			//     self.mapView.fireEvent('regionchanged', region);
-		}, 700);
+		}, 900);
 
 	}
 
@@ -116,6 +106,6 @@ module.exports = function() {
 			}, 50);
 		}
 	}
-	
+
 	return self;
 };

@@ -76,17 +76,17 @@ Module.prototype = {
         console.log(url);
         xhr = Ti.Network.createHTTPClient();
         xhr.onload = function() {
-            try {
+            //try {
                 var res = JSON.parse(this.responseText);
                 that.fireEvent('route', {
                     route : res.routes[0]
                 });
-            } catch(E) {
+            /*} catch(E) {
                 console.log(E);
                 console.log('Warning: problem with google direction geocoding');
-            }
+            }*/
         };
-        xhr.open('GET', url.replace(/\s/g, '+'));
+        xhr.open('GET', url);
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.send();
     },

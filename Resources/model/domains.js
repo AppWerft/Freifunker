@@ -11,7 +11,7 @@ module.exports = [{
 	"name" : "Bielefeld",
 	"url" : "http://map.freifunk-bielefeld.de/nodes.json"
 }, {
-	"name" : "Bonn",
+	"name" : "Bonn/Köln",
 	"url" : "http://map.kbu.freifunk.net/nodes.json"
 }, {
 	"name" : "Bremen",

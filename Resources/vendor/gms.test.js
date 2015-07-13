@@ -32,7 +32,7 @@ module.exports = function() {
             message : text,
             ok : 'Ok',
             androidView : Ti.UI.createImageView({
-                image : '/assets/gms.png',
+                image : '/images/gms.png',
                 width : Ti.UI.FILL,
                 height : 'auto'
             }),

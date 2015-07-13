@@ -37,6 +37,7 @@ module.exports = function(_event) {
 				subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
 			};
 		});
+		if (!_event.source.mapView) return;
 		_event.source.mapView.setRegion(_args.region);
 		Ti.UI.createNotification({
 			message : 'Derweil sind ' + points.length + ' Router mit Standortangabe parat'
@@ -68,7 +69,8 @@ module.exports = function(_event) {
 			name : 'freifunk',
 			map : _event.source.mapView,
 			image : '/images/freifunk.png',
-			points : points
+			points : points,
+			rightImage : '/images/pfeil.png'
 		});
 		_event.source.mapView.addPolygon(DomainPolygon);
 	};
