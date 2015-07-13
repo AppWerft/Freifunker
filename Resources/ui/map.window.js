@@ -87,8 +87,6 @@ module.exports = function() {
 		function isIdinList(id) {
 			return false;
 		}
-
-
 		Ti.App.Properties.setString('LASTREGION', JSON.stringify({
 			latitude : _e.latitude,
 			longitude : _e.longitude,
