@@ -1,8 +1,8 @@
 
 <resources>
-    <string name="VERSION_NEWEST">Die App ist in neuester Version\n(%1$s)</string>
+    <string name="VERSION_NEWEST">يكون التطبيق في الإصدار الأحدث\n(%1$s)</string>
     <string name="VERSION_MUSTUPDATE_MSG">Es gibt eine neue Version im Playstore.\n\nDiese App auf dem  %1$s hat die Version %2$s\n\nIm Store ist %3$s\n\nMöchtest Du erneuern?</string>
-    <string name="VERSION_TITLE">Neue Version „%1$s“</string>
+    <string name="VERSION_TITLE">„%1$s“ إصدار جديد متاح</string>
     <string name="VERSION_TOSTORE">Zum Playstore</string>
     <string name="VERSION_CANCEL">Abbruch</string>
     <string name=""></string>
