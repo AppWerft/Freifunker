@@ -5,6 +5,9 @@
     <string name="VERSION_TITLE">„%1$s“ إصدار جديد متاح</string>
     <string name="VERSION_TOSTORE">Zum Playstore</string>
     <string name="VERSION_CANCEL">Abbruch</string>
+    <string name="OFFLINE_MSG"></string>
+    <string name="OFFLINE_TITLE"></string>
+    <string name="TITLE_NEWS"></string>
     <string name=""></string>
     <string name=""></string>
     <string name=""></string>

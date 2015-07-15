@@ -5,9 +5,9 @@
     <string name="VERSION_TITLE">Новая версия доступна „%1$s“</string>
     <string name="VERSION_TOSTORE">Zum Playstore</string>
     <string name="VERSION_CANCEL">Oтменить</string>
-    <string name=""></string>
-    <string name=""></string>
-    <string name=""></string>
+    <string name="OFFLINE_MSG"></string>
+    <string name="OFFLINE_TITLE"></string>
+    <string name="TITLE_NEWS"></string>
     <string name=""></string>
     <string name=""></string>
     <string name=""></string>
