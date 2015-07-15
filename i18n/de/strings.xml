@@ -5,6 +5,9 @@
     <string name="VERSION_TITLE">Neue Version „%1$s“</string>
     <string name="VERSION_TOSTORE">Zum Playstore</string>
     <string name="VERSION_CANCEL">Abbruch</string>
+    <string name="OFFLINE_MSG">Leider scheint das Endgerät nicht online zu sein.\nSo geht das nicht …</string>
+    <string name="OFFLINE_TITLE">Außerhalb Neuland</string>
+    <string name="TITLE_NEWS">Meldungen aus den FF-Gemeinden</string>
     <string name=""></string>
     <string name=""></string>
     <string name=""></string>
