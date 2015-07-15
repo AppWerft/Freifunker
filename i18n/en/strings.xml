@@ -1,10 +1,11 @@
 
 <resources>
-    <string name="VERSION_NEWEST">The app is in newest version\n(%1$s)</string>
-    <string name="VERSION_MUSTUPDATE_MSG">There is a newer version in playstore.\n\nThis app on this (%1$s) has the version %2$s\n\nIn store is  %3$s available\n\nDo you want update?</string>
-    <string name="VERSION_TITLE">Neue Version „%1$s“</string>
+    <string name="VERSION_NEWEST">The app is in newest version\n(%1$)</string>
+    <string name="VERSION_MUSTUPDATE_MSG">There is a newer version in playstore.\n\nThis app on this (%1$) has the version %2$\n\nIn store is  %3$ available\n\nDo you want update?</string>
+    <string name="VERSION_TITLE">Neue Version „%1$“</string>
     <string name="VERSION_TOSTORE">To playstore</string>
     <string name="VERSION_CANCEL">Cancel</string>
+     <string name="TITLE_NEWS">News from our communities</string>
     <string name=""></string>
     <string name=""></string>
     <string name=""></string>

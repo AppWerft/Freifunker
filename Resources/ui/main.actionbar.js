@@ -59,7 +59,7 @@ module.exports = function(_event) {
 			});
 			_event.source.mapView.setRegion(_args.region);
 			Ti.UI.createNotification({
-				message : 'Derweil sind ' + points.length + ' Router mit Geoinfo parat'
+				message : String.format(L('PARAT'), points.length)
 			}).show();
 			MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
 			var convexHull = new (require('vendor/ConvexHullGrahamScan'))();

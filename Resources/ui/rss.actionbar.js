@@ -5,7 +5,7 @@ Moment.locale('de');
 module.exports = function(_event) {
 	ActionBar.setTitle('Freifunker');
 	ActionBar.setFont('Roboto Condensed');
-	ActionBar.setSubtitle('Neuheiten aus den Gemeinden');
+	ActionBar.setSubtitle(L('TITLE_NEWS'));
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	var activity = _event.source.getActivity();

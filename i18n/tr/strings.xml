@@ -1,10 +1,11 @@
 
 <resources>
-    <string name="VERSION_NEWEST">Die App ist in neuester Version\n(%1$s)</string>
-    <string name="VERSION_MUSTUPDATE_MSG">Es gibt eine neue Version im Playstore.\n\nDiese App auf dem  %1$s hat die Version %2$s\n\nIm Store ist %3$s\n\nMöchtest Du erneuern?</string>
-    <string name="VERSION_TITLE">Neue Version „%1$s“</string>
+    <string name="VERSION_NEWEST">App yeni sürümü olan\n(%1$s)</string>
+    <string name="VERSION_MUSTUPDATE_MSG">Es gibt eine neue Version im Playstore.\n\nDiese App auf dem  %1$ hat die Version %2$\n\nIm Store ist %3$\n\nMöchtest Du erneuern?</string>
+    <string name="VERSION_TITLE">Yeni sürüm „%1$“</string>
     <string name="VERSION_TOSTORE">Zum Playstore</string>
-    <string name="VERSION_CANCEL">Abbruch</string>
+    <string name="VERSION_CANCEL">Iptal</string>
+    <string name="TITLE_NEWS">Bizim topluluklardan haber</string>
     <string name=""></string>
     <string name=""></string>
     <string name=""></string>
