@@ -74,7 +74,7 @@ Module.prototype = {
 	},
 	getRoute : function(foo, address) {
 		var that = this;
-		var url = 'https://maps.googleapis.com/maps/api/directions/json?language='+Ti.Language.getCurrentLanguage() +'&mode=' + Ti.App.Properties.getString('MODE', 'walking') + '&origin=' + foo.latitude + ',' + foo.longitude + '&destination=' + address + '&sensor=false';
+		var url = 'https://maps.googleapis.com/maps/api/directions/json?language='+Ti.Locale.getCurrentLanguage() +'&mode=' + Ti.App.Properties.getString('MODE', 'walking') + '&origin=' + foo.latitude + ',' + foo.longitude + '&destination=' + address + '&sensor=false';
 		xhr = Ti.Network.createHTTPClient();
 		xhr.onload = function() {
 			//try {

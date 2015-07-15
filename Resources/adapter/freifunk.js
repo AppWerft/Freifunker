@@ -102,13 +102,13 @@ FFModule.prototype = {
 							};
 						});
 
-					} else if (json.nodes) {
+					} else if (json.nodes) {  // Bremen
 						var nodes = json.nodes;
-						console.log('Info: JSON nodes detected');
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
 							if (nodes[0].owner && nodes[0].statistics) {// Bremen
 								nodes.forEach(function(node) {
-									if (node.location)
+									console.log(node);
+									if (node.location && node.location.latitude)
 										allnodes.push({
 											lat : node.location.latitude,
 											lon : node.location.longitude,
@@ -142,7 +142,6 @@ FFModule.prototype = {
 									};
 								});
 							}
-
 						} else {
 							Object.getOwnPropertyNames(nodes).forEach(function(key) {
 								var node = nodes[key];

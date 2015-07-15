@@ -1,7 +1,7 @@
 <resources>
-    <string name="VERSION_NEWEST">A aplicação encontra-se na versão mais actual\n(%1$)</string>
-    <string name="VERSION_MUSTUPDATE_MSG">Existe uma versão mais recente na Playstore.\n\n %1$ possui a versão %2$\n\n Na Playstore a versão é %3$\n\nPretendes actualizar?</string>
-    <string name="VERSION_TITLE">Nova versão „%1$“</string>
+    <string name="VERSION_NEWEST">A aplicação encontra-se na versão mais actual\n(%1$s)</string>
+    <string name="VERSION_MUSTUPDATE_MSG">Existe uma versão mais recente na Playstore.\n\n %1$s possui a versão %2$s\n\n Na Playstore a versão é %3$s\n\nPretendes actualizar?</string>
+    <string name="VERSION_TITLE">Nova versão „%1$s“</string>
     <string name="VERSION_TOSTORE">Acede à Playstore</string>
     <string name="VERSION_CANCEL">Cancelar</string>
     <string name="OFFLINE_MSG">Infelizmente o dispositivo parece encontrar-se offline.\nA actualização não pôde ser executada.</string>
