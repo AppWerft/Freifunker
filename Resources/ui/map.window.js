@@ -1,4 +1,4 @@
-var Moment = require('vendor/moment');
+	var Moment = require('vendor/moment');
 Moment.locale('de');
 var Map = require('ti.map');
 module.exports = function() {

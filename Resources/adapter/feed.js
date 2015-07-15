@@ -16,10 +16,15 @@ module.exports = function(_args) {
 		},
 		onload : function() {
 			var xml = new (require('vendor/XMLTools'))(this.responseXML);
-			
 			var feed = xml.toObject().channel.item.map(function(i) {
+				var description = i.description//
+				.replace(/&gt;/gim, '>')//
+				.replace(/&lt;/gim, '<')//
+				.replace(/<p>/gim, '\n')//
+				.replace(/(<([^>]+)>)/ig, "")// striptags
+				.replace(/\sweiterlesen\s/g, '');
 				return {
-					description : i.description,
+					description : description,
 					title : i.title,
 					link : i.link
 				};

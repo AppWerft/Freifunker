@@ -125,7 +125,10 @@
 	}, {
 		"name": "Pinneberg",
 		"url": "http://meshviewer.pinneberg.freifunk.net/data/nodes.json"
-	},{"name":"Potsdam","url":"http://openwifimap.net/api/view_nodes_spatial?bbox=12.914085388183592%2C52.33512928783033%2C13.221702575683594%2C52.45768304654543"} ,{
+	}, {
+		"name": "Potsdam",
+		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=12.914085388183592%2C52.33512928783033%2C13.221702575683594%2C52.45768304654543"
+	} , {
 		"name": "Radevormwald",
 		"url": "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"
 	}, {

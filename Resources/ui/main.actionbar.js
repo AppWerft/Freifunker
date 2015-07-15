@@ -6,6 +6,13 @@ var MarkerManager = require('vendor/markermanager');
 var Freifunk = new (require('adapter/freifunk'))();
 var MarkerManagerFreifunk;
 var DomainPolygon;
+var DomainList = new (require('adapter/domainlist'))();
+var domainlist = DomainList.getList();
+
+DomainList.addEventListener('load', function(_res) {
+	domainlist = _res.domainlist;
+});
+DomainList.loadList();
 
 var url = 'https://raw.githubusercontent.com/AppWerft/Freifunker/master/Resources/model/domainlist.json';
 if (!Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').exists()) {
@@ -108,6 +115,7 @@ module.exports = function(_event) {
 	if (!activity)
 		return;
 	activity.onCreateOptionsMenu = function(_menuevent) {
+		console.log('onCreateOptionsMenu');
 		_menuevent.menu.clear();
 		_menuevent.menu.add({
 			title : 'GITHUB',

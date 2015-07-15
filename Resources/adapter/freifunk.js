@@ -47,7 +47,8 @@ FFModule.prototype = {
 			onload : function() {
 				var allnodes = [];
 				/// XML:
-				if (this.responseXML) {
+				// beginnt mit optionalem Leerzeichen und '<'
+				if (this.responseText.match(/^\s*</mg)) {
 					console.log('Info: XML found');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
 					if (data.node) {//Berlin
