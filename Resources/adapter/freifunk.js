@@ -16,7 +16,7 @@ function calcRegion(nodes) {
 	nodes.forEach(function(n) {
 		var lat = parseFloat(n.lat);
 		var lon = parseFloat(n.lon);
-		if (n.reldist<10) {
+		if (n.reldist < 10) {
 			lats += lat;
 			lons += lon;
 			minlat = Math.min(minlat, lat);
@@ -49,9 +49,10 @@ FFModule.prototype = {
 				/// XML:
 				// beginnt mit optionalem Leerzeichen und '<'
 				if (this.responseText.match(/^\s*</mg)) {
-					console.log('Info: XML found');
+					console.log('PARSERINFO: XML found');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
 					if (data.node) {//Berlin
+						console.log('PARSERINFO: has property node');
 						var allnodes = data.node.map(function(node) {
 							return {
 								id : node.nodeid,
@@ -61,6 +62,7 @@ FFModule.prototype = {
 							};
 						});
 					} else {// Leipzig
+						console.log('PARSERINFO: has property marker');
 						var allnodes = data.marker.map(function(node) {
 							return {
 								id : node.id,
@@ -73,7 +75,9 @@ FFModule.prototype = {
 				} else {
 					// J S O N
 					var json = JSON.parse(this.responseText);
+					console.log('PARSERINFO: JSON');
 					if (json.features) {// Rostock
+						console.log('PARSERINFO: has property features');
 						json.features.forEach(function(feature) {
 							allnodes.push({
 								lat : feature.geometry.coordinates[1],
@@ -83,6 +87,7 @@ FFModule.prototype = {
 							});
 						});
 					} else if (json.topo) {// Halle
+						console.log('PARSERINFO: has property topo');
 						Object.getOwnPropertyNames(json.topo).forEach(function(key) {
 							allnodes.push({
 								lat : json.topo[key].latitude,
@@ -92,7 +97,7 @@ FFModule.prototype = {
 							});
 						});
 					} else if (json.rows) {
-						console.log('Info: rows detected');
+						console.log('PARSERINFO: has property rows');
 						var allnodes = json.rows.map(function(row) {
 							return {
 								name : row.value.hostname,
@@ -102,13 +107,17 @@ FFModule.prototype = {
 							};
 						});
 
-					} else if (json.nodes) {  // Bremen
+					} else if (json.nodes) {// Bremen
+						console.log('PARSERINFO: has property nodes => we must decide if array or object');
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
-							if (nodes[0].owner && nodes[0].statistics) {// Bremen
+							console.log('PARSERINFO: has property node array');
+							console.log(nodes[0]);
+							if (nodes[0].network) {// Bremen
+								console.log('PARSERINFO: node has property statistics');
 								nodes.forEach(function(node) {
-									console.log(node);
-									if (node.location && node.location.latitude)
+									if (node.location && node.location.latitude && node.location.longitude) {
+										console.log(node.location);
 										allnodes.push({
 											lat : node.location.latitude,
 											lon : node.location.longitude,
@@ -117,6 +126,8 @@ FFModule.prototype = {
 											clients : node.statistics.clients,
 											online : node.flags.online
 										});
+
+									}
 								});
 							} else if (nodes[0].lat) {
 								allnodes = nodes.map(function(loc) {
@@ -157,19 +168,19 @@ FFModule.prototype = {
 						}
 					}
 				}
-				console.log('Allnodes='+allnodes.length);
+				console.log('Allnodes=' + allnodes.length);
 				var nodes = allnodes.filter(function(n) {
 					return (n.lat > 30 && n.lat < 70 && n.lon > 4 && n.lon < 20);
 				});
-				console.log('nodes='+nodes.length);
+				console.log('nodes=' + nodes.length);
 				var center = GeoTools.getPolygonCenter(nodes);
-				console.log('CENTER = '+ JSON.stringify(center));
+				console.log('CENTER = ' + JSON.stringify(center));
 				var avgdist = 0;
 				nodes.forEach(function(n) {
 					n.dist = GeoTools.distance(n.lat, n.lon, center.lat, center.lon);
 					avgdist += (n.dist / nodes.length);
 				});
-				console.log('AVGdistance='+avgdist);
+				console.log('AVGdistance=' + avgdist);
 				nodes.forEach(function(n) {
 					n.reldist = n.dist / avgdist;
 				});

@@ -1,4 +1,4 @@
-	var Moment = require('vendor/moment');
+var Moment = require('vendor/moment');
 Moment.locale('de');
 var Map = require('ti.map');
 module.exports = function() {
@@ -22,7 +22,14 @@ module.exports = function() {
 	var event = arguments[0] || {};
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
-		orientationModes : []
+		orientationModes : [],
+		spinner : Ti.UI.createActivityIndicator({
+			height : Ti.UI.SIZE,
+			width : Ti.UI.SIZE,
+			visible : true,
+			zIndex : 999,
+			style : (Ti.Platform.name === 'iPhone OS') ? Ti.UI.iPhone.ActivityIndicatorStyle.BIG : Ti.UI.ActivityIndicatorStyle.BIG
+		})
 	});
 	if (require('vendor/gms.test')()) {
 		self.mapView = Map.createView({
@@ -37,7 +44,7 @@ module.exports = function() {
 		});
 	}
 	var view = Ti.UI.createView({
-		top : 64,
+		top : 74,
 		height : 20
 	});
 	self.mapView && self.add(self.mapView);
@@ -74,10 +81,13 @@ module.exports = function() {
 			var region = self.mapView.getRegion();
 		}, 900);
 	}
+
 	function onRegionChanged(_e) {
 		function isIdinList(id) {
 			return false;
 		}
+
+
 		Ti.App.Properties.setString('LASTREGION', JSON.stringify({
 			latitude : _e.latitude,
 			longitude : _e.longitude,
@@ -95,5 +105,6 @@ module.exports = function() {
 			}, 50);
 		}
 	}
+
 	return self;
 };

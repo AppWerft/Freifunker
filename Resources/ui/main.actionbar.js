@@ -1,4 +1,3 @@
-var ActionBar = require('com.alcoapps.actionbarextras');
 var Map = require('ti.map');
 var Moment = require('vendor/moment');
 Moment.locale('de');
@@ -39,6 +38,7 @@ if (!String.prototype.rtrim) {! function() {
 module.exports = function(_event) {
 	function renderNodes(_args) {
 		_event.source.progress.setRefreshing(false);
+		_event.source.spinner.hide();
 		if (!_event.source.mapView)
 			return;
 		if (_args != null) {
@@ -104,6 +104,7 @@ module.exports = function(_event) {
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	_event.source.progress.setRefreshing(true);
+	_event.source.spinner.show();
 	console.log(lastcityid);
 	console.log(domainlist[lastcityid]);
 
