@@ -1,6 +1,6 @@
 android/ATTR_PROJECT_NAME=Freifunker
 android/ATTR_PROJECT_NAME.type=String
-android/abi=armeabi
+android/abi=
 android/abi.type=String
 android/device-id=
 android/device-id.type=String
