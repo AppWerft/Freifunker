@@ -7,7 +7,7 @@ var MarkerManagerFreifunk;
 var DomainPolygon;
 var DomainList = new (require('adapter/domainlist'))();
 var domainlist = DomainList.getList();
-
+var ActionBar = require('com.alcoapps.actionbarextras');
 DomainList.addEventListener('load', function(_res) {
 	domainlist = _res.domainlist;
 });

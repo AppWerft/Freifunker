@@ -105,19 +105,16 @@ FFModule.prototype = {
 								lon : (row.value.latlng) ? row.value.latlng[1] : row.value.lon,
 								id : row.id
 							};
-						});
-
+							});
 					} else if (json.nodes) {// Bremen
 						console.log('PARSERINFO: has property nodes => we must decide if array or object');
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
 							console.log('PARSERINFO: has property node array');
-							console.log(nodes[0]);
-							if (nodes[0].network) {// Bremen
+							if (nodes[0].network || nodes[0].hostname) {// Bremen
 								console.log('PARSERINFO: node has property statistics');
 								nodes.forEach(function(node) {
 									if (node.location && node.location.latitude && node.location.longitude) {
-										console.log(node.location);
 										allnodes.push({
 											lat : node.location.latitude,
 											lon : node.location.longitude,
