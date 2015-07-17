@@ -1,0 +1,88 @@
+{
+  "name": "pdfmake",
+  "version": "0.1.18",
+  "description": "Client/server side PDF printing in pure JavaScript",
+  "main": "pdfmake.js",
+  "titaniumManifest": {
+    "guid": "2df42244-e495-f1a4-b4c0-50c57d9a4dbb"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "pdfkit": "~0.7.0",
+    "lodash": "~3.1.0",
+    "lodash-node": "~3.1.0"
+  },
+  "devDependencies": {
+    "expose-loader": "^0.6.0",
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-spawn-mocha": "^2.0.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "gulp-webpack": "^1.4.0",
+    "json-loader": "^0.5.1",
+    "pdfkit": "^0.7.1",
+    "sinon": "~1.12.2",
+    "string-replace-webpack-plugin": "0.0.1",
+    "webpack": "^1.8.9"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bpampuch/pdfmake.git"
+  },
+  "keywords": [
+    "pdf",
+    "javascript",
+    "printing",
+    "layout"
+  ],
+  "author": {
+    "name": "Bartek Pampuch",
+    "email": "bartosz.pampuch@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bpampuch/pdfmake/issues"
+  },
+  "homepage": "https://bpampuch.github.io/pdfmake",
+  "config": {
+    "blanket": {
+      "pattern": "src",
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
+    }
+  },
+  "gitHead": "02a859b90b262921bb1a00409c7f548332dce33b",
+  "_id": "pdfmake@0.1.18",
+  "_shasum": "e8b91ebdad9d1f523d42c19eeade95425876b99f",
+  "_from": "pdfmake@",
+  "_npmVersion": "2.7.4",
+  "_nodeVersion": "0.12.2",
+  "_npmUser": {
+    "name": "bpampuch",
+    "email": "bartosz.pampuch@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "bpampuch",
+      "email": "bartosz.pampuch@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "e8b91ebdad9d1f523d42c19eeade95425876b99f",
+    "tarball": "http://registry.npmjs.org/pdfmake/-/pdfmake-0.1.18.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/pdfmake/-/pdfmake-0.1.18.tgz",
+  "readme": "ERROR: No README data found!",
+  "_nativeDependencies": {}
+}

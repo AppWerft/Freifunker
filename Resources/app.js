@@ -6,6 +6,6 @@
 	
 	require("appcelerator.encrypteddatabase").setPassword('TEST');
 	Ti.Database.open('verschluesselt').close();
-	
+	//var PDFMake = require('pdfmake');
 	
 })();
