@@ -16,7 +16,7 @@
 		<script type="text/javascript">
 			var map, panorama, streetviewservice;
 			function createPanorama(posi) {
-				streetviewservice.getPanoramaByLocation(new google.maps.LatLng(posi.lat, posi.lng), 150, function(data, status) {
+				streetviewservice.getPanoramaByLocation(new google.maps.LatLng(posi.lat, posi.lng), 450, function(data, status) {
 					if (status == google.maps.StreetViewStatus.OK) {
 						panorama.setPov({
 							heading : 10,

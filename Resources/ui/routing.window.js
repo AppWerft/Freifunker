@@ -157,6 +157,9 @@ module.exports = function(args) {
 			}
 		}));
 		data.push(endrow);
+		data.push(Ti.UI.createTableViewRow({
+			height : 50
+		}));
 		router.setData(data);
 	});
 

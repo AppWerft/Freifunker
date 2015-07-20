@@ -1,11 +1,6 @@
-(function() {
+;! function() {
 	require('ui/main')();
-//	require('adapter/ffmap')();
+	new (require('adapter/domainlist'))();
 	require('adapter/feed')({});
 	require('vendor/versionsreminder')();
-	
-	require("appcelerator.encrypteddatabase").setPassword('TEST');
-	Ti.Database.open('verschluesselt').close();
-	
-	
-})();
+}();
