@@ -8,7 +8,7 @@
 	}, {
 		"name": "Berlin",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13.11286926269531%2C52.41666021079324%2C13.689651489257812%2C52.619308406611545"
-	}, {
+	}, {"name":"Brauschweig","url":"http://fredo.freifunk-bs.de/output/nodes.json"},{
 		"name": "Bielefeld",
 		"url": "http://map.freifunk-bielefeld.de/nodes.json"
 	}, {

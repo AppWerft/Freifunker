@@ -13,10 +13,25 @@ module.exports = function(_event) {
 		return;
 	activity.onCreateOptionsMenu = function(_menuevent) {
 		_menuevent.menu.clear();
+		_menuevent.menu.add({
+			title : _event.source.title,
+			itemId : 997,
+			icon : Ti.App.Android.R.drawable.ic_action_sv,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+		}).addEventListener("click", function() {
+			require('vendor/streetview/index')({
+				title : _event.source.title,
+				subtitle : _event.source.subtitle,
+				
+				lat : _event.source.latlon[0],
+				lng : _event.source.latlon[1]
+			}).open();
+		});
 		activity.actionBar.displayHomeAsUp = true;
 	};
 	activity && activity.invalidateOptionsMenu();
 	activity.actionBar.onHomeIconItemSelected = function(_e) {
+
 		_event.source.close();
 	};
 };

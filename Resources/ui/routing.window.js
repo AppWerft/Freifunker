@@ -8,6 +8,7 @@ module.exports = function(args) {
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
 		title : args.title,
+		latlon : [args.lat, args.lon],
 		orientationModes : []
 	});
 	var GeoRoute = new (require('vendor/georoute'))();
@@ -80,7 +81,7 @@ module.exports = function(args) {
 		var startrow = Ti.UI.createTableViewRow();
 		startrow.add(Ti.UI.createView({
 			backgroundImage : '/images/nerd.png',
-			width : 70,
+			width : 60,
 			height : 70,
 			top : 5,
 			left : 5
@@ -141,6 +142,7 @@ module.exports = function(args) {
 			top : 5,
 			left : 5
 		}));
+		self.subtitle = leg.end_address;
 		endrow.add(Ti.UI.createLabel({
 			html : leg.end_address,
 			left : 90,
