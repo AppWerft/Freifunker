@@ -78,6 +78,9 @@
 		"name": "Jena",
 		"url": "https://freifunk-jena.de/ffmap/nodes.json"
 	}, {
+		"name": "Jüchen",
+		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
+	}, {
 		"name": "Karlsruhe",
 		"url": "http://www.freifunk-karlsruhe.de/map/nodes.json"
 	}, {
