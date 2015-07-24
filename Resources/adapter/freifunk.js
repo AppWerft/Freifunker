@@ -50,32 +50,46 @@ FFModule.prototype = {
 				// beginnt mit optionalem Leerzeichen und '<'
 				if (this.responseText.match(/^\s*</mg)) {
 					console.log('PARSERINFO: XML found');
-					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
-					console.log(data);
-					if (data.node) {//Berlin
-						console.log('PARSERINFO: has property node');
-						var allnodes = data.node.map(function(node) {
-							return {
-								id : node.nodeid,
-								lat : node.lat,
-								lon : node.lon,
-								name : node.name
-							};
-						});
-					} else if (data.routerlist) { 
-						console.log('  found');
-						console.log(data.routerlist);
+					var xml = this.responseXML;
+					var items = xml.documentElement.getElementsByTagName("router");
+					if (items) {
+						console.log('OSNA');
+						for (var i = 0; i < items.length; i++) {
+							var item = items.item(i);
+							allnodes.push({
+								id : item.getElementsByTagName('router_id').item(0).textContent,
+								lat : item.getElementsByTagName('latitude').item(0).textContent,
+								lon : item.getElementsByTagName('longitude').item(0).textContent,
+								name : item.getElementsByTagName('hostname').item(0).textContent,
+								online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
+								clients : item.getElementsByTagName('client_count').item(0).textContent
+							});
+						}
 
-					} else {// Leipzig
-						console.log('PARSERINFO: has property marker');
-						var allnodes = data.marker.map(function(node) {
-							return {
-								id : node.id,
-								lat : node.lat,
-								lon : node.lng,
-								name : node.title
-							};
-						});
+					} else {
+						var data = (new (require('vendor/XMLTools'))(xml)).toObject();
+						console.log(data);
+						if (data.node) {//Berlin
+							console.log('PARSERINFO: has property node');
+							var allnodes = data.node.map(function(node) {
+								return {
+									id : node.nodeid,
+									lat : node.lat,
+									lon : node.lon,
+									name : node.name
+								};
+							});
+						} else {// Leipzig
+							console.log('PARSERINFO: has property marker');
+							var allnodes = data.marker.map(function(node) {
+								return {
+									id : node.id,
+									lat : node.lat,
+									lon : node.lng,
+									name : node.title
+								};
+							});
+						}
 					}
 				} else {
 					// J S O N

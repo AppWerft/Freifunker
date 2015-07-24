@@ -127,7 +127,7 @@
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
 		"name": "Osnabrück",
-		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=100"
+		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=1500"
 	}, {
 		"name": "Ostholstein",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
