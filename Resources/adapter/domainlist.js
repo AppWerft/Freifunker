@@ -1,8 +1,8 @@
 var FFlist = function() {
 	this.eventhandlers = {};
-	if (!Ti.App.Properties.hasProperty('DOMAINLIST')) {
+	//if (!Ti.App.Properties.hasProperty('DOMAINLIST')) {
 		Ti.App.Properties.setList('DOMAINLIST', JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read()));
-	}
+	//}
 	this.domainlist = Ti.App.Properties.getList('DOMAINLIST', []);
 	return this;
 };
@@ -11,6 +11,11 @@ FFlist.prototype = {
 	getList : function() {
 		return this.domainlist;
 	},
+	getActiveDomain : function() {
+	},
+	setActiveDomain : function() {
+	},
+
 	loadList : function() {
 		var that = this;
 		var xhr = Ti.Network.createHTTPClient({

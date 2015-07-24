@@ -51,6 +51,7 @@ FFModule.prototype = {
 				if (this.responseText.match(/^\s*</mg)) {
 					console.log('PARSERINFO: XML found');
 					var data = (new (require('vendor/XMLTools'))(this.responseXML)).toObject();
+					console.log(data);
 					if (data.node) {//Berlin
 						console.log('PARSERINFO: has property node');
 						var allnodes = data.node.map(function(node) {
@@ -61,6 +62,10 @@ FFModule.prototype = {
 								name : node.name
 							};
 						});
+					} else if (data.routerlist) { 
+						console.log('  found');
+						console.log(data.routerlist);
+
 					} else {// Leipzig
 						console.log('PARSERINFO: has property marker');
 						var allnodes = data.marker.map(function(node) {
@@ -105,7 +110,7 @@ FFModule.prototype = {
 								lon : (row.value.latlng) ? row.value.latlng[1] : row.value.lon,
 								id : row.id
 							};
-							});
+						});
 					} else if (json.nodes) {// Bremen
 						console.log('PARSERINFO: has property nodes => we must decide if array or object');
 						var nodes = json.nodes;
