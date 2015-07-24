@@ -18,15 +18,16 @@ if (!Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.j
 	Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').write(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read());
 }
 var domainlist = JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').read().getText());
-console.log(domainlist);
+
 var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
+console.log('Info: lastcity = ' + lastcity);
 var hamburgidid;
 domainlist.forEach(function(d, i) {
 	if (d.name == 'Hamburg')
 		hamburgid = i;
 });
 var lastcityid = (Ti.App.Properties.hasProperty('LASTCITYID') ? Ti.App.Properties.getInt('LASTCITYID') : hamburgid);
-console.log('lastcityid = ' + lastcityid);
+console.log('Info: lastcityid = ' + lastcityid);
 
 if (!String.prototype.rtrim) {! function() {
 		String.prototype.rtrim = function() {
@@ -58,6 +59,10 @@ module.exports = function(_event) {
 				};
 			});
 			_event.source.mapView.setRegion(_args.region);
+			_event.source.mapView.regionset = true;
+			setTimeout(function() {
+				_event.source.mapView.regionset = false;
+			}, 1000);
 			Ti.UI.createNotification({
 				message : String.format(L('PARAT'), points.length)
 			}).show();
@@ -112,6 +117,7 @@ module.exports = function(_event) {
 		url : domainlist[lastcityid].url,
 		done : renderNodes
 	});
+	console.log('Info: load nodes from ' + domainlist[lastcityid].name);
 	var activity = _event.source.getActivity();
 	if (!activity)
 		return;

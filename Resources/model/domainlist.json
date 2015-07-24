@@ -50,7 +50,10 @@
 	}, {
 		"name": "Gera/Greiz",
 		"url": "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
-	},{"name":"Greifswald","url":"http://map.greifswald.freifunk.net/nodes.json"}, {
+	}, {
+		"name": "Greifswald",
+		"url": "http://map.greifswald.freifunk.net/nodes.json"
+	}, {
 		"name": "Gronau",
 		"url": "http://freifunk.liztv.net/batmap/json.php?lat=52.210773525324925&lon=7.047603455200169&f="
 	}, {

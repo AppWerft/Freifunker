@@ -18,6 +18,7 @@ module.exports = function() {
 			longitudeDelta : lastregion.longitudeDelta,
 			limit : 50
 		};
+		console.log('Info: last region restored to ' + lastregion.latitude + ',' + lastregion.longitude);
 	}
 	var event = arguments[0] || {};
 	var self = Ti.UI.createWindow({
@@ -87,6 +88,8 @@ module.exports = function() {
 			return false;
 		}
 
+		if (_e.source.regionset == true)
+			return false;
 
 		Ti.App.Properties.setString('LASTREGION', JSON.stringify({
 			latitude : _e.latitude,
@@ -94,6 +97,7 @@ module.exports = function() {
 			latitudeDelta : _e.latitudeDelta,
 			longitudeDelta : _e.longitudeDelta
 		}));
+		console.log('Info: saving lastregion of map to ' + _e.latitude + ',' + _e.longitude);
 		if (self.locked == false) {
 			self.locked = true;
 			setTimeout(function() {
