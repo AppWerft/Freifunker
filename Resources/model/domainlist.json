@@ -1,7 +1,7 @@
 [
 	{
 		"name": "3-Ländereck",
-		"url": "https://map.freifunk-3laendereck.net/nodes.json"
+		"url": "http://map.freifunk-3laendereck.net/nodes.json"
 	}, {
 		"name": "Aachen",
 		"url": "http://map.freifunk-aachen.de/nodes.json"
@@ -127,7 +127,7 @@
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
 		"name": "Osnabrück",
-		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=1500"
+		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
 	}, {
 		"name": "Ostholstein",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
@@ -153,7 +153,7 @@
 		"name": "Rostock",
 		"url": "http://www.opennet-initiative.de/api/nodes/online?bbox=11.908513183593,54.03961197441,12.331486816407,54.120378202872"
 	}, {
-		"name": "Rothenburg ob der Tauber",
+		"name": "Rothenburg ob d. Tauber",
 		"url": "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"
 	}, {
 		"name": "Ruhr/Straelen",
@@ -176,6 +176,12 @@
 	}, {
 		"name": "Uelzen",
 		"url": "http://map.freifunk-uelzen.de/nodes.json"
+	}, {
+		"name": "Ulm/Neuulm",
+		"url": "http://vpn5.freifunk-ulm.de/nodes.json"
+	}, {
+		"name": "Weser/Ems",
+		"url": "http://netmon.nordwest.freifunk.net/api.php?class=ApiMap&section=getRouters"
 	}, {
 		"name": "Westpfalz",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"

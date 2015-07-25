@@ -51,44 +51,35 @@ FFModule.prototype = {
 				if (this.responseText.match(/^\s*</mg)) {
 					console.log('PARSERINFO: XML found');
 					var xml = this.responseXML;
-					var items = xml.documentElement.getElementsByTagName("router");
-					if (items) {
-						console.log('OSNA');
-						for (var i = 0; i < items.length; i++) {
-							var item = items.item(i);
-							allnodes.push({
-								id : item.getElementsByTagName('router_id').item(0).textContent,
-								lat : item.getElementsByTagName('latitude').item(0).textContent,
-								lon : item.getElementsByTagName('longitude').item(0).textContent,
-								name : item.getElementsByTagName('hostname').item(0).textContent,
-								online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
-								clients : item.getElementsByTagName('client_count').item(0).textContent
-							});
+					if (xml.documentElement) {
+						var items = xml.documentElement.getElementsByTagName("router");
+						if (items.length) {// Osna
+							for (var i = 0; i < items.length; i++) {
+								var item = items.item(i);
+								item.getElementsByTagName('latitude') && allnodes.push({
+									id : item.getElementsByTagName('router_id').item(0).textContent,
+									lat : item.getElementsByTagName('latitude').item(0).textContent,
+									lon : item.getElementsByTagName('longitude').item(0).textContent,
+									name : item.getElementsByTagName('hostname').item(0).textContent,
+									online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
+									clients : item.getElementsByTagName('client_count').item(0).textContent
+								});
+							}
 						}
-
-					} else {
-						var data = (new (require('vendor/XMLTools'))(xml)).toObject();
-						console.log(data);
-						if (data.node) {//Berlin
-							console.log('PARSERINFO: has property node');
-							var allnodes = data.node.map(function(node) {
-								return {
-									id : node.nodeid,
-									lat : node.lat,
-									lon : node.lon,
-									name : node.name
-								};
-							});
-						} else {// Leipzig
-							console.log('PARSERINFO: has property marker');
-							var allnodes = data.marker.map(function(node) {
-								return {
-									id : node.id,
-									lat : node.lat,
-									lon : node.lng,
-									name : node.title
-								};
-							});
+						items = xml.documentElement.getElementsByTagName("marker");
+						if (items.length) {// Leipzig
+							for (var i = 0,
+							    length = items.getLength(); i < length; i++) {
+								var item = items.item(i);
+								var attributes = item.getAttributes();
+								console.log(attributes);
+								attributes.getNamedItem('lat') && allnodes.push({
+									id : attributes.getNamedItem('id').nodeValue,
+									lat : attributes.getNamedItem('lat').nodeValue,
+									lon : attributes.getNamedItem('lng').nodeValue,
+									name : attributes.getNamedItem('title').nodeValue,
+								});
+							}
 						}
 					}
 				} else {
@@ -130,19 +121,18 @@ FFModule.prototype = {
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
 							console.log('PARSERINFO: has property node array');
-							if (nodes[0].network || nodes[0].hostname) {// Bremen
+							if (nodes[0].network || nodes[0].hostname) { // Basel
 								console.log('PARSERINFO: node has property statistics');
 								nodes.forEach(function(node) {
-									if (node.location && node.location.latitude && node.location.longitude) {
+									if (node.location  || node.geo) {
 										allnodes.push({
-											lat : node.location.latitude,
-											lon : node.location.longitude,
-											id : node.network.node_id,
-											name : node.hostname,
-											clients : node.statistics.clients,
-											online : node.flags.online
+											lat : (node.location) ? node.location.latitude : node.geo[0],
+											lon : (node.location) ? node.location.longitude : node.geo[1],
+											id : node.id || node.network.node_id,
+											name : node.name || node.hostname,
+											clients : (node.statistics) ? node.statistics.clients : undefined,
+											online : (node.statistics) ? node.flags.online : undefined
 										});
-
 									}
 								});
 							} else if (nodes[0].lat) {
