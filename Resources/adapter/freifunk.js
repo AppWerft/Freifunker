@@ -81,6 +81,23 @@ FFModule.prototype = {
 								});
 							}
 						}
+						items = xml.documentElement.getElementsByTagName("Placemark");
+						if (items.length) {// Weser/Ems  KML
+							for (var i = 0,
+							    length = items.getLength(); i < length; i++) {
+								var item = items.item(i);
+								var name = item.getElementsByTagName('name').item(0).textContent.replace(/(<([^>]+)>)/ig,"");
+								console.log(name);
+								allnodes.push({
+									id : 'we'+i,
+									lat : item.getElementsByTagName('coordinates').item(0).textContent.split(',')[1],
+									lon : item.getElementsByTagName('coordinates').item(0).textContent.split(',')[0],
+									name : name,
+							//		online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
+							//		clients : item.getElementsByTagName('client_count').item(0).textContent
+								});
+							}
+						}
 					}
 				} else {
 					// J S O N
@@ -121,10 +138,10 @@ FFModule.prototype = {
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
 							console.log('PARSERINFO: has property node array');
-							if (nodes[0].network || nodes[0].hostname) { // Basel
+							if (nodes[0].network || nodes[0].hostname) {// Basel
 								console.log('PARSERINFO: node has property statistics');
 								nodes.forEach(function(node) {
-									if (node.location  || node.geo) {
+									if (node.location || node.geo) {
 										allnodes.push({
 											lat : (node.location) ? node.location.latitude : node.geo[0],
 											lon : (node.location) ? node.location.longitude : node.geo[1],

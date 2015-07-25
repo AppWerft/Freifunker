@@ -15,7 +15,6 @@ FFlist.prototype = {
 	},
 	setActiveDomain : function() {
 	},
-
 	loadList : function() {
 		var that = this;
 		var xhr = Ti.Network.createHTTPClient({

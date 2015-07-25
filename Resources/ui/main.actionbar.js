@@ -1,3 +1,5 @@
+var ActionBar = require('com.alcoapps.actionbarextras');
+
 var Map = require('ti.map');
 var Moment = require('vendor/moment');
 Moment.locale('de');
@@ -6,18 +8,12 @@ var Freifunk = new (require('adapter/freifunk'))();
 var MarkerManagerFreifunk;
 var DomainPolygon;
 var DomainList = new (require('adapter/domainlist'))();
-var domainlist = DomainList.getList();
-var ActionBar = require('com.alcoapps.actionbarextras');
 DomainList.addEventListener('load', function(_res) {
 	domainlist = _res.domainlist;
 });
 DomainList.loadList();
 
-var url = 'https://raw.githubusercontent.com/AppWerft/Freifunker/master/Resources/model/domainlist.json';
-if (!Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').exists()) {
-	Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').write(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read());
-}
-var domainlist = JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'domainlist.json').read().getText());
+domainlist = DomainList.getList();
 
 var lastcity = Ti.App.Properties.getString('LASTCITY', 'Hamburg');
 console.log('Info: lastcity = ' + lastcity);
