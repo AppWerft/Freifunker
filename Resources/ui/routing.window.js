@@ -104,10 +104,18 @@ module.exports = function(args) {
 		data[0] = startrow;
 		leg.steps.forEach(function(step) {
 			var row = Ti.UI.createTableViewRow();
+			var url = 'https://maps.googleapis.com/maps/api/streetview?location=' + step.start_location.lat + ',' + step.start_location.lng + '&sensor=false&size=300x200';
+			row.add(Ti.UI.createImageView({
+				image : url,
+				width : 150,
+				height : 100,
+				top : 0,
+				left : 0
+			}));
 			row.add(Ti.UI.createLabel({
 				html : step.html_instructions,
 				text : (Ti.Android) ? '' : leg.html_instructions.replace(/<.*?>/g, ''),
-				left : 90,
+				left : 160,
 				top : 5,
 				bottom : 5,
 				height : Ti.UI.SIZE,
@@ -121,13 +129,13 @@ module.exports = function(args) {
 			row.add(Ti.UI.createLabel({
 				text : step.distance.text,
 				left : 5,
-				top : 0,
+				top : 100,
 				color : '#999',
 				width : Ti.UI.FILL,
 				textAlign : 'left',
 				font : {
 					fontFamily : 'Roboto Condensed',
-					fontSize : 22,
+					fontSize : 16,
 					fontWeight : 'bold'
 				}
 			}));

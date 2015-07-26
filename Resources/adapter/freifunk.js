@@ -86,15 +86,15 @@ FFModule.prototype = {
 							for (var i = 0,
 							    length = items.getLength(); i < length; i++) {
 								var item = items.item(i);
-								var name = item.getElementsByTagName('name').item(0).textContent.replace(/(<([^>]+)>)/ig,"");
+								var name = item.getElementsByTagName('name').item(0).textContent.replace(/(<([^>]+)>)/ig, "");
 								console.log(name);
 								allnodes.push({
-									id : 'we'+i,
+									id : 'we' + i,
 									lat : item.getElementsByTagName('coordinates').item(0).textContent.split(',')[1],
 									lon : item.getElementsByTagName('coordinates').item(0).textContent.split(',')[0],
 									name : name,
-							//		online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
-							//		clients : item.getElementsByTagName('client_count').item(0).textContent
+									//		online : item.getElementsByTagName('status').item(0).textContent == 'online' ? true : false,
+									//		clients : item.getElementsByTagName('client_count').item(0).textContent
 								});
 							}
 						}
@@ -137,6 +137,7 @@ FFModule.prototype = {
 						console.log('PARSERINFO: has property nodes => we must decide if array or object');
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
+							//  ffmap-d3:
 							console.log('PARSERINFO: has property node array');
 							if (nodes[0].network || nodes[0].hostname) {// Basel
 								console.log('PARSERINFO: node has property statistics');
@@ -149,6 +150,19 @@ FFModule.prototype = {
 											name : node.name || node.hostname,
 											clients : (node.statistics) ? node.statistics.clients : undefined,
 											online : (node.statistics) ? node.flags.online : undefined
+										});
+									}
+								});
+							} else if (nodes[0].flags) {// Jena, Karlsruhe
+								console.log('PARSERINFO: node has flags');
+								nodes.forEach(function(node) {
+									if (node.location || node.geo) {
+										allnodes.push({
+											lat : (node.location) ? node.location.latitude : node.geo[0],
+											lon : (node.location) ? node.location.longitude : node.geo[1],
+											id : node.id || node.network.node_id,
+											name : node.name || node.hostname,
+											online : node.flags.online || undefined
 										});
 									}
 								});
@@ -177,6 +191,7 @@ FFModule.prototype = {
 								});
 							}
 						} else {
+							///  meshviewer
 							Object.getOwnPropertyNames(nodes).forEach(function(key) {
 								var node = nodes[key];
 								node.nodeinfo && node.nodeinfo.location && allnodes.push({

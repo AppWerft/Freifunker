@@ -64,10 +64,13 @@
 		"url": "http://stats.guetersloh.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Hamburg",
-		"url": "https://map.hamburg.freifunk.net/nodes.json"
+		"url": "http://map.hamburg.freifunk.net/nodes.json"
 	}, {
 		"name": "Hannover",
 		"url": "http://hannover.freifunk.net/karte/nodes.json"
+	}, {
+		"name": "Harz",
+		"url": "http://harz.freifunk.net/meshdata/nodes.json"
 	}, {
 		"name": "Hildesheim",
 		"url": "http://map.freifunk-hi.de/json/nodes.json"
@@ -186,7 +189,7 @@
 		"name": "Westpfalz",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"
 	}, {
-		"name": "Wien",
+		"name": "Wien (Funkfeuer)",
 		"url": "https://map.funkfeuer.at/wien/data.php"
 	}, {
 		"name": "Wiesbaden",
