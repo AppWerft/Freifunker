@@ -66,6 +66,20 @@ FFModule.prototype = {
 								});
 							}
 						}
+						items = xml.documentElement.getElementsByTagName("node");
+						if (items.length) { // Wien
+							for (var i = 0,
+							    length = items.getLength(); i < length; i++) {
+								var item = items.item(i);
+								var attributes = item.getAttributes();
+								attributes.getNamedItem('lat') && allnodes.push({
+									id : attributes.getNamedItem('name').nodeValue,
+									lat : attributes.getNamedItem('lat').nodeValue,
+									lon : attributes.getNamedItem('lon').nodeValue,
+									name : 'Freifeuer '+attributes.getNamedItem('name').nodeValue,
+								});
+							}
+						}
 						items = xml.documentElement.getElementsByTagName("marker");
 						if (items.length) {// Leipzig
 							for (var i = 0,
