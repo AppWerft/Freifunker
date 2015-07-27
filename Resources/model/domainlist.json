@@ -193,7 +193,7 @@
 		"url": "https://map.funkfeuer.at/wien/data.php"
 	}, {
 		"name": "Wiesbaden",
-		"url": "http://map.wiesbaden.freifunk.net/data/nodes.json"
+		"url": "http://map.wiesbaden.freifunk.net/data/nodelist.json"
 	}, {
 		"name": "Witten",
 		"url": "http://map.freifunk-ruhrgebiet.de/WIT/nodes.json"
