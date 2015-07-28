@@ -1,7 +1,83 @@
 var Moment = require('vendor/moment');
 Moment.locale('de');
 var Map = require('ti.map');
+var Freifunk = new (require('adapter/freifunk'))();
+var DomainList = new (require('adapter/domainlist'))();
+var MarkerManager = require('vendor/markermanager');
+
+var MarkerManagerFreifunk;
+var DomainPolygon;
+var ActionBar = require('com.alcoapps.actionbarextras');
+domainlist = DomainList.getList();
+
 module.exports = function() {
+	function renderNodes(_args) {
+		self.progress.setRefreshing(false);
+
+		self.spinner.hide();
+		if (!self.mapView)
+			return;
+		if (_args != null) {
+			var points = _args.nodes.map(function(node) {
+				var subtitles = [];
+				if (node.clients !== undefined)
+					subtitles.push('Clients: ' + node.clients + '             ');
+				if (node.online !== undefined)
+					subtitles.push('online: ' + node.online + '             ');
+				return {
+					lat : node.lat,
+					lng : node.lon,
+					id : node.id,
+					title : node.name,
+					reldist : node.reldist,
+					subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
+				};
+			});
+			self.mapView.setRegion(_args.region);
+			self.mapView.regionset = true;
+			setTimeout(function() {
+				self.mapView.regionset = false;
+			}, 1000);
+			Ti.UI.createNotification({
+				message : String.format(L('PARAT'), points.length)
+			}).show();
+			ActionBar.setSubtitle(points.length + ' Router ' + _args.nodestotal.online + '/' + _args.nodestotal.offline);
+			MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
+			var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
+			points.forEach(function(p) {
+				if (p.reldist < 3)// only points in 'cloud'
+					convexHull.addPoint(p.lng, p.lat);
+			});
+			var hullpoints = convexHull.getHull().map(function(e) {
+				return {
+					latitude : e.y,
+					longitude : e.x
+				};
+			});
+			if (DomainPolygon) {
+				self.mapView.removePolygon(DomainPolygon);
+				DomainPolygon = null;
+			}
+			DomainPolygon = Map.createPolygon({
+				points : hullpoints,
+				strokeColor : '#DE2C68',
+				fillColor : '#22DE2C68',
+				strokeWidth : Ti.Platform.displayCaps.logicalDensityFactor * 2 || 2,
+			});
+			MarkerManagerFreifunk = new MarkerManager({
+				name : 'freifunk',
+				map : self.mapView,
+				image : '/images/freifunk.png',
+				points : points,
+				rightImage : '/images/pfeil.png'
+			});
+			self.mapView.addPolygon(DomainPolygon);
+		} else {
+			Ti.UI.createNotification({
+				message : "Verbindung zum Server gestört."
+			}).show();
+		}
+	};
 	var region = {
 		latitude : 53.56,
 		longitude : 10,
@@ -58,11 +134,51 @@ module.exports = function() {
 		});
 		self.add(self.progress);
 	}
-	self.mapView && self.mapView.addEventListener('complete', function() {
-		// event pins
-	});
+
 	self.mapView && self.mapView.addEventListener('regionchanged', onRegionChanged);
 	self.mapView && self.mapView.addEventListener('click', onPinclick);
+
+	var picker = Ti.UI.createPicker({
+		top : 80,
+		width : 170,
+		height : 45,
+		zIndex : 9999,
+		selectionIndicator : true,
+		left : 0,
+	});
+	var mydomain = 0;
+	picker.add(domainlist.map(function(domain, ndx) {
+		if (Ti.App.Properties.getString('LASTCITY', '') == domain.name)
+			mydomain = ndx;
+		return Ti.UI.createPickerRow({
+			title : domain.name,
+			url : domain.url,
+			ndx : ndx
+		});
+	}));
+	picker.addEventListener('change', function(_e) {
+		self.progress.setRefreshing(true);
+		Ti.App.Properties.setString('LASTCITY', _e.row.title);
+		Ti.App.Properties.setString('LASTCITYURL', _e.row.url);
+		console.log(_e.row);
+		Freifunk.loadNodes({
+			url : _e.row.url,
+			done : renderNodes
+		});
+
+	});
+	self.mapView.addEventListener('complete', function() {
+		self.mapView.add(Ti.UI.createView({
+			top : 80,
+			backgroundColor : '#afff',
+			width : 168,
+			height : 40,
+			zIndex : 888,
+			left : 0,
+		}));
+		self.mapView.add(picker);
+		picker.setSelectedRow(0, mydomain);
+	});
 	function onPinclick(_e) {
 		self.mapView.removeEventListener('click', onPinclick);
 		setTimeout(function() {
@@ -110,5 +226,15 @@ module.exports = function() {
 		}
 	}
 
+
+	self.reloadDomain = function() {
+		self.progress.setRefreshing(true);
+		Freifunk.loadNodes({
+			url : Ti.App.Properties.getString('LASTCITYURL', 'Hamburg'),
+			done : renderNodes
+		});
+	};
+	
+	self.reloadDomain();
 	return self;
 };

@@ -11,7 +11,7 @@ module.exports = function(args) {
 		latlon : [args.lat, args.lon],
 		orientationModes : []
 	});
-	var GeoRoute = new (require('vendor/georoute'))();
+	var GeoRoute = require('vendor/georoute').createGeo();
 	GeoRoute.addEventListener('position', function(_e) {
 		GeoRoute.getRoute(_e.coords, args.lat + ',' + args.lon);
 	});

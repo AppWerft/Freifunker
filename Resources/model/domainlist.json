@@ -82,7 +82,7 @@
 		"url": "https://freifunk-ingolstadt.de/map/nodes.json"
 	}, {
 		"name": "Jena",
-		"url": "https://freifunk-jena.de/ffmap/nodes.json"
+		"url": "https://map.freifunk-jena.de/_spatial/nodes_essentials"
 	}, {
 		"name": "Jüchen",
 		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
@@ -178,7 +178,7 @@
 		"url": "http://map.freifunk-trier.starletp9.de/nodes.json"
 	}, {
 		"name": "Uelzen",
-		"url": "http://map.freifunk-uelzen.de/nodes.json"
+		"url": "http://map.freifunk-uelzen.de/data/nodes.json"
 	}, {
 		"name": "Ulm/Neuulm",
 		"url": "http://vpn5.freifunk-ulm.de/nodes.json"

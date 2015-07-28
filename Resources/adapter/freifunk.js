@@ -6,7 +6,21 @@ if (!Array.isArray) {
 var GeoTools = require('vendor/geotools');
 
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
-
+function calcNodes(nodes) {
+	var res = {
+		online : 0,
+		offline : 0,
+		total : 0
+	};
+	nodes.forEach(function(n) {
+		res.total++;
+		if (n.online === true)
+			res.online++;
+		if (n.online === false)
+			res.offline++;
+	});
+	return res;
+};
 function calcRegion(nodes) {
 	var lats = 0,
 	    lons = 0,
@@ -67,7 +81,7 @@ FFModule.prototype = {
 							}
 						}
 						items = xml.documentElement.getElementsByTagName("node");
-						if (items.length) { // Wien
+						if (items.length) {// Wien
 							for (var i = 0,
 							    length = items.getLength(); i < length; i++) {
 								var item = items.item(i);
@@ -76,7 +90,7 @@ FFModule.prototype = {
 									id : attributes.getNamedItem('name').nodeValue,
 									lat : attributes.getNamedItem('lat').nodeValue,
 									lon : attributes.getNamedItem('lon').nodeValue,
-									name : 'Freifeuer '+attributes.getNamedItem('name').nodeValue,
+									name : 'Freifeuer ' + attributes.getNamedItem('name').nodeValue,
 								});
 							}
 						}
@@ -86,7 +100,6 @@ FFModule.prototype = {
 							    length = items.getLength(); i < length; i++) {
 								var item = items.item(i);
 								var attributes = item.getAttributes();
-								console.log(attributes);
 								attributes.getNamedItem('lat') && allnodes.push({
 									id : attributes.getNamedItem('id').nodeValue,
 									lat : attributes.getNamedItem('lat').nodeValue,
@@ -101,7 +114,6 @@ FFModule.prototype = {
 							    length = items.getLength(); i < length; i++) {
 								var item = items.item(i);
 								var name = item.getElementsByTagName('name').item(0).textContent.replace(/(<([^>]+)>)/ig, "");
-								console.log(name);
 								allnodes.push({
 									id : 'we' + i,
 									lat : item.getElementsByTagName('coordinates').item(0).textContent.split(',')[1],
@@ -138,7 +150,7 @@ FFModule.prototype = {
 							});
 						});
 					} else if (json.rows) {
-						console.log('PARSERINFO: has property rows');
+						console.log('PARSERINFO: has property rows (Jena/…)');
 						var allnodes = json.rows.map(function(row) {
 							return {
 								name : row.value.hostname,
@@ -167,8 +179,8 @@ FFModule.prototype = {
 										});
 									}
 								});
-							} else if (nodes[0].flags) {// Jena, Karlsruhe
-								console.log('PARSERINFO: node has flags');
+							} else if (nodes[0].flags) {//  Karlsruhe
+								console.log('PARSERINFO: node has flags (Jena/Karlsruhe/…)');
 								nodes.forEach(function(node) {
 									if (node.location || node.geo) {
 										allnodes.push({
@@ -220,13 +232,10 @@ FFModule.prototype = {
 						}
 					}
 				}
-				console.log('Allnodes=' + allnodes.length);
 				var nodes = allnodes.filter(function(n) {
 					return (n.lat > 30 && n.lat < 70 && n.lon > 4 && n.lon < 20);
 				});
-				console.log('nodes=' + nodes.length);
 				var center = GeoTools.getPolygonCenter(nodes);
-				console.log('CENTER = ' + JSON.stringify(center));
 				var avgdist = 0;
 				nodes.forEach(function(n) {
 					n.dist = GeoTools.distance(n.lat, n.lon, center.lat, center.lon);
@@ -236,9 +245,11 @@ FFModule.prototype = {
 				nodes.forEach(function(n) {
 					n.reldist = n.dist / avgdist;
 				});
+				console.log(nodes);
 				args.done && args.done({
 					nodes : nodes,
-					region : calcRegion(nodes)
+					region : calcRegion(nodes),
+					nodestotal : calcNodes(nodes)
 				});
 			},
 			onerror : function() {
@@ -246,7 +257,6 @@ FFModule.prototype = {
 			}
 		});
 		xhr.open('GET', args.url);
-
 		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript,application/xml');
 		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
 		xhr.send();
