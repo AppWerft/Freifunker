@@ -36,6 +36,9 @@
 		"name": "Erfurt",
 		"url": "http://map.erfurt.freifunk.net/nodes.json"
 	}, {
+		"name": "Essen",
+		"url": "https://map.freifunk-essen.de/data/nodes.json"
+	}, {
 		"name": "Flensburg",
 		"url": "http://map.freifunk-flensburg.de/data/nodelist.json"
 	}, {

@@ -163,7 +163,7 @@ FFModule.prototype = {
 						console.log('PARSERINFO: has property nodes => we must decide if array or object');
 						var nodes = json.nodes;
 						if (Object.prototype.toString.call(nodes) === '[object Array]') {
-							//  ffmap-d3:
+							//  (Wiesbaden/Basel):
 							console.log('PARSERINFO: has property node array');
 							if (nodes[0].network || nodes[0].hostname) {// Basel
 								console.log('PARSERINFO: node has property statistics');
@@ -176,6 +176,20 @@ FFModule.prototype = {
 											name : node.name || node.hostname,
 											clients : (node.statistics) ? node.statistics.clients : undefined,
 											online : (node.statistics) ? node.flags.online : undefined
+										});
+									}
+								});
+							} else if (nodes[0].status) {//  Wiesbaden
+								console.log('PARSERINFO: node has status (Wiesbaden…)');
+								nodes.forEach(function(node) {
+									if (node.position) {
+										allnodes.push({
+											lat : node.position.lat,
+											lon : node.position.long,
+											id : node.id,
+											name : node.name,
+											clients : (node.status == undefined) ? undefined : node.status.clients,
+											online : node.status.online || undefined
 										});
 									}
 								});
@@ -212,12 +226,12 @@ FFModule.prototype = {
 										id : loc.id,
 										name : loc.name,
 										online : (loc.flags) ? loc.flags.online : undefined,
-										clients : loc.clientcount
+										clients : (loc.clientcount == undefined)? undefined :loc.clientcount
 									};
 								});
 							}
 						} else {
-							///  meshviewer
+
 							Object.getOwnPropertyNames(nodes).forEach(function(key) {
 								var node = nodes[key];
 								node.nodeinfo && node.nodeinfo.location && allnodes.push({

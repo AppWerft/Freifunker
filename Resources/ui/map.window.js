@@ -13,7 +13,7 @@ domainlist = DomainList.getList();
 module.exports = function() {
 	function renderNodes(_args) {
 		self.progress.setRefreshing(false);
-
+		
 		self.spinner.hide();
 		if (!self.mapView)
 			return;
@@ -167,7 +167,7 @@ module.exports = function() {
 		});
 
 	});
-	self.mapView.addEventListener('complete', function() {
+	self.mapView && self.mapView.addEventListener('complete', function() {
 		self.mapView.add(Ti.UI.createView({
 			top : 80,
 			backgroundColor : '#afff',
@@ -225,16 +225,14 @@ module.exports = function() {
 			}, 50);
 		}
 	}
-
-
 	self.reloadDomain = function() {
 		self.progress.setRefreshing(true);
+		ActionBar.setSubtitle('⇊ ⇊ ⇊ ⇊ ⇊');
 		Freifunk.loadNodes({
 			url : Ti.App.Properties.getString('LASTCITYURL', 'Hamburg'),
 			done : renderNodes
 		});
 	};
-	
 	self.reloadDomain();
 	return self;
 };

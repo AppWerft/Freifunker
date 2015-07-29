@@ -2,6 +2,7 @@ var ActionBar = require('com.alcoapps.actionbarextras');
 
 var Moment = require('vendor/moment');
 Moment.locale('de');
+var Map = require('ti.map');
 
 if (!String.prototype.rtrim) {! function() {
 		String.prototype.rtrim = function() {
@@ -39,18 +40,13 @@ module.exports = function(_event) {
 			require('ui/rss.window')().open();
 		});
 		_menuevent.menu.add({
-			title : 'nur aktive',
-			itemId : 998,
-			checkable : true,
+			title : 'Nodes erneuern',
+			itemId : '4',
 			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", function() {
-			Ti.UI.createNotification({
-				message : 'noch nicht realisiert'
-			}).show();
-		});
+		}).addEventListener("click", _event.source.reloadDomain);
 		_menuevent.menu.add({
 			title : 'Karte zu mir!',
-			itemId : 997,
+			itemId : '2',
 			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 		}).addEventListener("click", function() {
 			var GeoRoute = require('vendor/georoute').createGeo();
@@ -67,20 +63,42 @@ module.exports = function(_event) {
 			GeoRoute.getLocation();
 		});
 		_menuevent.menu.add({
+			title : 'nur aktive',
+			itemId : '1',
+			checkable : true,
+			enabled : false,
+			checked : true,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+		}).addEventListener("click", function(_e) {
+			var item = _menuevent.findItem('1');
+			item.checked = (item.isChecked()) ? false : true;
+			Ti.UI.createNotification({
+				message : 'noch nicht realisiert'
+			}).show();
+		});
+		_menuevent.menu.add({
+			title : 'Luftbild',
+			itemId : '5',
+			checkable : true,
+			checked : false,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+		}).addEventListener("click", function(_e) {
+			var item = _menuevent.menu.findItem('5');
+			item.checked = (item.isChecked()) ? false : true;
+			_event.source.mapView.setMapType(item.isChecked() ? Map.HYBRID_TYPE : Map.NORMAL_TYPE);
+		});
+		_menuevent.menu.add({
 			title : 'Nodes cachen',
 			checkable : true,
-			itemId : 996,
+			enabled : false,
+			itemId : '3',
 			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 		}).addEventListener("click", function() {
 			Ti.UI.createNotification({
 				message : 'noch nicht realisiert'
 			}).show();
 		});
-		_menuevent.menu.add({
-			title : 'Nodes erneuern',
-			itemId : 996,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", _event.source.reloadDomain);
+
 		activity.actionBar.displayHomeAsUp = false;
 	};
 	activity && activity.invalidateOptionsMenu();
