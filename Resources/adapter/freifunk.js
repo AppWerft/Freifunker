@@ -6,6 +6,7 @@ if (!Array.isArray) {
 var GeoTools = require('vendor/geotools');
 
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
+
 function calcNodes(nodes) {
 	var res = {
 		online : 0,
@@ -56,9 +57,13 @@ var FFModule = function() {
 FFModule.prototype = {
 	loadNodes : function() {
 		var args = arguments[0] || {};
+		var start = new Date().getTime();
 		var xhr = Ti.Network.createHTTPClient({
 			timeout : 30000,
 			onload : function() {
+				var filesize = this.responseText.length;
+				var stop = new Date().getTime();
+				var transfertime = stop-start;
 				var allnodes = [];
 				/// XML:
 				// beginnt mit optionalem Leerzeichen und '<'
@@ -259,11 +264,14 @@ FFModule.prototype = {
 				nodes.forEach(function(n) {
 					n.reldist = n.dist / avgdist;
 				});
-				console.log(nodes);
+				var end = new Date().getTime();
 				args.done && args.done({
 					nodes : nodes,
 					region : calcRegion(nodes),
-					nodestotal : calcNodes(nodes)
+					nodestotal : calcNodes(nodes),
+					filesize: filesize,
+					transfertime : transfertime,
+					parsetime : end-stop
 				});
 			},
 			onerror : function() {

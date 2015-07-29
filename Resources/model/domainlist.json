@@ -1,91 +1,120 @@
 [
 	{
 		"name": "3-Ländereck",
-		"url": "http://map.freifunk-3laendereck.net/nodes.json"
+		"url": "http://map.freifunk-3laendereck.net/nodes.json",
+		"image": "https://freifunk-3laendereck.net/wp-content/uploads/2014/12/header-logo-hd122x122.png"
 	}, {
 		"name": "Aachen",
-		"url": "http://map.freifunk-aachen.de/nodes.json"
+		"url": "http://map.freifunk-aachen.de/nodes.json",
+		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png"
 	}, {
 		"name": "Berlin",
-		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13.11286926269531%2C52.41666021079324%2C13.689651489257812%2C52.619308406611545"
+		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52.5%2C13.7%2C52.7",
+		"image": "https://pbs.twimg.com/profile_images/59831808/hshn3_400x400.png"
 	}, {
 		"name": "Brauschweig",
-		"url": "http://fredo.freifunk-bs.de/output/nodes.json"
+		"url": "http://fredo.freifunk-bs.de/output/nodes.json",
+		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png"
 	}, {
 		"name": "Bielefeld",
-		"url": "http://map.freifunk-bielefeld.de/nodes.json"
+		"url": "http://map.freifunk-bielefeld.de/nodes.json",
+		"image": "https://pbs.twimg.com/profile_images/378800000571521357/e228de43427f6b84dd3326f1597b5c3c_400x400.png"
 	}, {
 		"name": "Bonn/Köln",
-		"url": "http://map.kbu.freifunk.net/nodes.json"
+		"url": "http://map.kbu.freifunk.net/nodes.json",
+		"image": "https://kbu.freifunk.net/generated/logo-160x135-991951.png"
 	}, {
 		"name": "Bremen",
-		"url": "http://downloads.bremen.freifunk.net/data/ffmap-d3.json"
+		"url": "http://downloads.bremen.freifunk.net/data/ffmap-d3.json",
+		"image": "https://pbs.twimg.com/profile_images/448915312742629377/dbpLOlRn_400x400.png"
 	}, {
 		"name": "Chemnitz",
-		"url": "http://map.chemnitz.freifunk.net/nodes.json"
+		"url": "http://map.chemnitz.freifunk.net/nodes.json",
+		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2013/08/frontlogoText.png"
 	}, {
 		"name": "Darmstadt",
-		"url": "https://map.darmstadt.freifunk.net/data/nodelist.json"
+		"url": "https://map.darmstadt.freifunk.net/data/nodelist.json",
+		"image": "https://avatars0.githubusercontent.com/u/6648335?v=3&s=200"
 	}, {
 		"name": "Dortmund",
+		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.ffdo.de/data/nodes.json"
 	}, {
 		"name": "Dresden",
-		"url": "http://info.freifunk-dresden.de/info/nodes.json"
+		"url": "http://info.freifunk-dresden.de/info/nodes.json",
+		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
 		"name": "Erfurt",
-		"url": "http://map.erfurt.freifunk.net/nodes.json"
+		"url": "http://map.erfurt.freifunk.net/nodes.json",
+		"image": "https://pbs.twimg.com/profile_images/469408691427360768/znWNG9l5_400x400.png"
 	}, {
 		"name": "Essen",
+		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/ffrhein-logo.png",
 		"url": "https://map.freifunk-essen.de/data/nodes.json"
 	}, {
 		"name": "Flensburg",
+		"image": "https://pbs.twimg.com/profile_images/512724252353515520/8IrNdA88.png",
 		"url": "http://map.freifunk-flensburg.de/data/nodelist.json"
 	}, {
 		"name": "Frankennetz",
+		"image": "https://pbs.twimg.com/profile_images/3434285831/671334fe4e03215b8e286e4d7dd9714c_400x400.png",
 		"url": "http://95.85.40.145:5984/libremap-dev/_design/libremap-api/_rewrite/routers_by_location?bbox=9%2C48%2C14%2C51"
 	}, {
 		"name": "Frankfurt am Main",
+		"image": "",
 		"url": "http://map.ffm.freifunk.net/nodes.json"
 	}, {
 		"name": "Freiburg",
+		"image": "https://www.cccfr.de/assets/news/freifunk-logo.png",
 		"url": "http://freiburg.freifunk.net/ffmap-d3/nodes.json"
 	}, {
 		"name": "Gera/Greiz",
+		"image": "https://www.freifunk-gera-greiz.de/documents/10182/13739/Aufkleber-Freies-WLAN/c8ce868b-0c6e-413f-8d03-fb7bed874fec?t=1431332253024",
 		"url": "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
 	}, {
 		"name": "Greifswald",
+		"image": "https://pbs.twimg.com/profile_images/519416306773151744/5wAEXnFL.jpeg",
 		"url": "http://map.greifswald.freifunk.net/nodes.json"
 	}, {
 		"name": "Gronau",
+		"image": "http://gronau.freifunk.net/wp-content/themes/freifunkgronau/img/logo-lev.png",
 		"url": "http://freifunk.liztv.net/batmap/json.php?lat=52.210773525324925&lon=7.047603455200169&f="
 	}, {
 		"name": "Göttingen",
+		"image": "https://pbs.twimg.com/profile_images/554414904560472064/bGyhOEuR.png",
 		"url": "https://cccgoe.de/map/nodes.json"
 	}, {
 		"name": "Gütersloh",
+		"image": "https://pbs.twimg.com/profile_images/487755218654732289/ItoAb35M.png",
 		"url": "http://stats.guetersloh.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Hamburg",
+		"image": "https://pbs.twimg.com/profile_images/536964581856272384/XFzU4tQX.png",
 		"url": "http://map.hamburg.freifunk.net/nodes.json"
 	}, {
 		"name": "Hannover",
+		"image": "http://makerfairehannover.com/wp-content/uploads/2015/04/ffhlogo.png",
 		"url": "http://hannover.freifunk.net/karte/nodes.json"
 	}, {
 		"name": "Harz",
+		"image": "https://harz.freifunk.net/wiki/lib/exe/fetch.php?media=wiki:logo.png",
 		"url": "http://harz.freifunk.net/meshdata/nodes.json"
 	}, {
 		"name": "Hildesheim",
+		"image": "http://farm1.static.flickr.com/217/476708729_ac72b46869_o.jpg",
 		"url": "http://map.freifunk-hi.de/json/nodes.json"
 	}, {
 		"name": "Hennef",
+		"image": "http://www.freifunk-hennef.de/wp-content/uploads/2015/04/Freifunk-logo-hennef-klein.png",
 		"url": "http://map.freifunk-hennef.de/data/nodes.json"
 	}, {
 		"name": "Ingolstadt",
+		"image": "http://spd-ingolstadt.de/image/2/146/146/5/media/meldungen/logo_freifunknet-54bf5a665801b.png",
 		"url": "https://freifunk-ingolstadt.de/map/nodes.json"
 	}, {
 		"name": "Jena",
-		"url": "https://freifunk-jena.de/ffmap/nodes.json"
+		"url": "https://freifunk-jena.de/ffmap/nodes.json",
+		"image": "http://freifunk-jena.de/wp-content/uploads/2013/10/cropped-ffj_logo_signet-only.png"
 	}, {
 		"name": "Jüchen",
 		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
@@ -94,55 +123,69 @@
 		"url": "http://www.freifunk-karlsruhe.de/map/nodes.json"
 	}, {
 		"name": "Kassel",
+		"image": "https://freifunk-kassel.de/wikistatic/common/logo-ks-web.png",
 		"url": "http://map.ffks.de/meshviewer/nodes.json"
 	}, {
 		"name": "Kiel",
+		"image": "http://toppoint.de/~adk/ff-logo/kiel.jpg",
 		"url": "http://map.freifunk.in-kiel.de/json/nodes.json"
 	}, {
 		"name": "Köln/Bonn",
 		"url": "http://map.kbu.freifunk.net/nodes.json"
 	}, {
 		"name": "Leipzig",
+		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
 		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowserdata/"
 	}, {
 		"name": "Lübeck",
+		"image": "http://blog.blaudirekt.de/wp-content/uploads/2012/09/Freifunk_Luebeck.png",
 		"url": "https://map.luebeck.freifunk.net/data/nodelist.json"
 	}, {
 		"name": "Lüneburg",
+		"image": "http://freifunk.net/wp-content/themes/freifunk_base/img/logo_freifunknet.png",
 		"url": "http://freifunk-lueneburg.de/karte/nodes.json"
 	}, {
 		"name": "Magdeburg",
+		"image": "https://pbs.twimg.com/profile_images/433004035994824705/r83MHKGp_400x400.jpeg",
 		"url": "http://map.md.freifunk.net/nodes.json"
 	}, {
 		"name": "Mainz",
+		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
 		"url": "http://map.freifunk-mainz.de/nodes.json"
 	}, {
 		"name": "Möhne",
+		"image": "https://forum.freifunk.net/uploads/default/492/cecbdedd9281b484.jpg",
 		"url": "http://map.freifunk-moehne.de/data/nodes.json"
 	}, {
 		"name": "München",
+		"image": "https://ffmuc.net/assets/Ffmuc-logo-250.png",
 		"url": "http://map.freifunk-muenchen.de/data/nodelist.json"
 	}, {
 		"name": "Münster",
+		"image": "https://pbs.twimg.com/profile_images/503593784517464064/iTbRkMoF.png",
 		"url": "https://freifunk-muenster.de/map/data/nodelist.json"
 	}, {
 		"name": "Münsterland",
 		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"
 	}, {
 		"name": "Müritz",
+		"image": "https://pbs.twimg.com/profile_images/544602531821678593/3jiefMyz.png",
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
 		"name": "Osnabrück",
+		"image": "https://blog.nordwest.freifunk.net/wp-content/themes/freifunk-nordwest-wordpress-design/images/logo.png",
 		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
 	}, {
 		"name": "Ostholstein",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Paderborn",
+		"image": "https://pbs.twimg.com/profile_images/378800000606606576/fde60b784bd9e5267ce83f3832c11515.jpeg",
 		"url": "http://map.paderborn.freifunk.net/nodes.json"
 	}, {
 		"name": "Pinneberg",
-		"url": "http://meshviewer.pinneberg.freifunk.net/data/nodes.json"
+		"url": "http://meshviewer.pinneberg.freifunk.net/data/nodes.json",
+		"image": "https://pbs.twimg.com/profile_images/618839027454771200/gKyWGYVQ.png"
 	}, {
 		"name": "Potsdam",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52%2C13.3%2C52.5"
@@ -154,42 +197,53 @@
 		"url": "http://map.freifunk-rhein-neckar.de/nodes.json"
 	}, {
 		"name": "Rheinland",
+		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png",
 		"url": "http://ffmap.freifunk-rheinland.net/nodes.json"
 	}, {
 		"name": "Rostock",
+		"image": "http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://www.opennet-initiative.de/api/nodes/online?bbox=11.908513183593,54.03961197441,12.331486816407,54.120378202872"
 	}, {
-		"name": "Rothenburg ob d. Tauber",
+		"name": "Rothenburg ob d. Tauber","image":"http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"
 	}, {
 		"name": "Ruhr/Straelen",
+		"image": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xat1/v/t1.0-1/p160x160/11127035_933943566638758_8652918797832869314_n.png?oh=b57642b850f15dc618430259df637980&oe=5633452C&__gda__=1444744971_60f3fa69c9c4d53e44020459268fc374",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
 	}, {
 		"name": "Ruhrgebiet",
 		"url": "http://map.freifunk-ruhrgebiet.de/data/nodes.json"
 	}, {
 		"name": "Saarland",
+		"image": "https://www.hacksaar.de/wp-content/uploads/let-z-hack.png",
 		"url": "https://saar.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Stormarn",
+		"image": "https://pbs.twimg.com/profile_images/626133392896184320/ndPb5kIM_400x400.jpg",
 		"url": "http://map.ffod.org/data/nodes.json"
 	}, {
 		"name": "Stuttgart",
+		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
 		"url": "http://netinfo.freifunk-stuttgart.de/map/json/global_map.json"
 	}, {
 		"name": "Trier",
+		"image": "http://trier.freifunk.net/wp-content/themes/ff-wp-theme-2015.1.0/images/logo.png",
 		"url": "http://map.freifunk-trier.starletp9.de/nodes.json"
 	}, {
 		"name": "Troisdorf",
+		"image": "https://forum.freifunk.net/uploads/default/1623/46a850cae66c98e7.png",
 		"url": "https://map.freifunk-troisdorf.de/data/nodes.json"
 	}, {
 		"name": "Uelzen",
-		"url": "http://map.freifunk-uelzen.de/nodes.json"
+		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
+		"url": "http://map.freifunk-uelzen.de/data/nodes.json"
 	}, {
 		"name": "Ulm/Neuulm",
+		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
 		"url": "http://vpn5.freifunk-ulm.de/nodes.json"
 	}, {
 		"name": "Weser/Ems",
+		"image": "https://pbs.twimg.com/profile_images/547410999599693825/T9gTtMYW.jpeg",
 		"url": "http://netmon.nordwest.freifunk.net/api.php?class=ApiMap&section=getRouters"
 	}, {
 		"name": "Westpfalz",
@@ -199,12 +253,15 @@
 		"url": "https://map.funkfeuer.at/wien/data.php"
 	}, {
 		"name": "Wiesbaden",
+		"image": "http://blog.sperrobjekt.de/uploads/img/freifunk_wiesbaden.png",
 		"url": "http://map.wiesbaden.freifunk.net/data/nodelist.json"
 	}, {
 		"name": "Witten",
+		"image": "https://pbs.twimg.com/profile_images/517054969468309506/hhpxwQmA.png",
 		"url": "http://map.freifunk-ruhrgebiet.de/WIT/nodes.json"
 	}, {
 		"name": "Wuppertal",
+		"image": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c0.0.160.160/p160x160/10922483_894379780612975_3279905287994862749_n.jpg?oh=eb0d99ca9f3540f90427a50590b87e64&oe=565BC711&__gda__=1443787346_2afb0f87fd3abf81c6374c4acb58342e",
 		"url": "http://map.freifunk-wuppertal.net/nodes.json"
 	}
 ]

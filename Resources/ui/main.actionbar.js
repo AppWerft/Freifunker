@@ -62,7 +62,7 @@ module.exports = function(_event) {
 			});
 			GeoRoute.getLocation();
 		});
-		_menuevent.menu.add({
+		/*_menuevent.menu.add({
 			title : 'nur aktive',
 			itemId : '1',
 			checkable : true,
@@ -75,7 +75,7 @@ module.exports = function(_event) {
 			Ti.UI.createNotification({
 				message : 'noch nicht realisiert'
 			}).show();
-		});
+		});*/
 		_menuevent.menu.add({
 			title : 'Luftbild',
 			itemId : '5',
@@ -89,16 +89,13 @@ module.exports = function(_event) {
 		});
 		_menuevent.menu.add({
 			title : 'Nodes cachen',
-			checkable : true,
-			enabled : false,
+			checkable : false,
+			enabled : true,
 			itemId : '3',
 			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 		}).addEventListener("click", function() {
-			Ti.UI.createNotification({
-				message : 'noch nicht realisiert'
-			}).show();
+			require('ui/domains.window')().open();
 		});
-
 		activity.actionBar.displayHomeAsUp = false;
 	};
 	activity && activity.invalidateOptionsMenu();
