@@ -1,9 +1,12 @@
 var FFlist = function() {
 	this.eventhandlers = {};
 	//if (!Ti.App.Properties.hasProperty('DOMAINLIST')) {
-		Ti.App.Properties.setList('DOMAINLIST', JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read()));
+	Ti.App.Properties.setList('DOMAINLIST', JSON.parse(Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'domainlist.json').read()));
 	//}
 	this.domainlist = Ti.App.Properties.getList('DOMAINLIST', []);
+	console.log(this.domainlist.map(function(r) {
+		return r.name;
+	}).join(', '));
 	return this;
 };
 

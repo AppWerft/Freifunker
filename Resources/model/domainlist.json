@@ -121,10 +121,10 @@
 		"url": "http://map.freifunk-moehne.de/data/nodes.json"
 	}, {
 		"name": "München",
-		"url": "http://map.freifunk-muenchen.de/nodes.json"
+		"url": "http://map.freifunk-muenchen.de/data/nodelist.json"
 	}, {
 		"name": "Münster",
-		"url": "https://freifunk-muenster.de/map/nodes.json"
+		"url": "https://freifunk-muenster.de/map/data/nodelist.json"
 	}, {
 		"name": "Münsterland",
 		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"
@@ -145,7 +145,7 @@
 		"url": "http://meshviewer.pinneberg.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Potsdam",
-		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=12.914085388183592%2C52.33512928783033%2C13.221702575683594%2C52.45768304654543"
+		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52%2C13.3%2C52.5"
 	} , {
 		"name": "Radevormwald",
 		"url": "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"
@@ -179,6 +179,9 @@
 	}, {
 		"name": "Trier",
 		"url": "http://map.freifunk-trier.starletp9.de/nodes.json"
+	}, {
+		"name": "Troisdorf",
+		"url": "https://map.freifunk-troisdorf.de/data/nodes.json"
 	}, {
 		"name": "Uelzen",
 		"url": "http://map.freifunk-uelzen.de/nodes.json"

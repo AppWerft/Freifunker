@@ -13,7 +13,7 @@ domainlist = DomainList.getList();
 module.exports = function() {
 	function renderNodes(_args) {
 		self.progress.setRefreshing(false);
-		
+
 		self.spinner.hide();
 		if (!self.mapView)
 			return;
@@ -30,6 +30,7 @@ module.exports = function() {
 					id : node.id,
 					title : node.name,
 					reldist : node.reldist,
+					image : (node.online == true || node.online == undefined) ? '/images/freifunk.png' : '/images/freifunk_.png',
 					subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
 				};
 			});
@@ -225,6 +226,8 @@ module.exports = function() {
 			}, 50);
 		}
 	}
+
+
 	self.reloadDomain = function() {
 		self.progress.setRefreshing(true);
 		ActionBar.setSubtitle('⇊ ⇊ ⇊ ⇊ ⇊');

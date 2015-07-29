@@ -165,7 +165,7 @@ Module.prototype = {
 						longitude : markers.to_render[id].lng,
 						title : markers.to_render[id].title,
 						subtitle : markers.to_render[id].subtitle,
-						image : this.image,
+						image : (markers.to_render[id].image) ? markers.to_render[id].image : this.image,
 						rightView : this.rightImage ? Ti.UI.createImageView({
 							image : this.rightImage,
 							width : 36,
