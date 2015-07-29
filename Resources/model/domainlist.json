@@ -166,7 +166,7 @@
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
 	}, {
 		"name": "Ruhrgebiet",
-		"url": "http://map.freifunk-ruhrgebiet.de/nodes.json"
+		"url": "http://map.freifunk-ruhrgebiet.de/data/nodes.json"
 	}, {
 		"name": "Saarland",
 		"url": "https://saar.freifunk.net/map/nodes.json"
