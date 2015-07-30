@@ -109,7 +109,7 @@ module.exports = function() {
 			style : (Ti.Platform.name === 'iPhone OS') ? Ti.UI.iPhone.ActivityIndicatorStyle.BIG : Ti.UI.ActivityIndicatorStyle.BIG
 		})
 	});
-	if (require('vendor/gms.test')()) {
+	if (require('vendor/gms.test')() === true) {
 		self.mapView = Map.createView({
 			region : region,
 			top : 0,
@@ -164,6 +164,7 @@ module.exports = function() {
 		console.log(_e.row);
 		Freifunk.loadNodes({
 			url : _e.row.url,
+			name : _e.row.title,
 			done : renderNodes
 		});
 
@@ -204,10 +205,8 @@ module.exports = function() {
 		function isIdinList(id) {
 			return false;
 		}
-
 		if (_e.source.regionset == true)
 			return false;
-
 		Ti.App.Properties.setString('LASTREGION', JSON.stringify({
 			latitude : _e.latitude,
 			longitude : _e.longitude,
@@ -225,7 +224,7 @@ module.exports = function() {
 				self.locked = false;
 			}, 50);
 		}
-	}
+	};
 
 
 	self.reloadDomain = function() {
@@ -233,6 +232,7 @@ module.exports = function() {
 		ActionBar.setSubtitle('⇊ ⇊ ⇊ ⇊ ⇊');
 		Freifunk.loadNodes({
 			url : Ti.App.Properties.getString('LASTCITYURL', 'Hamburg'),
+			name : Ti.App.Properties.getString('LASTCITY', 'Hamburg'),
 			done : renderNodes
 		});
 	};

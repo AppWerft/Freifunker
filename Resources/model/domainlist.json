@@ -117,9 +117,11 @@
 		"image": "http://freifunk-jena.de/wp-content/uploads/2013/10/cropped-ffj_logo_signet-only.png"
 	}, {
 		"name": "Jüchen",
+		"image": "http://fdp-juechen.de/wp-content/uploads/2015/03/freifunk-540x304-180x200.jpg",
 		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
 	}, {
 		"name": "Karlsruhe",
+		"image":"https://pbs.twimg.com/profile_images/563092860182863872/9J1pKrho.png",
 		"url": "http://www.freifunk-karlsruhe.de/map/nodes.json"
 	}, {
 		"name": "Kassel",
@@ -166,6 +168,7 @@
 		"url": "https://freifunk-muenster.de/map/data/nodelist.json"
 	}, {
 		"name": "Münsterland",
+		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png",
 		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"
 	}, {
 		"name": "Müritz",
@@ -177,6 +180,7 @@
 		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
 	}, {
 		"name": "Ostholstein",
+		"image":"https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Paderborn",
@@ -188,12 +192,15 @@
 		"image": "https://pbs.twimg.com/profile_images/618839027454771200/gKyWGYVQ.png"
 	}, {
 		"name": "Potsdam",
+		"image": "https://pbs.twimg.com/profile_images/582434170531631104/oRtiraO9.jpg",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52%2C13.3%2C52.5"
 	} , {
 		"name": "Radevormwald",
+		"image": "http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"
 	}, {
 		"name": "Rhein Neckar",
+		"image": "http://chillr.de/wp-content/uploads/freifunk-rhein-neckar.png",
 		"url": "http://map.freifunk-rhein-neckar.de/nodes.json"
 	}, {
 		"name": "Rheinland",
@@ -204,7 +211,8 @@
 		"image": "http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://www.opennet-initiative.de/api/nodes/online?bbox=11.908513183593,54.03961197441,12.331486816407,54.120378202872"
 	}, {
-		"name": "Rothenburg ob d. Tauber","image":"http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
+		"name": "Rothenburg ob d. Tauber",
+		"image": "http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://netmon.freifunk-rothenburg.de/meshviewer/data/nodelist.json"
 	}, {
 		"name": "Ruhr/Straelen",
@@ -247,6 +255,7 @@
 		"url": "http://netmon.nordwest.freifunk.net/api.php?class=ApiMap&section=getRouters"
 	}, {
 		"name": "Westpfalz",
+		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"
 	}, {
 		"name": "Wien (Funkfeuer)",

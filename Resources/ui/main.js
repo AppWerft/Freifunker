@@ -13,4 +13,5 @@ module.exports = function() {
 		Ti.Android.currentActivity.startActivity(intent);
 		return false;
 	});
+	return self;
 };
