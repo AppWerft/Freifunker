@@ -12,7 +12,15 @@ module.exports = function(_event) {
 	if (!activity)
 		return;
 	activity.onCreateOptionsMenu = function(_menuevent) {
-		_menuevent.menu.clear();
+		var menu = _menuevent.menu;
+		menu.clear();
+		menu.add({
+			title : 'Eigene Position bestimmen und Liste anpassen',
+			icon : Ti.App.Android.R.drawable.ic_action_reload,
+			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+		}).addEventListener("click", function() {
+			_event.source.fireEvent('updateList');
+		});
 		activity.actionBar.displayHomeAsUp = true;
 	};
 	activity && activity.invalidateOptionsMenu();

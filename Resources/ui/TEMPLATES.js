@@ -134,6 +134,21 @@ exports.node = {
 				},
 				color : '#fc3'
 			}
+		}, {
+			type : 'Ti.UI.Label',
+			bindId : 'address',
+			properties : {
+				left : 0,
+				top : 0,
+				textAlign : 'left',
+				height : Ti.UI.SIZE,
+				touchEnabled : false,
+				font : {
+					fontSize : 16,
+					fontFamily : 'Roboto Condensed'
+				},
+				color : '#ccc'
+			}
 		}]
 	}]
 };

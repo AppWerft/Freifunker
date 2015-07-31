@@ -2,13 +2,13 @@ const DBNAME = "FREIFUNK";
 
 var GeoTools = require('vendor/geotools');
 var GeoRoute = require('vendor/georoute').createGeo();
-
+var ActionBar = require('com.alcoapps.actionbarextras');
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
 
 var FFModule = function() {
 	this.eventhandlers = {};
 	var link = Ti.Database.open(DBNAME);
-	link.execute('CREATE TABLE IF NOT EXISTS nodes (nodeid TEXT UNIQUE,id TEXT,community TEXT,lat NUMBER,lon NUMBER, name TEXT, json TEXT, mtime NUMBER,address TEXT)');
+	link.execute('CREATE TABLE IF NOT EXISTS nodes (nodeid TEXT UNIQUE, id TEXT,community TEXT,lat NUMBER,lon NUMBER, name TEXT, json TEXT, mtime NUMBER,address TEXT)');
 	link.execute('CREATE INDEX IF NOT EXISTS communityindex ON nodes (community)');
 	link.close();
 	return this;
@@ -25,47 +25,72 @@ FFModule.prototype = {
 		link.close();
 		return total;
 	},
-	getNodes : function() {
-		var radius = 10 / 40000 * 360;
-		// 10 km
-		if (!Ti.App.Properties.hasProperty('lastGeolocation'))
-			return [];
-		var coords = JSON.parse(Ti.App.Properties.getString('lastGeolocation'));
-		var nodes = [];
-		var DomainList = new (require('adapter/domainlist'))();
-		var domainlist = DomainList.getList();
-		var logo = '';
+	setAddress : function(nodeid, address) {
+		console.log(nodeid + ' ' + address);
 		var link = Ti.Database.open(DBNAME);
-		var sql = 'SELECT * FROM nodes WHERE lat>' + (coords.latitude - radius) + ' AND lat<' + (coords.latitude + radius) + ' AND lon>' + (coords.longitude - radius) + ' AND lon<' + (coords.longitude + radius);
-		var res = link.execute(sql);
-		while (res.isValidRow()) {
-			var community = res.fieldByName('community');
-			domainlist.forEach(function(domain) {
-				if (domain.name == community)
-					logo = domain.image;
-			});
-			var geo = GeoRoute.getDistBearing(coords.latitude, coords.longitude, res.fieldByName('lat'), res.fieldByName('lon'));
-			nodes.push({
-				nodeid : res.fieldByName('nodeid'),
-				id : res.fieldByName('id'),
-				community : community,
-				lat : res.fieldByName('lat'),
-				lon : res.fieldByName('lon'),
-				distance : Math.round(geo.distance),
-				bearing : Math.round(geo.bearing),
-				name : res.fieldByName('name'),
-				logo : logo,
-				compassPoint : GeoRoute.compassPoint(geo.bearing, 2),
-				id : res.fieldByName('id')
-			});
-			res.next();
-		}
-		nodes.sort(function(a, b) {
-			return a.distance > b.distance ? 1 : -1;
-		});
-		res.close();
+		var res = link.execute('UPDATE nodes SET address=? WHERE nodeid=?', address, nodeid);
+		console.log(res);
 		link.close();
-		return nodes;
+	},
+	getNodes : function(_cb) {
+		GeoRoute.getLocation();
+		function update(args) {
+			
+			var radius = 1000 / 40000000 * 360;
+			// 10 km
+			if (!Ti.App.Properties.hasProperty('lastGeolocation') && !args)
+				return [];
+			var coords = JSON.parse(Ti.App.Properties.getString('lastGeolocation'));
+			var nodes = [];
+			var DomainList = new (require('adapter/domainlist'))();
+			var domainlist = DomainList.getList();
+			var logo = '';
+			var link = Ti.Database.open(DBNAME);
+			var sql = 'SELECT * FROM nodes WHERE lat>' + (coords.latitude - radius) + ' AND lat<' + (coords.latitude + radius) + ' AND lon>' + (coords.longitude - radius) + ' AND lon<' + (coords.longitude + radius);
+			var res = link.execute(sql);
+			while (res.isValidRow()) {
+				var community = res.fieldByName('community');
+				domainlist.forEach(function(domain) {
+					if (domain.name == community)
+						logo = domain.image;
+				});
+				var geo = GeoRoute.getDistBearing(coords.latitude, coords.longitude, res.fieldByName('lat'), res.fieldByName('lon'));
+				nodes.push({
+					nodeid : res.fieldByName('nodeid'),
+					id : res.fieldByName('id'),
+					community : community,
+					lat : res.fieldByName('lat'),
+					lon : res.fieldByName('lon'),
+					address : res.fieldByName('address'),
+					distance : Math.round(geo.distance),
+					bearing : Math.round(geo.bearing),
+					name : res.fieldByName('name'),
+					logo : logo,
+					compassPoint : GeoRoute.compassPoint(geo.bearing, 2)
+				});
+				res.next();
+			}
+			nodes.sort(function(a, b) {
+				return a.distance > b.distance ? 1 : -1;
+			});
+			res.close();
+			link.close();
+			_cb(nodes);
+		}
+		GeoRoute.addEventListener('position', function(_res) {
+			GeoRoute.removeEventListener('position', update);
+			Ti.UI.createNotification({
+				message : 'Standortgenauigkeit: ' + Math.round(_res.coords.accuracy) + ' m'
+			}).show();
+			GeoRoute.getAddress(_res.coords, function(_res) {
+				ActionBar.setSubtitle(_res.street + ' ' + _res.street_number);
+				Ti.UI.createNotification({
+					message : 'Dein ungefährer Standort:\n' + _res.street + ' ' + _res.street_number
+				}).show();
+			});
+			update(_res);
+		});
+		update();
 	},
 	loadNodes : function() {
 		var args = arguments[0] || {};

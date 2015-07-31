@@ -119,8 +119,7 @@ module.exports = function(httpbody) {
 			var json = JSON.parse(httpbody.responseText);
 		} catch(E) {
 			console.log(E);
-			args.done && args.done(null);
-			return;
+			return null;
 		}
 		if (json.features) {// Rostock
 			console.log('PARSERINFO: has property features');

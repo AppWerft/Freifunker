@@ -166,7 +166,7 @@ Module.prototype = {
 					Ti.App.Properties.removeProperty('lastGeolocation');
 				} else {
 					console.log('Position found');
-					console.log(JSON.stringify(e.coords));
+					Ti.Media.vibrate([5]);
 					Ti.App.Properties.setString('lastGeolocation', JSON.stringify(e.coords));
 					args.done && args.done({
 						coords : e.coords
@@ -196,19 +196,27 @@ Module.prototype = {
 		xhr.open('GET', url);
 		xhr.send();
 	},
-	getAddress : function(_coords) {
+	getAddress : function(_coords, _load) {
 		var url = 'https://maps.googleapis.com/maps/api/geocode/json?&sensor=true&latlng=' + _coords.latitude + ',' + _coords.longitude;
+		console.log(url);
 		xhr = Ti.Network.createHTTPClient();
 		xhr.onload = function() {
-			try {
+			//try {
 				var res = JSON.parse(this.responseText);
+				var address = {};
 				res.results[0]['address_components'].forEach(function(part) {
-					//console.log(part);
+					if (part.types[0] == 'street_number')
+						address['street_number'] = part['long_name'];
+					if (part.types[0] == 'route')
+						address['street'] = part['long_name'];
 				});
-			} catch(E) {
+				_load && _load(address);
+			/*} catch(E) {
+				console.log(E);
 				console.log('Warning: problem with google geocoding');
-			}
+			}*/
 		};
+		
 		xhr.open('GET', url);
 		xhr.send();
 	},
