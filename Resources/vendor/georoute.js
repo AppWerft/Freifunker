@@ -3,11 +3,157 @@
  * Please see the LICENSE included with this distribution for details.
  */
 
+if (Number.prototype.toDegrees === undefined) {
+	Number.prototype.toDegrees = function() {
+		return this * 180 / Math.PI;
+	};
+}
+if (Number.prototype.toRadians === undefined) {
+	Number.prototype.toRadians = function() {
+		return this * Math.PI / 180;
+	};
+}
+
 var Module = function() {
 	this.eventhandlers = [];
 	return this;
 };
 Module.prototype = {
+	compassPoint : function(bearing, precision) {
+		if (precision === undefined)
+			precision = 3;
+		// note precision = max length of compass point; it could be extended to 4 for quarter-winds
+		// (eg NEbN), but I think they are little used
+
+		bearing = ((bearing % 360) + 360) % 360;
+		// normalise to 0..360
+
+		var point;
+
+		switch (precision) {
+		case 1:
+			// 4 compass points
+			switch (Math.round(bearing*4/360)%4) {
+			case 0:
+				point = 'N';
+				break;
+			case 1:
+				point = 'E';
+				break;
+			case 2:
+				point = 'S';
+				break;
+			case 3:
+				point = 'W';
+				break;
+			}
+			break;
+		case 2:
+			// 8 compass points
+			switch (Math.round(bearing*8/360)%8) {
+			case 0:
+				point = 'N';
+				break;
+			case 1:
+				point = 'NE';
+				break;
+			case 2:
+				point = 'E';
+				break;
+			case 3:
+				point = 'SE';
+				break;
+			case 4:
+				point = 'S';
+				break;
+			case 5:
+				point = 'SW';
+				break;
+			case 6:
+				point = 'W';
+				break;
+			case 7:
+				point = 'NW';
+				break;
+			}
+			break;
+		case 3:
+			// 16 compass points
+			switch (Math.round(bearing*16/360)%16) {
+			case  0:
+				point = 'N';
+				break;
+			case  1:
+				point = 'NNE';
+				break;
+			case  2:
+				point = 'NE';
+				break;
+			case  3:
+				point = 'ENE';
+				break;
+			case  4:
+				point = 'E';
+				break;
+			case  5:
+				point = 'ESE';
+				break;
+			case  6:
+				point = 'SE';
+				break;
+			case  7:
+				point = 'SSE';
+				break;
+			case  8:
+				point = 'S';
+				break;
+			case  9:
+				point = 'SSW';
+				break;
+			case 10:
+				point = 'SW';
+				break;
+			case 11:
+				point = 'WSW';
+				break;
+			case 12:
+				point = 'W';
+				break;
+			case 13:
+				point = 'WNW';
+				break;
+			case 14:
+				point = 'NW';
+				break;
+			case 15:
+				point = 'NNW';
+				break;
+			}
+			break;
+		default:
+			throw console.log('Precision must be between 1 and 3');
+		}
+
+		return point;
+	},
+
+	getDistBearing : function(φ1, λ1, φ2, λ2) {
+		const π = Math.PI,
+		    R = 6371000;
+		// distance :
+		var φ1 = φ1.toRadians();
+		var φ2 = φ2.toRadians();
+		var Δφ = (φ2 - φ1).toRadians();
+		var Δλ = (λ2 - λ1).toRadians();
+		var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+		// bearing :
+		var y = Math.sin(λ2 - λ1) * Math.cos(φ2);
+		var x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(λ2 - λ1);
+		return {
+			bearing : Math.atan2(y, x).toDegrees(),
+			distance : R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+		};
+	},
 	getLocation : function() {
 		var args = arguments[0] || {};
 		var that = this;
@@ -16,15 +162,12 @@ Module.prototype = {
 			Ti.Geolocation.getCurrentPosition(function(e) {
 				if (e.error) {
 					Ti.API.error('Error: ' + e.error);
-					Ti.App.Properties.setString('lastGeolocation', JSON.stringify({
-						latitude : 53.553,
-						longitude : 10
-					}));
-
+					console.log(e.error);
+					Ti.App.Properties.removeProperty('lastGeolocation');
 				} else {
 					console.log('Position found');
+					console.log(JSON.stringify(e.coords));
 					Ti.App.Properties.setString('lastGeolocation', JSON.stringify(e.coords));
-					that.coords = e.coords;
 					args.done && args.done({
 						coords : e.coords
 					});
@@ -38,10 +181,7 @@ Module.prototype = {
 				message : 'Um alle Geofunktionen nutzen zu können, muss der Standortdienst eingeschaltet sein.',
 				title : 'Standortdienst gestört …'
 			}).show();
-		Ti.App.Properties.setString('lastGeolocation', JSON.stringify({
-			latitude : 53.553,
-			longitude : 10
-		}));
+
 	},
 	getLatLng : function(_address) {
 		var that = this;

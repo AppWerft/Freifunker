@@ -1,38 +1,68 @@
-if (!Array.isArray) {
-	Array.isArray = function(arg) {
-		return Object.prototype.toString.call(arg) === '[object Array]';
-	};
-}
+const DBNAME = "FREIFUNK";
+
 var GeoTools = require('vendor/geotools');
+var GeoRoute = require('vendor/georoute').createGeo();
 
 var url = 'https://map.hamburg.freifunk.net/nodes.json';
 
 var FFModule = function() {
 	this.eventhandlers = {};
-	var link = Ti.Database.open('FF');
-	link.execute('CREATE TABLE IF NOT EXISTS nodes (nodeid TEXT,id TEXT,community TEXT,lat NUMBER,lon NUMBER, name TEXT, json TEXT, mtime NUMBER)');
+	var link = Ti.Database.open(DBNAME);
+	link.execute('CREATE TABLE IF NOT EXISTS nodes (nodeid TEXT UNIQUE,id TEXT,community TEXT,lat NUMBER,lon NUMBER, name TEXT, json TEXT, mtime NUMBER,address TEXT)');
 	link.execute('CREATE INDEX IF NOT EXISTS communityindex ON nodes (community)');
 	link.close();
 	return this;
 };
 
 FFModule.prototype = {
+	getNodesTotal : function() {
+		var total = 0;
+		var link = Ti.Database.open(DBNAME);
+		var res = link.execute('SELECT COUNT(*) AS total FROM nodes');
+		if (res.isValidRow())
+			total = res.fieldByName('total');
+		res.close();
+		link.close();
+		return total;
+	},
 	getNodes : function() {
+		var radius = 10 / 40000 * 360;
+		// 10 km
+		if (!Ti.App.Properties.hasProperty('lastGeolocation'))
+			return [];
+		var coords = JSON.parse(Ti.App.Properties.getString('lastGeolocation'));
 		var nodes = [];
-		var link = Ti.Database.open('FF');
-		var res = link.execute('SELECT * FROM nodes');
+		var DomainList = new (require('adapter/domainlist'))();
+		var domainlist = DomainList.getList();
+		var logo = '';
+		var link = Ti.Database.open(DBNAME);
+		var sql = 'SELECT * FROM nodes WHERE lat>' + (coords.latitude - radius) + ' AND lat<' + (coords.latitude + radius) + ' AND lon>' + (coords.longitude - radius) + ' AND lon<' + (coords.longitude + radius);
+		var res = link.execute(sql);
 		while (res.isValidRow()) {
+			var community = res.fieldByName('community');
+			domainlist.forEach(function(domain) {
+				if (domain.name == community)
+					logo = domain.image;
+			});
+			var geo = GeoRoute.getDistBearing(coords.latitude, coords.longitude, res.fieldByName('lat'), res.fieldByName('lon'));
 			nodes.push({
 				nodeid : res.fieldByName('nodeid'),
 				id : res.fieldByName('id'),
-				community : res.fieldByName('community'),
+				community : community,
 				lat : res.fieldByName('lat'),
 				lon : res.fieldByName('lon'),
-				name: res.fieldByName('name'),
+				distance : Math.round(geo.distance),
+				bearing : Math.round(geo.bearing),
+				name : res.fieldByName('name'),
+				logo : logo,
+				compassPoint : GeoRoute.compassPoint(geo.bearing, 2),
 				id : res.fieldByName('id')
 			});
 			res.next();
 		}
+		nodes.sort(function(a, b) {
+			return a.distance > b.distance ? 1 : -1;
+		});
 		res.close();
 		link.close();
 		return nodes;
@@ -53,10 +83,10 @@ FFModule.prototype = {
 				Ti.App.Properties.setObject(args.name, res);
 				// Caching
 				/* now for offline list: */
-				var link = Ti.Database.open('FF');
+				var link = Ti.Database.open(DBNAME);
 				link.execute('BEGIN TRANSACTION');
-				res.nodes.forEach(function(node,i) {
-					link.execute("INSERT OR REPLACE INTO nodes VALUES (?,?,?,?,?,?,?,?)", Ti.Utils.md5HexDigest(node.id + args.name), node.id, args.name, parseFloat(node.lat), parseFloat(node.lon), node.name, JSON.stringify(node), new Date().getTime());
+				res.nodes.forEach(function(node, i) {
+					link.execute("INSERT OR REPLACE INTO nodes VALUES (?,?,?,?,?,?,?,?,?)", Ti.Utils.md5HexDigest(node.id + args.name), node.id, args.name, parseFloat(node.lat), parseFloat(node.lon), node.name, JSON.stringify(node), new Date().getTime(), '');
 				});
 				link.execute('COMMIT');
 				link.close();

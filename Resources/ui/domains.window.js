@@ -36,7 +36,7 @@ module.exports = function() {
 					self && self.spinner.hide();
 					ActionBar.setSubtitle('Daten für ' + domain.name + ' erhalten');
 					_nodes && list.insertRowBefore(0, require('ui/domains.row')(domain, _nodes));
-					self.addDomain2List();
+					self && self.addDomain2List();
 				}
 			});
 		} else

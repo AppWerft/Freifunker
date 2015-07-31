@@ -12,108 +12,111 @@ if (!String.prototype.rtrim) {! function() {
 	}();
 }
 
-module.exports = function(_event) {
-	console.log('===========\nonWindowOpen\n===========');
+const RENEW = 0,
+    LUFTBILD = 1,
+    OWNPOSITION = 2,
+    DOCACHE = 3,
+    OFFLINE = 4,
+    ONLYACTIVE = 5;
+
+module.exports = function() {
+	var win = arguments[0].source;
+	console.log(win.apiName);
 	ActionBar.setTitle('Freifunk');
 	ActionBar.setFont('Roboto Condensed');
-	//	ActionBar.setSubtitle(lastcity);
 	ActionBar.subtitleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
-	_event.source.spinner.show();
-	var activity = _event.source.getActivity();
-	if (!activity)
-		return;
-	activity.onPrepareOptionsMenu = function(_menuevent) {
-		console.log('===========\nonCreateOptionsMenu\n===========');
-		_menuevent.menu.clear();
-		_menuevent.menu.add({
-			title : 'GITHUB',
-			itemId : 998,
-			groupId : 1,
-			icon : Ti.App.Android.R.drawable.ic_action_github,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-		}).addEventListener("click", require('ui/github.window'));
-		_menuevent.menu.add({
-			title : 'RSS',
-			itemId : 999,
-			groupId : 0,
-			icon : Ti.App.Android.R.drawable.ic_action_rss,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
-		}).addEventListener("click", function() {
-			require('ui/rss.window')().open();
-		});
-		_menuevent.menu.add({
-			title : 'Nodes erneuern',
-			itemId : '4',
-			enabled : Ti.Network.online ? true : false,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", _event.source.reloadDomain);
-		_menuevent.menu.add({
-			title : 'Karte zu mir!',
-			itemId : '2',
-			enabled : Ti.Geolocation.getLocationServicesEnabled() ? true : false,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", function() {
-			var GeoRoute = require('vendor/georoute').createGeo();
-			GeoRoute.addEventListener('position', function(_e) {
-				_event.source.mapView.setLocation({
-					latitude : _e.coords.latitude,
-					longitude : _e.coords.longitude,
-					animate : true,
-					latitudeDelta : 0.5,
-					longitudeDelta : 0.5
-				});
+	win.spinner.show();
+	var activity = win.getActivity();
+	if (activity) {
+		activity.onCreateOptionsMenu = function() {
+			var menu = arguments[0].menu;
+			menu.clear();
+			menu.add({
+				title : 'GITHUB',
+				icon : Ti.App.Android.R.drawable.ic_action_github,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+			}).addEventListener("click", require('ui/github.window'));
+			menu.add({
+				title : 'RSS',
+				icon : Ti.App.Android.R.drawable.ic_action_rss,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM,
+			}).addEventListener("click", function() {
+				require('ui/rss.window')().open();
 			});
-			GeoRoute.getLocation();
-		});
-		/*_menuevent.menu.add({
-		 title : 'nur aktive',
-		 itemId : '1',
-		 checkable : true,
-		 enabled : false,
-		 checked : true,
-		 showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		 }).addEventListener("click", function(_e) {
-		 var item = _menuevent.findItem('1');
-		 item.checked = (item.isChecked()) ? false : true;
-		 Ti.UI.createNotification({
-		 message : 'noch nicht realisiert'
-		 }).show();
-		 });*/
-		_menuevent.menu.add({
-			title : 'Luftbild',
-			itemId : '5',
-			checkable : true,
-			checked : false,
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", function(_e) {
-			var item = _menuevent.menu.findItem('5');
-			item.checked = (item.isChecked()) ? false : true;
-			_event.source.mapView.setMapType(item.isChecked() ? Map.HYBRID_TYPE : Map.NORMAL_TYPE);
-		});
-		_menuevent.menu.add({
-			title : 'Nodes cachen',
-			checkable : false,
-			enabled : Ti.Network.online && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false,
-			itemId : '3',
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", function() {
-			require('ui/domains.window')().open();
-		});
-		var nodes = Freifunk.getNodes();
-		_menuevent.menu.add({
-			title : 'Offlineliste ' + '('+nodes.length+')',
-			checkable : false,
-			enabled : nodes.length ? true : false,
-			itemId : '7',
-			showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-		}).addEventListener("click", function() {
-			//require('ui/domains.window')().open();
-		});
-		
-		activity.actionBar.displayHomeAsUp = false;
-	};
-	activity && activity.invalidateOptionsMenu();
-	activity.actionBar.onHomeIconItemSelected = function(_e) {
-	};
+			menu.add({
+				title : 'Nodes erneuern',
+				itemId : RENEW,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", win.reloadDomain);
+			menu.add({
+				title : 'Karte zu mir!',
+				itemId : OWNPOSITION,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", function() {
+				var GeoRoute = require('vendor/georoute').createGeo();
+				GeoRoute.addEventListener('position', function(_e) {
+					win.mapView.setLocation({
+						latitude : _e.coords.latitude,
+						longitude : _e.coords.longitude,
+						animate : true,
+						latitudeDelta : 0.5,
+						longitudeDelta : 0.5
+					});
+				});
+				GeoRoute.getLocation();
+			});
+			/*menu.add({
+			 title : 'nur aktive',
+			 itemId : ONLYACTIVE,
+			 checkable : true,
+			 enabled : false,
+			 checked : true,
+			 showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			 }).addEventListener("click", function(_e) {
+			 var item = _menuevent.findItem(ONLYACTIVE);
+			 item.checked = (item.isChecked()) ? false : true;
+			 Ti.UI.createNotification({
+			 message : 'noch nicht realisiert'
+			 }).show();
+			 });*/
+			menu.add({
+				title : 'Luftbild',
+				itemId : LUFTBILD,
+				checkable : true,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", function(_e) {
+				var item = menu.findItem(LUFTBILD);
+				item.checked = (item.isChecked()) ? false : true;
+				win.mapView.setMapType(item.isChecked() ? Map.HYBRID_TYPE : Map.NORMAL_TYPE);
+			});
+			menu.add({
+				title : 'Nodes cachen',
+				itemId : DOCACHE,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", function() {
+				require('ui/domains.window')().open();
+			});
+			menu.add({
+				title : 'Offlineliste',
+				itemId : OFFLINE,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", function() {
+				require('ui/offlinelist.window')().open();
+			});
+			activity.actionBar.displayHomeAsUp = false;
+		};
+		activity.onPrepareOptionsMenu = function(_event) {
+			var menu = _event.menu;
+			menu.findItem(DOCACHE).setEnabled(Ti.Network.online && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
+			menu.findItem(RENEW).setEnabled(Ti.Network.online ? true : false);
+			menu.findItem(OWNPOSITION).setEnabled(Ti.Geolocation.getLocationServicesEnabled() ? true : false);
+			var total = Freifunk.getNodesTotal();
+			total && menu.findItem(OFFLINE).setTitle('Offlineliste ' + '(' + total + ')');
+			menu.findItem(OFFLINE).setEnabled(total && Ti.App.Properties.hasProperty('lastGeolocation') ? true : false);
+		};
+		activity && activity.invalidateOptionsMenu();
+		activity.actionBar.onHomeIconItemSelected = function(_e) {
+		};
+	}
 };
