@@ -7,8 +7,9 @@ module.exports = function() {
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
 		backgroundColor : '#F9EABA',
-		orientationModes : []
+		orientationModes : [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT]
 	});
+
 	self.listview = Ti.UI.createListView({
 		top : 74,
 		sections : [Ti.UI.createListSection()],
@@ -21,6 +22,20 @@ module.exports = function() {
 	self.listview.addEventListener('itemclick', function(_e) {
 		var item = _e.section.getItemAt(_e.itemIndex);
 		var node = JSON.parse(item.properties.itemId);
+		var win = Ti.UI.createWindow({
+			theme : 'Theme.NoActionBar',
+			fullscreen : true
+		});
+		self.compass = require('ui/compass').createView(node);
+		self.compass.start();
+		win.add(self.compass);
+		win.addEventListener('close', function() {
+			self.compass.stop();
+			self.remove(self.compass);
+			self.compass = null;
+		});
+		win.open();
+		return;
 		item.address.color = 'transparent';
 		_e.section.updateItemAt(_e.itemIndex, item);
 		Geo.getAddress({
@@ -50,15 +65,15 @@ module.exports = function() {
 						text : node.name
 					},
 					address : {
-						text : node.address.length ? node.address : 'Klick um Adresse anzuzeigen',
-						opacity : (Ti.Network.online || node.address.length) ? 1 : 0,
-						color : node.address.length ? '#555' : '#ccc',			
+						text : (node.address.length > 0) ? node.address : 'Klick um Adresse anzuzeigen',
+						opacity : (Ti.Network.online || node.address.length > 0) ? 1 : 0,
+						color : (node.address.length > 0) ? '#555' : '#ccc',
 					},
 					distance : {
 						text : 'Entfernung: ' + node.distance
 					},
 					bearing : {
-						text : 'Richtung: ' + node.bearing + '° (' + node.compassPoint + ')'
+						text : '⇧Richtung: ' + node.bearing + '° (' + node.compassPoint + ')'
 					}
 				};
 			});
@@ -66,11 +81,8 @@ module.exports = function() {
 		});
 	}
 
-	updateList();
+
 	self.addEventListener('updateList', updateList);
 	Ti.Android && self.addEventListener('open', require('ui/offlinelist.actionbar'));
-	Ti.Android && self.addEventListener('open', function() {
-		updateList();
-	});
 	return self;
 };

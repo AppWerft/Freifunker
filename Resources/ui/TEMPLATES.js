@@ -14,7 +14,6 @@ exports.feed = {
 			color : '#777',
 			font : {
 				fontSize : 22,
-
 				fontFamily : 'Aller'
 			},
 		}
@@ -76,6 +75,21 @@ exports.node = {
 			width : 80,
 			height : 70,
 			defaultImage : '/images/ff.png'
+		}
+	}, {
+		type : 'Ti.UI.Label',
+		bindId : 'arrow',
+		properties : {
+			left : 36,
+			touchEnabled : false,
+			top : 40,
+			color:'#DA1068',
+			width : Ti.UI.SIZE,
+			height : 0,
+			text : '︎',
+			font : {
+				fontSize : 60
+			}
 		}
 	}, {
 		type : 'Ti.UI.View',
@@ -147,7 +161,7 @@ exports.node = {
 					fontSize : 16,
 					fontFamily : 'Roboto Condensed'
 				},
-				color : '#ccc'
+				color : 'transparent'
 			}
 		}]
 	}]

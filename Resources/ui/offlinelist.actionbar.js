@@ -27,4 +27,5 @@ module.exports = function(_event) {
 	activity.actionBar.onHomeIconItemSelected = function(_e) {
 		_event.source.close();
 	};
+	_event.source.fireEvent('updateList');
 };

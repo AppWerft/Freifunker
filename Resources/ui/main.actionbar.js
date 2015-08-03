@@ -108,12 +108,12 @@ module.exports = function() {
 		};
 		activity.onPrepareOptionsMenu = function(_event) {
 			var menu = _event.menu;
-			menu.findItem(DOCACHE).setEnabled(Ti.Network.online && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
-			menu.findItem(RENEW).setEnabled(Ti.Network.online ? true : false);
+			menu.findItem(DOCACHE).setEnabled(Ti.Network.getOnline() && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
+			menu.findItem(RENEW).setEnabled(Ti.Network.getOnline() ? true : false);
 			menu.findItem(OWNPOSITION).setEnabled(Ti.Geolocation.getLocationServicesEnabled() ? true : false);
 			var total = Freifunk.getNodesTotal();
 			total && menu.findItem(OFFLINE).setTitle('Offlineliste ' + '(' + total + ')');
-			menu.findItem(OFFLINE).setEnabled(total && Ti.App.Properties.hasProperty('lastGeolocation') ? true : false);
+			menu.findItem(OFFLINE).setEnabled(total && Ti.Geolocation.getLocationServicesEnabled() ? true : false);
 		};
 		activity && activity.invalidateOptionsMenu();
 		activity.actionBar.onHomeIconItemSelected = function(_e) {
