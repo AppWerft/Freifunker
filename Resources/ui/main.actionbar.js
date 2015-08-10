@@ -5,6 +5,9 @@ Moment.locale('de');
 var Map = require('ti.map');
 var Freifunk = new (require('adapter/freifunk'))();
 
+/*var utterance = require('bencoding.utterance'),
+    textToSpeech = utterance.createSpeech();
+*/
 if (!String.prototype.rtrim) {! function() {
 		String.prototype.rtrim = function() {
 			return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
@@ -48,12 +51,26 @@ module.exports = function() {
 				title : 'Nodes erneuern',
 				itemId : RENEW,
 				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
-			}).addEventListener("click", win.reloadDomain);
+			}).addEventListener("click", function() {
+				/*if (!textToSpeech.isSpeaking()) {
+					textToSpeech.startSpeaking({
+						text : "wunschgemäß werden frische Daten vom Server geholt", //
+						language : 'de'
+					});
+				}*/
+				win.reloadDomain();
+			});
 			menu.add({
 				title : 'Karte zu mir!',
 				itemId : OWNPOSITION,
 				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 			}).addEventListener("click", function() {
+				/*if (!textToSpeech.isSpeaking()) {
+					textToSpeech.startSpeaking({
+						text : "Karte wird gerne zu deiner Position zentriert", //
+						language : 'de'
+					});
+				}*/
 				var GeoRoute = require('vendor/georoute').createGeo();
 				GeoRoute.addEventListener('position', function(_e) {
 					win.mapView.setLocation({
@@ -89,12 +106,24 @@ module.exports = function() {
 				var item = menu.findItem(LUFTBILD);
 				item.checked = (item.isChecked()) ? false : true;
 				win.mapView.setMapType(item.isChecked() ? Map.HYBRID_TYPE : Map.NORMAL_TYPE);
+				/*if (!textToSpeech.isSpeaking()) {
+					textToSpeech.startSpeaking({
+						text : "Kartentyp ist geändert", //
+						language : 'de'
+					});
+				}*/
 			});
 			menu.add({
 				title : 'Nodes cachen',
 				itemId : DOCACHE,
 				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 			}).addEventListener("click", function() {
+				/*if (!textToSpeech.isSpeaking()) {
+					textToSpeech.startSpeaking({
+						text : "Befehlsgemäß weerden jetzt alle Domains nach ihren Nodes abgefragt und das Ergebnis in einer Datenbank aufgehoben", //
+						language : 'de'
+					});
+				}*/
 				require('ui/domains.window')().open();
 			});
 			menu.add({
@@ -102,13 +131,19 @@ module.exports = function() {
 				itemId : OFFLINE,
 				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
 			}).addEventListener("click", function() {
+				/*if (!textToSpeech.isSpeaking()) {
+					textToSpeech.startSpeaking({
+						text : "Ab hier funktioniert die App auch ohne Internet	", //
+						language : 'de'
+					});
+				}*/
 				require('ui/offlinelist.window')().open();
 			});
 			activity.actionBar.displayHomeAsUp = false;
 		};
 		activity.onPrepareOptionsMenu = function(_event) {
 			var menu = _event.menu;
-			menu.findItem(DOCACHE).setEnabled(Ti.Network.getOnline() && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
+			menu.findItem(DOCACHE).setEnabled(Ti.Network.getOnline() == true && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
 			menu.findItem(RENEW).setEnabled(Ti.Network.getOnline() ? true : false);
 			menu.findItem(OWNPOSITION).setEnabled(Ti.Geolocation.getLocationServicesEnabled() ? true : false);
 			var total = Freifunk.getNodesTotal();

@@ -54,24 +54,22 @@ var Module = function(args) {
 		top : 0,
 		left : 0
 	}));
-	//	this.view.addEventListener('focus', function() {
-
-	//	});
-	this.view.addEventListener('blur', function() {
-		console.log('Info_: compass is blurring ........');
-		Ti.Geolocation.removeEventListener('heading', onHeading);
-	});
+	
 	this.arrowView = Ti.UI.createLabel({
 		text : '⬆',
-		color : '#DD2A66',opacity:0.8,
+		color : '#DD2A66',
+		opacity : 0.8,
 		font : {
-			fontSize : 240
+			fontSize : 280
 		}
 	});
 	this.titleView = Ti.UI.createLabel({
 		text : args.name,
+		width : Ti.UI.FILL,
 		color : '#F9EABA',
-		top : 20,
+		height : 50,
+		top : 0,textAlign:'center',
+		backgroundColor : '#5000',
 		font : {
 			fontSize : 32,
 			fontFamily : 'Roboto Condensed'

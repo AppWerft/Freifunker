@@ -1,6 +1,5 @@
 ;! function() {
-	var m = require('ui/main');
-	m();
+	require('ui/main')();
 	new (require('adapter/domainlist'))();
 	require('adapter/feed')({});
 	require('vendor/versionsreminder')();

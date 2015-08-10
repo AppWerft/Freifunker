@@ -121,7 +121,7 @@
 		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
 	}, {
 		"name": "Karlsruhe",
-		"image":"https://pbs.twimg.com/profile_images/563092860182863872/9J1pKrho.png",
+		"image": "https://pbs.twimg.com/profile_images/563092860182863872/9J1pKrho.png",
 		"url": "http://www.freifunk-karlsruhe.de/map/nodes.json"
 	}, {
 		"name": "Kassel",
@@ -155,6 +155,10 @@
 		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
 		"url": "http://map.freifunk-mainz.de/nodes.json"
 	}, {
+		"name": "Mayen / Koblenz",
+		"url": "http://status.freifunk-myk.de/data/nodes.json",
+		"image" :"http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
+	}, {
 		"name": "Möhne",
 		"image": "https://forum.freifunk.net/uploads/default/492/cecbdedd9281b484.jpg",
 		"url": "http://map.freifunk-moehne.de/data/nodes.json"
@@ -180,7 +184,7 @@
 		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
 	}, {
 		"name": "Ostholstein",
-		"image":"https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
+		"image": "https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
 	}, {
 		"name": "Paderborn",
