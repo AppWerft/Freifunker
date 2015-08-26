@@ -157,7 +157,7 @@
 	}, {
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
-		"image" :"http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
+		"image": "http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
 	}, {
 		"name": "Möhne",
 		"image": "https://forum.freifunk.net/uploads/default/492/cecbdedd9281b484.jpg",
@@ -166,11 +166,7 @@
 		"name": "München",
 		"image": "https://ffmuc.net/assets/Ffmuc-logo-250.png",
 		"url": "http://map.freifunk-muenchen.de/data/nodelist.json"
-	}, {
-		"name": "Münster",
-		"image": "https://pbs.twimg.com/profile_images/503593784517464064/iTbRkMoF.png",
-		"url": "https://freifunk-muenster.de/map/data/nodelist.json"
-	}, {
+	},  {
 		"name": "Münsterland",
 		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png",
 		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"

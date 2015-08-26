@@ -20,7 +20,7 @@ const RENEW = 0,
     OWNPOSITION = 2,
     DOCACHE = 3,
     OFFLINE = 4,
-    ONLYACTIVE = 5;
+    ONLYACTIVE = 5,PING=6;
 
 module.exports = function() {
 	var win = arguments[0].source;
@@ -127,6 +127,13 @@ module.exports = function() {
 				require('ui/domains.window')().open();
 			});
 			menu.add({
+				title : 'ServerPing',
+				itemId : PING,
+				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
+			}).addEventListener("click", function() {
+				require('ui/domainpings.window')().open();
+			});
+			menu.add({
 				title : 'Offlineliste',
 				itemId : OFFLINE,
 				showAsAction : Ti.Android.SHOW_AS_ACTION_NEVER,
@@ -143,8 +150,10 @@ module.exports = function() {
 		};
 		activity.onPrepareOptionsMenu = function(_event) {
 			var menu = _event.menu;
-			menu.findItem(DOCACHE).setEnabled(Ti.Network.getOnline() == true && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
-			menu.findItem(RENEW).setEnabled(Ti.Network.getOnline() ? true : false);
+			var isonline = Ti.Network.getOnline();
+			menu.findItem(DOCACHE).setEnabled( isonline && Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? true : false);
+			menu.findItem(RENEW).setEnabled(isonline);
+			menu.findItem(PING).setEnabled(isonline);
 			menu.findItem(OWNPOSITION).setEnabled(Ti.Geolocation.getLocationServicesEnabled() ? true : false);
 			var total = Freifunk.getNodesTotal();
 			total && menu.findItem(OFFLINE).setTitle('Offlineliste ' + '(' + total + ')');

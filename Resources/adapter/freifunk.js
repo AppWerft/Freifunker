@@ -35,7 +35,7 @@ FFModule.prototype = {
 	getNodes : function(_cb) {
 		GeoRoute.getLocation();
 		function update(args) {
-			
+
 			var radius = 1000 / 40000000 * 360;
 			// 10 km
 			if (!Ti.App.Properties.hasProperty('lastGeolocation') && !args)
@@ -77,6 +77,8 @@ FFModule.prototype = {
 			link.close();
 			_cb(nodes);
 		}
+
+
 		GeoRoute.addEventListener('position', function(_res) {
 			GeoRoute.removeEventListener('position', update);
 			Ti.UI.createNotification({
@@ -92,9 +94,46 @@ FFModule.prototype = {
 		});
 		update();
 	},
-	loadNodes : function() {
+	pingNodes : function() {
 		var args = arguments[0] || {};
 		if (!Ti.Network.online) {
+			args.done && args.done(Ti.App.Properties.getObject(args.name), null);
+			return;
+		}
+		var start = new Date().getTime();
+		var xhr = Ti.Network.createHTTPClient({
+			timeout : args.timeout || 30000,
+			onload : function() {
+				var end = new Date().getTime();
+				var res = {
+					response : this.getAllResponseHeaders(),
+					time : end - start
+				};
+				args.done && args.done(res);
+			},
+			onerror : function() {
+				args.done && args.done(null);
+			}
+		});
+		xhr.open('HEAD', args.url);
+		xhr.send(null);
+		var start = new Date().getTime();
+		var that = this;
+		var onProgress = function() {
+			if (that.tick == that.timeout) {
+				that.tick = 0;
+				clearInterval(that.cron);
+			}
+			that.tick += 1000;
+			args.progress && args.progress(that.tick / args.timeout);
+		};
+		this.tick = 0;
+		this.cron = setInterval(onProgress, 1000);
+	},
+
+	loadNodes : function() {
+		var args = arguments[0] || {};
+		if (Ti.Network.online == false) {
 			args.done && args.done(Ti.App.Properties.getObject(args.name), null);
 			return;
 		}

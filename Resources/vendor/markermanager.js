@@ -31,7 +31,6 @@ var Module = function(options) {
 	this.rightImage = options.rightImage;
 	this.markers_in_map = {};
 	this.eventhandlers = {};
-
 	this._importData();
 	this._startMap();
 	var that = this;
@@ -52,7 +51,6 @@ var Module = function(options) {
 
 	return this;
 };
-
 Module.prototype = {
 	destroy : function() {
 		this.removeRegionChangedHandler();

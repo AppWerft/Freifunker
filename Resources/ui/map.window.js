@@ -13,7 +13,6 @@ domainlist = DomainList.getList();
 module.exports = function() {
 	function renderNodes(_args) {
 		self.progress.setRefreshing(false);
-
 		self.spinner.hide();
 		if (!self.mapView)
 			return;
@@ -100,6 +99,7 @@ module.exports = function() {
 	var event = arguments[0] || {};
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
+		flagSecure : false,
 		orientationModes : [],
 		spinner : Ti.UI.createActivityIndicator({
 			height : Ti.UI.SIZE,
@@ -109,7 +109,9 @@ module.exports = function() {
 			style : (Ti.Platform.name === 'iPhone OS') ? Ti.UI.iPhone.ActivityIndicatorStyle.BIG : Ti.UI.ActivityIndicatorStyle.BIG
 		})
 	});
-	if (require('vendor/gms.test')() === true) {
+	var mapavailable = require('vendor/gms.test')();
+	if (mapavailable === true) {
+		console.log('GMS test OK');
 		self.mapView = Map.createView({
 			region : region,
 			top : 0,
@@ -120,6 +122,9 @@ module.exports = function() {
 			userLocationButton : false,
 			mapType : Map.NORMAL_TYPE,
 		});
+	} else {
+		console.log('GMS failed');
+		console.log(mapavailable);
 	}
 	var view = Ti.UI.createView({
 		top : 74,
@@ -205,6 +210,7 @@ module.exports = function() {
 		function isIdinList(id) {
 			return false;
 		}
+
 		if (_e.source.regionset == true)
 			return false;
 		Ti.App.Properties.setString('LASTREGION', JSON.stringify({
@@ -225,8 +231,6 @@ module.exports = function() {
 			}, 50);
 		}
 	};
-
-
 	self.reloadDomain = function() {
 		self.progress.setRefreshing(true);
 		ActionBar.setSubtitle('⇊ ⇊ ⇊ ⇊ ⇊');
