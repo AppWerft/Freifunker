@@ -102,6 +102,7 @@ FFModule.prototype = {
 		}
 		var start = new Date().getTime();
 		var xhr = Ti.Network.createHTTPClient({
+			validatesSecureCertificate  :false,
 			timeout : args.timeout || 30000,
 			onload : function() {
 				var end = new Date().getTime();
@@ -140,11 +141,13 @@ FFModule.prototype = {
 		var start = new Date().getTime();
 		var xhr = Ti.Network.createHTTPClient({
 			timeout : 30000,
+			validatesSecureCertificate  :false,
 			onload : function() {
 				this.start = start;
 				var res = require('adapter/freifunk.parser')(this);
+				Ti.App.Properties.setObject(args.name,res);
 				args.done && args.done(res);
-				Ti.App.Properties.setObject(args.name, res);
+				Ti.App.Properties.setObject('NODE_'+args.name, res);
 				// Caching
 				/* now for offline list: */
 				var link = Ti.Database.open(DBNAME);
@@ -157,7 +160,7 @@ FFModule.prototype = {
 			},
 			onerror : function() {
 				if (Ti.App.Properties.hasProperty(args.name)) {
-					args.done && args.done(Ti.App.Properties.getString(args.name, null));
+					args.done && args.done(Ti.App.Properties.getObject('NODE_'+args.name, null));
 				}
 				args.done && args.done(null);
 			}
