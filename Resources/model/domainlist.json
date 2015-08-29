@@ -153,7 +153,7 @@
 	}, {
 		"name": "Mainz",
 		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
-		"url": "http://map.freifunk-mainz.de/nodes.json"
+		"url": "http://map.freifunk-mainz.de/data/nodelist.json"
 	}, {
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
