@@ -120,6 +120,9 @@
 		"image": "http://fdp-juechen.de/wp-content/uploads/2015/03/freifunk-540x304-180x200.jpg",
 		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
 	}, {
+		"name": "Jüchen",
+		"url": "http://api.freifunk-niersufer.de/jue/legacy.json"
+	}, {
 		"name": "Karlsruhe",
 		"image": "https://pbs.twimg.com/profile_images/563092860182863872/9J1pKrho.png",
 		"url": "http://www.freifunk-karlsruhe.de/map/nodes.json"
