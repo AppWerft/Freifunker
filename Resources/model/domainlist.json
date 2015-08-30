@@ -40,7 +40,7 @@
 		"url": "http://info.freifunk-dresden.de/info/nodes.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
-		"name": "Emscherland",
+	"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
 	},{
