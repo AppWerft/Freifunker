@@ -40,7 +40,7 @@
 		"url": "http://info.freifunk-dresden.de/info/nodes.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
-	"name": "Emscherland",
+		"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
 	},{
@@ -153,7 +153,7 @@
 	}, {
 		"name": "Mainz",
 		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
-		"url": "http://map.freifunk-mainz.de/nodes.json"
+		"url": "http://map.freifunk-mainz.de/data/nodelist.json"
 	}, {
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
