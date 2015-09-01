@@ -19,7 +19,7 @@
 		"name": "Bielefeld",
 		"url": "http://map.freifunk-bielefeld.de/nodes.json",
 		"image": "https://pbs.twimg.com/profile_images/378800000571521357/e228de43427f6b84dd3326f1597b5c3c_400x400.png"
-	}, {
+	},  {
 		"name": "Bremen",
 		"url": "http://downloads.bremen.freifunk.net/data/ffmap-d3.json",
 		"image": "https://pbs.twimg.com/profile_images/448915312742629377/dbpLOlRn_400x400.png"
@@ -40,10 +40,10 @@
 		"url": "http://info.freifunk-dresden.de/info/nodes.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
-		"name": "Emscherland",
+	"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
-	}, {
+	},{
 		"name": "Erfurt",
 		"url": "http://map.erfurt.freifunk.net/nodes.json",
 		"image": "https://pbs.twimg.com/profile_images/469408691427360768/znWNG9l5_400x400.png"
@@ -137,7 +137,7 @@
 		"url": "http://map.freifunk.in-kiel.de/json/nodes.json"
 	}, {
 		"name": "Köln/Bonn",
-		"url": "http://map.kbu.freifunk.net/nodes.json"
+		"url": "https://map.kbu.freifunk.net/data/nodelist.json"
 	}, {
 		"name": "Leipzig",
 		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
@@ -170,7 +170,7 @@
 		"name": "München",
 		"image": "https://ffmuc.net/assets/Ffmuc-logo-250.png",
 		"url": "http://map.freifunk-muenchen.de/data/nodelist.json"
-	}, {
+	},  {
 		"name": "Münsterland",
 		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png",
 		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"
