@@ -68,6 +68,10 @@
 		"image": "https://www.cccfr.de/assets/news/freifunk-logo.png",
 		"url": "http://freiburg.freifunk.net/ffmap-d3/nodes.json"
 	}, {
+		"name": "Fulda",
+		"image": "https://fulda.freifunk.net/freifunk-fulda-logo.png",
+		"url": "https://meshviewer.fulda.freifunk.net/data/nodes.json"
+	}, {
 		"name": "Gera/Greiz",
 		"image": "https://www.freifunk-gera-greiz.de/documents/10182/13739/Aufkleber-Freies-WLAN/c8ce868b-0c6e-413f-8d03-fb7bed874fec?t=1431332253024",
 		"url": "http://freifunk-gera-greiz.de/meshviewer/data/nodelist.json"
