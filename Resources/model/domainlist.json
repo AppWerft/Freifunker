@@ -137,7 +137,7 @@
 		"url": "http://map.freifunk.in-kiel.de/json/nodes.json"
 	}, {
 		"name": "Köln/Bonn",
-		"url": "https://map.kbu.freifunk.net/data/nodelist.json"
+		"url": "http://map.kbu.freifunk.net/nodes.json"
 	}, {
 		"name": "Leipzig",
 		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
