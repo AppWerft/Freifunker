@@ -169,7 +169,7 @@
 	}, {
 		"name": "München",
 		"image": "https://ffmuc.net/assets/Ffmuc-logo-250.png",
-		"url": "http://map.freifunk-muenchen.de/data/nodelist.json"
+		"url": "https://ffmuc.net/data/nodes.json"
 	}, {
 		"name": "Münsterland",
 		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png",
