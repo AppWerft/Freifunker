@@ -70,11 +70,12 @@ FFModule.prototype = {
 				});
 				res.next();
 			}
+			res.close();
+			link.close();
 			nodes.sort(function(a, b) {
 				return a.distance > b.distance ? 1 : -1;
 			});
-			res.close();
-			link.close();
+			
 			_cb(nodes);
 		}
 
