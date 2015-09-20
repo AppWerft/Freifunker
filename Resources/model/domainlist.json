@@ -62,7 +62,7 @@
 	}, {
 		"name": "Frankfurt am Main",
 		"image": "",
-		"url": "http://map.ffm.freifunk.net/nodes.json"
+		"url": "http://map.ffm.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Freiburg",
 		"image": "https://www.cccfr.de/assets/news/freifunk-logo.png",
@@ -162,6 +162,9 @@
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
 		"image": "http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
+	}, {
+		"name": "Meschede/Bestwig",
+		"url": "http://map.freifunk-moehne.de/data-meschedebestwig/nodes.json"
 	}, {
 		"name": "Möhne",
 		"image": "https://forum.freifunk.net/uploads/default/492/cecbdedd9281b484.jpg",
