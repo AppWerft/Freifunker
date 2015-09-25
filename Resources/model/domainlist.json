@@ -40,6 +40,14 @@
 		"url": "http://info.freifunk-dresden.de/info/nodes.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
+		"name": "Düsseldorf"
+		"url": "http://map.freifunk-duesseldorf.de/nodelist.json",
+		"image": "https://wiki.freifunk.net/images/c/cd/Ffddorf-logo-250.png"
+	}, {
+		"name": "Düsseldorf-Flingern"
+		"url": "http://map.ffdus.de/data/nodelist.json",
+		"image": "https://wiki.freifunk.net/images/c/cd/Ffddorf-logo-250.png"
+	}, {
 		"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
