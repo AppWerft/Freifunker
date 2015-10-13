@@ -154,10 +154,23 @@ module.exports = function(httpbody) {
 		} else if (json.nodes) {// Bremen
 			console.log('PARSERINFO: has property nodes => we must decide if array or object');
 			var nodes = json.nodes;
-			if (Object.prototype.toString.call(nodes) === '[object Array]') {
+			if (Array.isArray(nodes)) {
 				//  (Wiesbaden/Basel):
 				console.log('PARSERINFO: has property node array');
-				if (nodes[0].network || nodes[0].hostname) {// Basel
+				if (nodes[0].nodeinfo && nodes[0].statistics && nodes[0].flags) {
+					console.log('PARSERINFO: node has property nodeinfo => Frankfurt');
+					nodes.forEach(function(node) {
+						node.nodeinfo.location && allnodes.push({
+							lat : node.nodeinfo.location.latitude,
+							lon : node.nodeinfo.location.longitude,
+							id : node.nodeinfo.node_id,
+							name : node.nodeinfo.hostname,
+							clients: node.statistics.clients,
+							online: node.flags.online
+						});
+					});
+
+				} else if (nodes[0].network || nodes[0].hostname) {// Basel
 					console.log('PARSERINFO: node has property statistics');
 					nodes.forEach(function(node) {
 						if (node.location || node.geo) {

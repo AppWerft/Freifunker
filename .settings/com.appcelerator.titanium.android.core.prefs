@@ -1,6 +1,8 @@
+android/ATTR_MINIFY=true
+android/ATTR_MINIFY.type=Boolean
 android/ATTR_PROJECT_NAME=Freifunker
 android/ATTR_PROJECT_NAME.type=String
-android/abi=armeabi
+android/abi=x86
 android/abi.type=String
 android/device-id=
 android/device-id.type=String

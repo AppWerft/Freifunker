@@ -47,7 +47,7 @@
 		"name": "Düsseldorf-Flingern",
 		"url": "http://map.ffdus.de/data/nodelist.json",
 		"image": "https://wiki.freifunk.net/images/c/cd/Ffddorf-logo-250.png"
-	},{
+	}, {
 		"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
 		"url": "http://map.el.freifunk.ruhr/nodes.json"
@@ -112,6 +112,9 @@
 		"image": "https://harz.freifunk.net/wiki/lib/exe/fetch.php?media=wiki:logo.png",
 		"url": "http://harz.freifunk.net/meshdata/nodes.json"
 	}, {
+		"name": "Hattingen",
+		"url": "http://map.en.freifunk.ruhr/hattingen/json/nodes.json"
+	}, {
 		"name": "Hildesheim",
 		"image": "http://farm1.static.flickr.com/217/476708729_ac72b46869_o.jpg",
 		"url": "http://map.freifunk-hi.de/json/nodes.json"
@@ -150,6 +153,9 @@
 		"name": "Leipzig",
 		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
 		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowserdata/"
+	}, {
+		"name": "Lippe",
+		"url": "http://map.freifunk-nordlippe.de/nodes.json"
 	}, {
 		"name": "Lübeck",
 		"image": "http://blog.blaudirekt.de/wp-content/uploads/2012/09/Freifunk_Luebeck.png",
@@ -261,7 +267,7 @@
 		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
 		"url": "http://map.freifunk-uelzen.de/data/nodes.json"
 	}, {
-		"name": "Ulm/Neuulm",
+		"name": "Ulm/Neu-Ulm",
 		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
 		"url": "http://vpn5.freifunk-ulm.de/nodes.json"
 	}, {
@@ -282,7 +288,7 @@
 	}, {
 		"name": "Witten",
 		"image": "https://pbs.twimg.com/profile_images/517054969468309506/hhpxwQmA.png",
-		"url": "http://map.freifunk-ruhrgebiet.de/WIT/nodes.json"
+		"url": "http://map.en.freifunk.ruhr/witten/json-wit/nodes.json"
 	}, {
 		"name": "Wuppertal",
 		"image": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c0.0.160.160/p160x160/10922483_894379780612975_3279905287994862749_n.jpg?oh=eb0d99ca9f3540f90427a50590b87e64&oe=565BC711&__gda__=1443787346_2afb0f87fd3abf81c6374c4acb58342e",
