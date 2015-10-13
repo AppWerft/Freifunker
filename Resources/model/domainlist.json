@@ -219,6 +219,10 @@
 		"name": "Radevormwald",
 		"image": "http://blog.freifunk.net/files/images/freifunk-leverkusen.png",
 		"url": "http://map.gm.wupper.freifunk-rheinland.net/nodes.json"
+	} , {
+		"name": "Regensburg",
+		"image": "https://regensburg.freifunk.net/twitter-profil-freifunk.png",
+		"url": "https://regensburg.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Rhein Neckar",
 		"image": "http://chillr.de/wp-content/uploads/freifunk-rhein-neckar.png",
