@@ -37,7 +37,7 @@
 		"url": "http://map.ffdo.de/data/nodes.json"
 	}, {
 		"name": "Dresden",
-		"url": "http://info.freifunk-dresden.de/info/nodes.json",
+		"url": "http://api.freifunk-dresden.de/freifunk-nodes.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
 		"name": "Düsseldorf",
