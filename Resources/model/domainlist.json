@@ -28,6 +28,10 @@
 		"url": "http://map.chemnitz.freifunk.net/nodes.json",
 		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2013/08/frontlogoText.png"
 	}, {
+		"name": "Cottbus",
+		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=14.0,51.6,14.6,51.8",
+		"image": "https://images.freifunk-cottbus.de/logo.png"
+	}, {
 		"name": "Darmstadt",
 		"url": "https://map.darmstadt.freifunk.net/data/nodelist.json",
 		"image": "https://avatars0.githubusercontent.com/u/6648335?v=3&s=200"
