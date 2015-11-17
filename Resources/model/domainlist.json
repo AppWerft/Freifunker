@@ -242,8 +242,8 @@
 		"url": "http://map.freifunk-ruhrgebiet.de/data/nodes.json"
 	}, {
 		"name": "Saarland",
-		"image": "https://www.hacksaar.de/wp-content/uploads/let-z-hack.png",
-		"url": "https://saar.freifunk.net/map/nodes.json"
+		"image": "https://saar.freifunk.net/wp-content/upload/SaarlandSkyline.svg",
+		"url": "https://mgmt.saar.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Stormarn",
 		"image": "https://pbs.twimg.com/profile_images/626133392896184320/ndPb5kIM_400x400.jpg",
