@@ -1,0 +1,14 @@
+
+<resources>
+    <string name="VERSION_NEWEST">Приложение находится в последней версии\n(%1$s)</string>
+    <string name="VERSION_MUSTUPDATE_MSG">Новая версия доступна в Плайстор.\n\nЭто приложение нa  %1$s имеет версию %2$s\n\nIm Store ist %3$s\n\nВы хотите, чтобы обновлять?</string>
+    <string name="VERSION_TITLE">Новая версия доступна „%1$s“</string>
+    <string name="VERSION_TOSTORE">к Плайстору</string>
+    <string name="VERSION_CANCEL">Oтменить</string>
+    <string name="OFFLINE_MSG">Это приложение требует подключения к интернету. Кажется, вы находитесь в автономном режиме.</string>
+    <string name="OFFLINE_TITLE">интернет-соединение</string>
+    <string name="TITLE_NEWS">Новости от наших сообществ</string>
+    <string name="PARAT">Там в настоящее время %1$s доступен маршрутизатор</string>
+    <string name=""></string>
+    <string name=""></string>
+</resources>

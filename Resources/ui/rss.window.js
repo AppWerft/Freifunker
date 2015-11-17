@@ -25,7 +25,15 @@ module.exports = function() {
 		var win = Ti.UI.createWindow({
 			title : options.title,
 			backgroundColor : '#F9EABA',
+			spinner : Ti.UI.createActivityIndicator({
+				height : Ti.UI.SIZE,
+				width : Ti.UI.SIZE,
+				visible : true,
+				zIndex : 999,
+				style : (Ti.Platform.name === 'iPhone OS') ? Ti.UI.iPhone.ActivityIndicatorStyle.BIG : Ti.UI.ActivityIndicatorStyle.BIG
+			})
 		});
+		console.log(options);
 		var web = Ti.UI.createWebView({
 			top : 74,
 			touchEnabled : true,
@@ -35,12 +43,16 @@ module.exports = function() {
 			willHandleTouches : false,
 			borderRadius : 1,
 			disableBounce : true,
-			url : options.link
+			url : options.link,
+		});
+		web.addEventListener('load', function() {
+			win.spinner.hide();
+			win.remove(win.spinner);
 		});
 		win.add(web);
+		win.add(win.spinner);
 		win.addEventListener('open', require('ui/web.actionbar'));
 		win.open();
-
 	});
 	require('adapter/feed')({
 		done : function(_result) {

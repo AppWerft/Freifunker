@@ -16,13 +16,15 @@ module.exports = function(_args) {
 		},
 		onload : function() {
 			var xml = new (require('vendor/XMLTools'))(this.responseXML);
-			
-			var feed = xml.toObject().channel.item.map(function(i) {
-				return {
-					description : i.description,
-					title : i.title,
-					link : i.link
-				};
+			var feed = [];
+			xml.toObject().channel.item.forEach(function(i) {
+				if ( typeof i.description == 'string') {
+					feed.push({
+						description : i.description.replace(/&gt;/gim, '>').replace(/&lt;/gim, '<').replace(/<p>/gim, '\n').replace(/(<([^>]+)>)/ig, "").replace(/\sweiterlesen\s/g, ''),
+						title : i.title,
+						link : i.link
+					});
+				}
 			});
 			Ti.App.Properties.setList('FEED', feed);
 			_args.done && _args.done({

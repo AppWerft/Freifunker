@@ -1,0 +1,17 @@
+
+<resources>
+    <string name="VERSION_NEWEST">Die App ist in neuester Version\n(%1$s)</string>
+    <string name="VERSION_MUSTUPDATE_MSG">Es gibt eine neue Version im Playstore.\n\nDiese App auf dem  %1$s hat die Version %2$s \n\nIm Store ist %3$s \n\nMöchtest Du erneuern?</string>
+    <string name="VERSION_TITLE">Neue Version „%1$s“</string>
+    <string name="VERSION_TOSTORE">Zum Playstore</string>
+    <string name="VERSION_CANCEL">Abbruch</string>
+    <string name="OFFLINE_MSG">Leider scheint das Endgerät nicht online zu sein.\nSo geht das nicht …</string>
+    <string name="OFFLINE_TITLE">Außerhalb Neuland</string>
+    <string name="TITLE_NEWS">Meldungen aus den FF-Gemeinden</string>
+    <string name="PARAT">Derweil sind %1$s Router parat.</string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
+</resources>
