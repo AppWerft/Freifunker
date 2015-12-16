@@ -277,6 +277,10 @@
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"
 	}, {
+		"name": "Weyher",
+		"image": "http://freifunk-weyher.de/wp-content/themes/ffweyher/images/logo_kt.png",
+		"url": "http://svc.freifunk-weinstrasse.de/weyher/map/nodes.json"
+	}, {
 		"name": "Wien (Funkfeuer)",
 		"url": "https://map.funkfeuer.at/wien/data.php"
 	}, {
