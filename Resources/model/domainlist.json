@@ -8,6 +8,10 @@
 		"url": "http://map.freifunk-aachen.de/nodes.json",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png"
 	}, {
+		"name": "Alzey-Worms",
+		"url": "http://svc.freifunk-weinstrasse.de/aw/map/nodes.json",
+		"image": "http://freifunk-weinstrasse.de/wp-content/themes/ffba/images/logo.png"
+	}, {
 		"name": "Berlin",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52.5%2C13.7%2C52.7",
 		"image": "https://pbs.twimg.com/profile_images/59831808/hshn3_400x400.png"
@@ -190,6 +194,10 @@
 		"image": "https://pbs.twimg.com/profile_images/544602531821678593/3jiefMyz.png",
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
+		"name": "Weinstrasse",
+		"image": "http://freifunk-weinstrasse.de/wp-content/themes/ffba/images/logo.png",
+		"url": "http://svc.freifunk-weinstrasse.de/ws/map/nodes.json"
+	}, {
 		"name": "Osnabrück",
 		"image": "https://blog.nordwest.freifunk.net/wp-content/themes/freifunk-nordwest-wordpress-design/images/logo.png",
 		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
@@ -268,6 +276,10 @@
 		"name": "Ulm/Neuulm",
 		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
 		"url": "http://vpn5.freifunk-ulm.de/nodes.json"
+	}, {
+		"name": "Vorderpfalz",
+		"image": "http://freifunk-weinstrasse.de/wp-content/themes/ffba/images/logo.png",
+		"url": "http://svc.freifunk-weinstrasse.de/rh/map/nodes.json"
 	}, {
 		"name": "Weser/Ems",
 		"image": "https://pbs.twimg.com/profile_images/547410999599693825/T9gTtMYW.jpeg",
