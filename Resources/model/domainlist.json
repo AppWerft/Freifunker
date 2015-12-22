@@ -167,6 +167,10 @@
 		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
 		"url": "http://map.freifunk-mainz.de/data/nodelist.json"
 	}, {
+		"name": "Marburg",
+		"image": "https://marburg.freifunk.net/wp-content/uploads/2015/12/FFMR-banner1.png",
+		"url": "https://api.marburg.freifunk.net/nodes.json"
+	}, {
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
 		"image": "http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
