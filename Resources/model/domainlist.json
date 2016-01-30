@@ -308,7 +308,7 @@
 	}, {
 		"name": "Wiesbaden",
 		"image": "http://blog.sperrobjekt.de/uploads/img/freifunk_wiesbaden.png",
-		"url": "http://map.wiesbaden.freifunk.net/data/nodelist.json"
+		"url": "https://map.wiesbaden.freifunk.net/data/nodelist.json"
 	}, {
 		"name": "Witten",
 		"image": "https://pbs.twimg.com/profile_images/517054969468309506/hhpxwQmA.png",
