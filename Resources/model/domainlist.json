@@ -82,11 +82,11 @@
 	}, {
 		"name": "Frankfurt am Main",
 		"image": "",
-		"url": "http://map.ffm.freifunk.net/data/nodes.json"
+		"url": "https://map.ffm.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Freiburg",
 		"image": "https://www.cccfr.de/assets/news/freifunk-logo.png",
-		"url": "http://freiburg.freifunk.net/ffmap-d3/nodes.json"
+		"url": "https://freiburg.freifunk.net/ffmap-d3/nodes.json"
 	}, {
 		"name": "Fulda",
 		"image": "https://fulda.freifunk.net/freifunk-fulda-logo.png",
