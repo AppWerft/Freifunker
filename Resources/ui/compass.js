@@ -1,12 +1,19 @@
-/*This program is free software: 
- * 
- you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+const FIRSTPOINT = 0;
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-See the GNU General Public License for more details.*/
-var matrix = Ti.UI.create2DMatrix({
+if (!("toRadians" in Number.prototype)) {
+	Number.prototype.toDegrees = function() {
+		return this * 180 / Math.PI;
+	};
+};
+if (!("toRadians" in Number.prototype)) {
+	Number.prototype.toRadians = function() {
+		return this * Math.PI / 180;
+	};
+};
+
+var Matrix = Ti.UI.create2DMatrix({
 });
+
 var getDistBearing = function(φ1, λ1, φ2, λ2) {
 	const π = Math.PI,
 	    R = 6371000;
@@ -24,13 +31,19 @@ var getDistBearing = function(φ1, λ1, φ2, λ2) {
 		distance : R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 	};
 };
-var Module = function(args) {
+
+var Widget = function(args) {
+	console.log(args);
+	return;
+	if (!Array.isArray(args))
+		return null;
+	this.route = args;
 	var that = this;
 	this.nodeposition = {
-		φ : args.lat,
-		λ : args.lon
+		φ : this.route[FIRSTPOINT][0],
+		λ : this.route[FIRSTPOINT][1]
 	};
-	function onLocation(_e) {
+	function _onLocation(_e) {
 		if (_e.success) {
 			that.myposition = {
 				φ : _e.coords.latitude,
@@ -38,7 +51,7 @@ var Module = function(args) {
 			};
 		}
 	};
-	function onHeading(_e) {
+	function _onHeading(_e) {
 		var heading = Math.round(_e.heading.trueHeading || _e.heading.magneticHeading);
 		if (heading != that.lastheading && that.myposition && that.nodeposition) {
 			var distbear = getDistBearing(that.myposition.φ, that.myposition.λ, that.nodeposition.φ, that.nodeposition.λ);
@@ -50,36 +63,16 @@ var Module = function(args) {
 		}
 	}
 
-
+	/* start of rendering : */
 	this.view = Ti.UI.createView({
-		backgroundColor : '#fff'
+		backgroundColor : 'transparent'
 	});
-	this.view.add(Ti.UI.createImageView({
-		image : 'https://maps.googleapis.com/maps/api/streetview?location=' + this.nodeposition.φ + ',' + this.nodeposition.λ + '&sensor=false&size=480x800',
-		width : Ti.UI.FILL,
-		height : Ti.UI.FILL,
-		top : 0,
-		left : 0
-	}));
-	
 	this.arrowView = Ti.UI.createLabel({
 		text : '⬆',
 		color : '#DD2A66',
 		opacity : 0.8,
 		font : {
 			fontSize : 280
-		}
-	});
-	this.titleView = Ti.UI.createLabel({
-		text : args.name,
-		width : Ti.UI.FILL,
-		color : '#F9EABA',
-		height : 50,
-		top : 0,textAlign:'center',
-		backgroundColor : '#5000',
-		font : {
-			fontSize : 32,
-			fontFamily : 'Roboto Condensed'
 		}
 	});
 	this.distanceView = Ti.UI.createLabel({
@@ -93,8 +86,7 @@ var Module = function(args) {
 		}
 	});
 	this.view.add(this.arrowView);
-	this.view.add(this.titleView);
-	this.view.add(this.distanceView);
+	//this.view.add(this.distanceView);
 	this.view.start = function() {
 		if (Ti.Geolocation.locationServicesEnabled) {
 			Ti.Geolocation.Android.addLocationProvider(Ti.Geolocation.Android.createLocationProvider({
@@ -103,20 +95,20 @@ var Module = function(args) {
 				minUpdateTime : 0
 			}));
 			Ti.Geolocation.Android.manualMode = true;
-			Ti.Geolocation.addEventListener('heading', onHeading);
-			Ti.Geolocation.addEventListener('location', onLocation);
+			Ti.Geolocation.addEventListener('heading', _onHeading);
+			Ti.Geolocation.addEventListener('location', _onLocation);
 		} else
 			Ti.UI.createNotification({
 				message : 'Wenn schon offline, dann doch wenigstens GPS ;-))'
 			}).show();
 	};
 	this.view.stop = function() {
-		Ti.Geolocation.removeEventListener('heading', onHeading);
-		Ti.Geolocation.removeEventListener('location', onLocation);
+		Ti.Geolocation.removeEventListener('heading', _onHeading);
+		Ti.Geolocation.removeEventListener('location', _onLocation);
 	};
 	return this.view;
 };
 
 exports.createView = function(args) {
-	return new Module(args);
+	return new Widget(args);
 };

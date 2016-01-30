@@ -100,7 +100,7 @@ module.exports = function() {
 	var self = Ti.UI.createWindow({
 		fullscreen : false,
 		flagSecure : false,
-		orientationModes : [],
+		
 		spinner : Ti.UI.createActivityIndicator({
 			height : Ti.UI.SIZE,
 			width : Ti.UI.SIZE,
@@ -154,13 +154,16 @@ module.exports = function() {
 	});
 	var mydomain = 0;
 	picker.add(domainlist.map(function(domain, ndx) {
-		if (Ti.App.Properties.getString('LASTCITY', '') == domain.name)
-			mydomain = ndx;
-		return Ti.UI.createPickerRow({
-			title : domain.name,
-			url : domain.url,
-			ndx : ndx
-		});
+		try {
+			if (Ti.App.Properties.getString('LASTCITY', '') == domain.name)
+				mydomain = ndx;
+			return Ti.UI.createPickerRow({
+				title : domain.name,
+				url : domain.url,
+				ndx : ndx
+			});
+		} catch(E) {
+		}
 	}));
 	picker.addEventListener('change', function(_e) {
 		self.progress.setRefreshing(true);

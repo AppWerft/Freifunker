@@ -56,7 +56,7 @@ module.exports = function() {
 	});
 	require('adapter/feed')({
 		done : function(_result) {
-			listview.sections[0].setItems(_result.feed.map(function(_item) {
+			listview.sections[0] && listview.sections[0].setItems(_result.feed.map(function(_item) {
 				return {
 					properties : {
 						itemId : JSON.stringify({

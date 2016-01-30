@@ -8,6 +8,14 @@
 		"url": "http://map.freifunk-aachen.de/nodes.json",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png"
 	}, {
+		"name": "Altdorf",
+		"url": "https://data.tecff.de/nodes.json",
+		"image": "https://pbs.twimg.com/profile_images/573150736353107969/ieTcaqPM_400x400.png"
+	}, {
+		"name": "Alzey-Worms",
+		"url": "http://svc.freifunk-weinstrasse.de/ws/map2/data/nodes.json",
+		"image": "http://freifunk-weinstrasse.de/wp-content/themes/ffba/images/logo.png"
+	}, {
 		"name": "Berlin",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52.5%2C13.7%2C52.7",
 		"image": "https://pbs.twimg.com/profile_images/59831808/hshn3_400x400.png"
@@ -28,6 +36,10 @@
 		"url": "http://map.chemnitz.freifunk.net/nodes.json",
 		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2013/08/frontlogoText.png"
 	}, {
+		"name": "Cottbus",
+		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=14.0,51.6,14.6,51.8",
+		"image": "https://images.freifunk-cottbus.de/logo.png"
+	}, {
 		"name": "Darmstadt",
 		"url": "https://map.darmstadt.freifunk.net/data/nodelist.json",
 		"image": "https://avatars0.githubusercontent.com/u/6648335?v=3&s=200"
@@ -37,7 +49,7 @@
 		"url": "http://map.ffdo.de/data/nodes.json"
 	}, {
 		"name": "Dresden",
-		"url": "http://info.freifunk-dresden.de/info/nodes.json",
+		"url": "http://api.freifunk-dresden.de/freifunk-app.json",
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
 		"name": "Düsseldorf",
@@ -155,7 +167,7 @@
 		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowserdata/"
 	}, {
 		"name": "Lippe",
-		"url": "http://map.freifunk-nordlippe.de/nodes.json"
+		"url": "http://map.freifunk-lippe.de/data/nodes.json"
 	}, {
 		"name": "Lübeck",
 		"image": "http://blog.blaudirekt.de/wp-content/uploads/2012/09/Freifunk_Luebeck.png",
@@ -171,7 +183,11 @@
 	}, {
 		"name": "Mainz",
 		"image": "http://florian.altherr.name/wp-content/uploads/2013/04/ffmz_logo.png",
-		"url": "http://map.freifunk-mainz.de/data/nodelist.json"
+		"url": "https://map.freifunk-mainz.de/data/nodelist.json"
+	}, {
+		"name": "Marburg",
+		"image": "https://marburg.freifunk.net/wp-content/uploads/2015/12/FFMR-banner1.png",
+		"url": "https://api.marburg.freifunk.net/nodes.json"
 	}, {
 		"name": "Mayen / Koblenz",
 		"url": "http://status.freifunk-myk.de/data/nodes.json",
@@ -226,7 +242,7 @@
 	}, {
 		"name": "Rhein Neckar",
 		"image": "http://chillr.de/wp-content/uploads/freifunk-rhein-neckar.png",
-		"url": "http://map.freifunk-rhein-neckar.de/nodes.json"
+		"url": "http://map.ffrn.de/data/nodelist.json"
 	}, {
 		"name": "Rheinland",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png",
@@ -249,11 +265,11 @@
 	}, {
 		"name": "Saarland",
 		"image": "https://www.hacksaar.de/wp-content/uploads/let-z-hack.png",
-		"url": "https://saar.freifunk.net/map/nodes.json"
+		"url": "https://mgmt.saar.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Stormarn",
-		"image": "https://pbs.twimg.com/profile_images/626133392896184320/ndPb5kIM_400x400.jpg",
-		"url": "http://map.ffod.org/data/nodes.json"
+		"image" : "https://stormarn.freifunk.net/wp-content/uploads/2015/10/participate_big.png",
+		"url": "http://map.stormarn.freifunk.net/data/nodes.json"
 	}, {
 		"name": "Stuttgart",
 		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
@@ -282,6 +298,10 @@
 		"name": "Westpfalz",
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"
+	}, {
+		"name": "Weyher",
+		"image": "http://freifunk-weyher.de/wp-content/themes/ffweyher/images/logo_kt.png",
+		"url": "http://svc.freifunk-weinstrasse.de/weyher/map/nodes.json"
 	}, {
 		"name": "Wien (Funkfeuer)",
 		"url": "https://map.funkfeuer.at/wien/data.php"

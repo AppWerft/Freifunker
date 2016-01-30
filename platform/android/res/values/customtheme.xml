@@ -1,9 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.NoActionBar" parent="@style/Theme.AppCompat">
         <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowNoTitle">true</item>
+   		<item name="android:windowIsTranslucent">true</item>
+   		<item name="android:windowBackground">@android:color/transparent</item> 
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:fitsSystemWindows">false</item>
-    </style>
-</resources>
+	</style>
+	<style name="Theme.WithActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+   		<item name="android:windowIsTranslucent">true</item>
+   		<item name="android:windowBackground">@android:color/transparent</item> 
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+	</style>
+	<style name="Theme.NoSystemNavigation" parent="@style/Theme.AppCompat">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+   	    <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item> 
+	</style>
+</resources> 

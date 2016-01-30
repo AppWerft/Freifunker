@@ -1,5 +1,5 @@
 <resources>
-	<string name="VERSION_NEWEST">The app is at its latest version\n(%1$s)</string>
+	<string name="VERSION_NEWEST">The app is in newest version\n(%1$s)</string>
 	<string name="VERSION_MUSTUPDATE_MSG">There is a newer version on the playstore.\n\nThis app on the (%1$s) has version %2$s\n\n On the store version %3$s is available\n\nDo you want toupdate?</string>
 	<string name="VERSION_TITLE">New version „%1$s“</string>
 	<string name="VERSION_TOSTORE">To the playstore</string>
