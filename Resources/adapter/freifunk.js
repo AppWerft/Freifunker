@@ -151,6 +151,7 @@ FFModule.prototype = {
 				Ti.App.Properties.setObject('NODE_'+args.name, res);
 				// Caching
 				/* now for offline list: */
+				console.log('DBNAME='+DBNAME);
 				var link = Ti.Database.open(DBNAME);
 				link.execute('BEGIN TRANSACTION');
 				res.nodes.forEach(function(node, i) {
@@ -168,7 +169,8 @@ FFModule.prototype = {
 		});
 		xhr.open('GET', args.url);
 		xhr.setRequestHeader('Accept', 'text/javascript, application/javascript,application/xml');
-		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0');
+		xhr.setRequestHeader('Accept-Encoding','gzip, deflate');
+		xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (FreiFunkApp) Gecko/20100101 Firefox/37.0');
 		xhr.send();
 	},
 	fireEvent : function(_event, _payload) {

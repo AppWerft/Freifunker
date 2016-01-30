@@ -1,4 +1,4 @@
-wiesb[
+[
 	{
 		"name": "3-Ländereck",
 		"url": "http://map.freifunk-3laendereck.net/nodes.json",
@@ -114,7 +114,7 @@ wiesb[
 	}, {
 		"name": "Hamburg",
 		"image": "https://pbs.twimg.com/profile_images/536964581856272384/XFzU4tQX.png",
-		"url": "http://map.hamburg.freifunk.net/nodes.json"
+		"url": "https://map.hamburg.freifunk.net/nodes.json"
 	}, {
 		"name": "Hannover",
 		"image": "http://makerfairehannover.com/wp-content/uploads/2015/04/ffhlogo.png",
@@ -153,7 +153,7 @@ wiesb[
 	}, {
 		"name": "Kassel",
 		"image": "https://freifunk-kassel.de/wikistatic/common/logo-ks-web.png",
-		"url": "http://map.ffks.de/meshviewer/nodes.json"
+		"url": "https://map.freifunk-kassel.de/data/nodes.json"
 	}, {
 		"name": "Kiel",
 		"image": "http://toppoint.de/~adk/ff-logo/kiel.jpg",
@@ -206,7 +206,7 @@ wiesb[
 	}, {
 		"name": "Münsterland",
 		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png",
-		"url": "https://freifunk-muensterland.de/map/data/nodelist.json"
+		"url": "https://service.freifunk-muensterland.de/maps/data/nodes.json"
 	}, {
 		"name": "Müritz",
 		"image": "https://pbs.twimg.com/profile_images/544602531821678593/3jiefMyz.png",
@@ -222,7 +222,7 @@ wiesb[
 	}, {
 		"name": "Paderborn",
 		"image": "https://pbs.twimg.com/profile_images/378800000606606576/fde60b784bd9e5267ce83f3832c11515.jpeg",
-		"url": "http://map.paderborn.freifunk.net/nodes.json"
+		"url": "https://map.hochstift.freifunk.net/nodes.json"
 	}, {
 		"name": "Pinneberg",
 		"url": "http://meshviewer.pinneberg.freifunk.net/data/nodes.json",
@@ -242,7 +242,7 @@ wiesb[
 	}, {
 		"name": "Rhein Neckar",
 		"image": "http://chillr.de/wp-content/uploads/freifunk-rhein-neckar.png",
-		"url": "http://map.ffrn.de/data/nodelist.json"
+		"url": "https://map.ffrn.de/data/nodelist.json"
 	}, {
 		"name": "Rheinland",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png",
@@ -293,7 +293,7 @@ wiesb[
 	}, {
 		"name": "Weser/Ems",
 		"image": "https://pbs.twimg.com/profile_images/547410999599693825/T9gTtMYW.jpeg",
-		"url": "http://netmon.nordwest.freifunk.net/api.php?class=ApiMap&section=getRouters"
+		"url": "https://map.ffnw.de/public/data/batman-v15/nodes.json"
 	}, {
 		"name": "Westpfalz",
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
@@ -301,7 +301,7 @@ wiesb[
 	}, {
 		"name": "Weyher",
 		"image": "http://freifunk-weyher.de/wp-content/themes/ffweyher/images/logo_kt.png",
-		"url": "http://svc.freifunk-weinstrasse.de/weyher/map/nodes.json"
+		"url": "http://svc.freifunk-weinstrasse.de/weyher/map2/data/nodes.json"
 	}, {
 		"name": "Wien (Funkfeuer)",
 		"url": "https://map.funkfeuer.at/wien/data.php"

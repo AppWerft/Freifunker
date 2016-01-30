@@ -50,6 +50,8 @@ module.exports = function(httpbody) {
 	var allnodes = [];
 	/// XML:
 	// beginnt mit optionalem Leerzeichen und '<'
+	console.log(httpbody.responseText.substr(0,100));
+	
 	if (httpbody.responseText.match(/^\s*</mg)) {
 		console.log('PARSERINFO: XML found');
 		var xml = httpbody.responseXML;
