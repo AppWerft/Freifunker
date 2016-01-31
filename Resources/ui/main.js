@@ -1,9 +1,8 @@
 module.exports = function() {
-	
-	var self = require('ui/map.window')();
-	self.addEventListener('open', require('ui/main.actionbar'));
-	self.open();
-	self.addEventListener("android:back", function(_e) {//listen for the back-button-tap event
+	var $ = require('ui/map.window')();
+	$.addEventListener('open', require('ui/main.actionbar'));
+	$.open();
+	$.addEventListener("android:back", function(_e) {//listen for the back-button-tap event
 		_e.cancelBubble = true;
 		var intent = Ti.Android.createIntent({
 			action : Ti.Android.ACTION_MAIN,
@@ -13,5 +12,5 @@ module.exports = function() {
 		Ti.Android.currentActivity.startActivity(intent);
 		return false;
 	});
-	return self;
+	return $;
 };

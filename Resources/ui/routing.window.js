@@ -5,11 +5,13 @@ var Map = require('ti.map');
 
 module.exports = function(args) {
 
-	var self = Ti.UI.createWindow({
+	var $ = Ti.UI.createWindow({
+		backgroundColor : '#8fff',
 		fullscreen : false,
 		title : args.title,
 		latlon : [args.lat, args.lon],
-		orientationModes : []
+		orientationModes : [],
+		theme : 'Theme.WithActionBar'
 	});
 	var GeoRoute = require('vendor/georoute').createGeo();
 	GeoRoute.addEventListener('position', function(_e) {
@@ -33,7 +35,7 @@ module.exports = function(args) {
 			height : '50%',
 			top : 0
 		});
-		self.add(map);
+		$.add(map);
 		GeoRoute.addEventListener('route', function(_e) {
 			var leg = _e.route.legs[0];
 			var bounds = _e.route.bounds;
@@ -74,11 +76,13 @@ module.exports = function(args) {
 		bottom : 0,
 		height : mapworks ? '50%' : Ti.UI.FILL
 	});
-	self.add(router);
+	$.add(router);
 	GeoRoute.addEventListener('route', function(_e) {
 		var leg = _e.route.legs[0];
 		var data = [];
-		var startrow = Ti.UI.createTableViewRow();
+		var startrow = Ti.UI.createTableViewRow({
+			backgroundColor : 'white'
+		});
 		startrow.add(Ti.UI.createView({
 			backgroundImage : '/images/nerd.png',
 			width : 60,
@@ -103,7 +107,9 @@ module.exports = function(args) {
 		}));
 		data[0] = startrow;
 		leg.steps.forEach(function(step) {
-			var row = Ti.UI.createTableViewRow();
+			var row = Ti.UI.createTableViewRow({
+				backgroundColor : 'white'
+			});
 			var url = 'https://maps.googleapis.com/maps/api/streetview?location=' + step.start_location.lat + ',' + step.start_location.lng + '&sensor=false&size=300x200';
 			row.add(Ti.UI.createImageView({
 				image : url,
@@ -117,6 +123,7 @@ module.exports = function(args) {
 				text : (Ti.Android) ? '' : leg.html_instructions.replace(/<.*?>/g, ''),
 				left : 160,
 				top : 5,
+				color : '#444',
 				bottom : 5,
 				height : Ti.UI.SIZE,
 				width : Ti.UI.FILL,
@@ -146,11 +153,12 @@ module.exports = function(args) {
 		endrow.add(Ti.UI.createView({
 			backgroundImage : '/images/wifi.png',
 			width : 50,
+			backgroundColor : 'white',
 			height : 60,
 			top : 5,
 			left : 5
 		}));
-		self.subtitle = leg.end_address;
+		$.subtitle = leg.end_address;
 		endrow.add(Ti.UI.createLabel({
 			html : leg.end_address,
 			left : 90,
@@ -171,6 +179,6 @@ module.exports = function(args) {
 		router.setData(data);
 	});
 
-	self.addEventListener('open', require('ui/routing.actionbar'));
-	return self;
+	$.addEventListener('open', require('ui/routing.actionbar'));
+	return $;
 };

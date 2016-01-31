@@ -13,8 +13,8 @@
 		"image": "https://pbs.twimg.com/profile_images/573150736353107969/ieTcaqPM_400x400.png"
 	}, {
 		"name": "Alzey-Worms",
-		"url": "http://svc.freifunk-weinstrasse.de/ws/map2/data/nodes.json",
-		"image": "http://freifunk-weinstrasse.de/wp-content/themes/ffba/images/logo.png"
+		"url": "http://svc.freifunk-weinstrasse.de/aw/map2/data/nodes.json",
+		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_aw.png"
 	}, {
 		"name": "Berlin",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52.5%2C13.7%2C52.7",
@@ -212,6 +212,10 @@
 		"image": "https://pbs.twimg.com/profile_images/544602531821678593/3jiefMyz.png",
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
+		"name": "Freifunk Nord",
+		"image": "https://nord.freifunk.net/images/freifunk-nord-logo_shadowed.png",
+		"url": "http://mesh.ffnord.net/data/nodes.json"
+	},{
 		"name": "Osnabrück",
 		"image": "https://blog.nordwest.freifunk.net/wp-content/themes/freifunk-nordwest-wordpress-design/images/logo.png",
 		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
@@ -291,6 +295,10 @@
 		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
 		"url": "http://vpn5.freifunk-ulm.de/nodes.json"
 	}, {
+		"name" : "Vorderpfalz",
+		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_vp.png",
+		"url" :"http://svc.freifunk-weinstrasse.de/rh/map2/data/nodes.json"
+	},{
 		"name": "Weser/Ems",
 		"image": "https://pbs.twimg.com/profile_images/547410999599693825/T9gTtMYW.jpeg",
 		"url": "https://map.ffnw.de/public/data/batman-v15/nodes.json"
@@ -299,8 +307,12 @@
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
 		"url": "http://map.freifunk-westpfalz.de/nodes.json"
 	}, {
-		"name": "Weyher",
-		"image": "http://freifunk-weyher.de/wp-content/themes/ffweyher/images/logo_kt.png",
+		"name": "Weinstraße",
+		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_ws.png",
+		"url": "http://svc.freifunk-weinstrasse.de/ws/map2/data/nodes.json"
+	},{
+		"name": "Weyer",
+		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_wy.png",
 		"url": "http://svc.freifunk-weinstrasse.de/weyher/map2/data/nodes.json"
 	}, {
 		"name": "Wien (Funkfeuer)",

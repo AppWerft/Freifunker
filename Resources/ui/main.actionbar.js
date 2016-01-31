@@ -28,7 +28,7 @@ module.exports = function() {
 	ActionBar.setTitle('Freifunk');
 	ActionBar.setFont('Roboto Condensed');
 	ActionBar.subtitleColor = "#444";
-	ActionBar.setBackgroundColor('#F9EABA');
+	ActionBar.setBackgroundColor('#AAF9EABA');
 	win.spinner.show();
 	var activity = win.getActivity();
 	if (activity) {

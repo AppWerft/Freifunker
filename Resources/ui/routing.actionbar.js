@@ -7,6 +7,7 @@ module.exports = function(_event) {
 	ActionBar.setFont('Roboto Condensed');
 	ActionBar.setSubtitle('Weg zum Freifunkrouter');
 	ActionBar.subtitleColor = "#444";
+	ActionBar.titleColor = "#444";
 	ActionBar.setBackgroundColor('#F9EABA');
 	var activity = _event.source.getActivity();
 	if (!activity)

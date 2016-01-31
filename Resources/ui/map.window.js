@@ -12,9 +12,9 @@ domainlist = DomainList.getList();
 
 module.exports = function() {
 	function renderNodes(_args) {
-		self.progress.setRefreshing(false);
-		self.spinner.hide();
-		if (!self.mapView)
+		$.progress.setRefreshing(false);
+		$.spinner.hide();
+		if (!$.mapView)
 			return;
 		if (_args != null) {
 			var points = _args.nodes.map(function(node) {
@@ -33,10 +33,10 @@ module.exports = function() {
 					subtitle : (subtitles.length) ? subtitles.join('\n') : undefined
 				};
 			});
-			self.mapView.setRegion(_args.region);
-			self.mapView.regionset = true;
+			$.mapView.setRegion(_args.region);
+			$.mapView.regionset = true;
 			setTimeout(function() {
-				self.mapView.regionset = false;
+				$.mapView.regionset = false;
 			}, 1000);
 			Ti.UI.createNotification({
 				message : String.format(L('PARAT'), points.length)
@@ -55,7 +55,7 @@ module.exports = function() {
 				};
 			});
 			if (DomainPolygon) {
-				self.mapView.removePolygon(DomainPolygon);
+				$.mapView.removePolygon(DomainPolygon);
 				DomainPolygon = null;
 			}
 			DomainPolygon = Map.createPolygon({
@@ -66,12 +66,12 @@ module.exports = function() {
 			});
 			MarkerManagerFreifunk = new MarkerManager({
 				name : 'freifunk',
-				map : self.mapView,
+				map : $.mapView,
 				image : '/images/freifunk.png',
 				points : points,
 				rightImage : '/images/pfeil.png'
 			});
-			self.mapView.addPolygon(DomainPolygon);
+			$.mapView.addPolygon(DomainPolygon);
 		} else {
 			Ti.UI.createNotification({
 				message : "Verbindung zum Server gestört."
@@ -97,10 +97,9 @@ module.exports = function() {
 		console.log('Info: last region restored to ' + lastregion.latitude + ',' + lastregion.longitude);
 	}
 	var event = arguments[0] || {};
-	var self = Ti.UI.createWindow({
+	var $ = Ti.UI.createWindow({
 		fullscreen : false,
 		flagSecure : false,
-		
 		spinner : Ti.UI.createActivityIndicator({
 			height : Ti.UI.SIZE,
 			width : Ti.UI.SIZE,
@@ -111,8 +110,7 @@ module.exports = function() {
 	});
 	var mapavailable = require('vendor/gms.test')();
 	if (mapavailable === true) {
-		console.log('GMS test OK');
-		self.mapView = Map.createView({
+		$.mapView = Map.createView({
 			region : region,
 			top : 0,
 			animate : true,
@@ -130,19 +128,19 @@ module.exports = function() {
 		top : 74,
 		height : 20
 	});
-	self.mapView && self.add(self.mapView);
+	$.mapView && $.add($.mapView);
 	if (Ti.Android) {
-		self.progress = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
+		$.progress = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
 			view : view,
 			height : 20,
 			top : 74,
 			width : Ti.UI.FILL
 		});
-		self.add(self.progress);
+		$.add($.progress);
 	}
 
-	self.mapView && self.mapView.addEventListener('regionchanged', onRegionChanged);
-	self.mapView && self.mapView.addEventListener('click', onPinclick);
+	$.mapView && $.mapView.addEventListener('regionchanged', onRegionChanged);
+	$.mapView && $.mapView.addEventListener('click', onPinclick);
 
 	var picker = Ti.UI.createPicker({
 		top : 80,
@@ -166,7 +164,7 @@ module.exports = function() {
 		}
 	}));
 	picker.addEventListener('change', function(_e) {
-		self.progress.setRefreshing(true);
+		$.progress.setRefreshing(true);
 		Ti.App.Properties.setString('LASTCITY', _e.row.title);
 		Ti.App.Properties.setString('LASTCITYURL', _e.row.url);
 		console.log(_e.row);
@@ -177,8 +175,8 @@ module.exports = function() {
 		});
 
 	});
-	self.mapView && self.mapView.addEventListener('complete', function() {
-		self.mapView.add(Ti.UI.createView({
+	$.mapView && $.mapView.addEventListener('complete', function() {
+		$.mapView.add(Ti.UI.createView({
 			top : 80,
 			backgroundColor : '#afff',
 			width : 168,
@@ -186,13 +184,13 @@ module.exports = function() {
 			zIndex : 888,
 			left : 0,
 		}));
-		self.mapView.add(picker);
+		$.mapView.add(picker);
 		picker.setSelectedRow(0, mydomain);
 	});
 	function onPinclick(_e) {
-		self.mapView.removeEventListener('click', onPinclick);
+		$.mapView.removeEventListener('click', onPinclick);
 		setTimeout(function() {
-			self.mapView.addEventListener('click', onPinclick);
+			$.mapView.addEventListener('click', onPinclick);
 		}, 700);
 		if (_e.clicksource != null && _e.annotation && _e.annotation.name && _e.clicksource != 'pin') {
 			require('ui/routing.window')({
@@ -202,10 +200,10 @@ module.exports = function() {
 
 			}).open();
 		}
-		self.locked = true;
+		$.locked = true;
 		setTimeout(function() {
-			self.locked = false;
-			var region = self.mapView.getRegion();
+			$.locked = false;
+			var region = $.mapView.getRegion();
 		}, 900);
 	}
 
@@ -223,19 +221,19 @@ module.exports = function() {
 			longitudeDelta : _e.longitudeDelta
 		}));
 		console.log('Info: saving lastregion of map to ' + _e.latitude + ',' + _e.longitude);
-		if (self.locked == false) {
-			self.locked = true;
+		if ($.locked == false) {
+			$.locked = true;
 			setTimeout(function() {
-				self.locked = false;
+				$.locked = false;
 			}, 50);
 		} else {
 			setTimeout(function() {
-				self.locked = false;
+				$.locked = false;
 			}, 50);
 		}
 	};
-	self.reloadDomain = function() {
-		self.progress.setRefreshing(true);
+	$.reloadDomain = function() {
+		$.progress.setRefreshing(true);
 		ActionBar.setSubtitle('⇊ ⇊ ⇊ ⇊ ⇊');
 		Freifunk.loadNodes({
 			url : Ti.App.Properties.getString('LASTCITYURL', 'Hamburg'),
@@ -243,6 +241,6 @@ module.exports = function() {
 			done : renderNodes
 		});
 	};
-	self.reloadDomain();
-	return self;
+	$.reloadDomain();
+	return $;
 };
