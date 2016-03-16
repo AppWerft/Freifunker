@@ -279,6 +279,10 @@
 		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
 		"url": "http://netinfo.freifunk-stuttgart.de/map/json/global_map.json"
 	}, {
+		"name": "Südpfalz",
+		"image": "http://freifunk-landau.de/wp-content/themes/theme-ffeu-master/images/logo.png",
+		"url": "https://www.freifunk-suedpfalz.de/karte/nodes.json"
+	}, {
 		"name": "Trier",
 		"image": "http://trier.freifunk.net/wp-content/themes/ff-wp-theme-2015.1.0/images/logo.png",
 		"url": "http://map.freifunk-trier.starletp9.de/nodes.json"
