@@ -21,11 +21,12 @@
 
 var Map = require('ti.map');
 
-var Module = function(options) {
+var $ = function(options) {
 	this.name = options.name;
 	this.maxannotations = options.maxannotations || Ti.Platform.displayCaps.logicalDensityFactor * 60;
-	if ( typeof options.map == 'object' && options.map.apiName && options.map.apiName == 'Ti.Proxy')
+	if ( typeof options.map == 'object' && options.map.apiName && options.map.apiName == 'Ti.Map')
 		this.map = options.map;
+	else console.log(typeof options.map + '   ' +options.map.apiName );	
 	this.points = options.points;
 	this.image = options.image;
 	this.rightImage = options.rightImage;
@@ -51,7 +52,7 @@ var Module = function(options) {
 
 	return this;
 };
-Module.prototype = {
+$.prototype = {
 	destroy : function() {
 		this.removeRegionChangedHandler();
 		var annotations = [];
@@ -71,6 +72,7 @@ Module.prototype = {
 		console.log('MarkerManger: importData ' + (t_end - t_start) + ' ms.');
 	},
 	_startMap : function() {
+		console.log('Info: _startMap ');
 		var region = this.map.getRegion();
 		this._updateMap({
 			latitude : region.latitude,
@@ -205,4 +207,4 @@ Module.prototype = {
 	}
 };
 
-module.exports = Module;
+module.exports = $;

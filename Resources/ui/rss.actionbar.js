@@ -17,10 +17,7 @@ module.exports = function(_event) {
 	};
 	activity && activity.invalidateOptionsMenu();
 	activity.actionBar.onHomeIconItemSelected = function(_e) {
-		if (_event.source.web.canGoBack()) {
-			_event.source.web.goBack();
-		} else {
-			_event.source.close();
-		}
+		_event.source.close();
+
 	};
 };

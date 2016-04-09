@@ -28,6 +28,10 @@
 		"url": "http://map.freifunk-bielefeld.de/nodes.json",
 		"image": "https://pbs.twimg.com/profile_images/378800000571521357/e228de43427f6b84dd3326f1597b5c3c_400x400.png"
 	}, {
+		"name": "Bodensee",
+		"image":"https://ffbsee.de/images/ffbsee-logo.png",
+		"url": "https://vpn2.ffbsee.de/nodes.json"
+	}, {
 		"name": "Bremen",
 		"url": "http://downloads.bremen.freifunk.net/data/ffmap-d3.json",
 		"image": "https://pbs.twimg.com/profile_images/448915312742629377/dbpLOlRn_400x400.png"
@@ -46,7 +50,7 @@
 	}, {
 		"name": "Dortmund",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
-		"url": "http://map.ffdo.de/data/nodes.json"
+		"url": "https://map.ffdo.de/data/nodes.json"
 	}, {
 		"name": "Donau-Ries",
 		"url": "https://karte.freifunk-donau-ries.de/data/nodes.json"
@@ -56,7 +60,7 @@
 		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
 	}, {
 		"name": "Düsseldorf",
-		"url": "http://map.freifunk-duesseldorf.de/nodelist.json",
+		"url": "https://map.freifunk-duesseldorf.de/nodes.json",
 		"image": "https://wiki.freifunk.net/images/c/cd/Ffddorf-logo-250.png"
 	}, {
 		"name": "Düsseldorf-Flingern",
@@ -221,7 +225,7 @@
 	}, {
 		"name": "Osnabrück",
 		"image": "https://blog.nordwest.freifunk.net/wp-content/themes/freifunk-nordwest-wordpress-design/images/logo.png",
-		"url": "http://netmon.osnabrueck.freifunk.net/api/rest/routerlist/?offset=0&limit=2500"
+		"url": "http://map.ffnw.de/public/data/batman-v15/nodes.json"
 	}, {
 		"name": "Ostholstein",
 		"image": "https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
@@ -312,7 +316,7 @@
 	}, {
 		"name": "Westpfalz",
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
-		"url": "http://map.freifunk-westpfalz.de/nodes.json"
+		"url": "https://map.freifunk-westpfalz.de/nodes.json"
 	}, {
 		"name": "Weinstraße",
 		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_ws.png",
@@ -331,7 +335,7 @@
 	}, {
 		"name": "Witten",
 		"image": "https://pbs.twimg.com/profile_images/517054969468309506/hhpxwQmA.png",
-		"url": "http://map.ff-en.de/data/wit/nodes.json"
+		"url": "https://map.ff-en.de/data/wit/nodes.json"
 	}, {
 		"name": "Wuppertal",
 		"image": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c0.0.160.160/p160x160/10922483_894379780612975_3279905287994862749_n.jpg?oh=eb0d99ca9f3540f90427a50590b87e64&oe=565BC711&__gda__=1443787346_2afb0f87fd3abf81c6374c4acb58342e",

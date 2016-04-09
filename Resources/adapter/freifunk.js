@@ -35,7 +35,6 @@ FFModule.prototype = {
 	getNodes : function(_cb) {
 		GeoRoute.getLocation();
 		function update(args) {
-
 			var radius = 1000 / 40000000 * 360;
 			// 10 km
 			if (!Ti.App.Properties.hasProperty('lastGeolocation') && !args)

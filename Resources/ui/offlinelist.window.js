@@ -4,13 +4,13 @@ var Freifunk = new (require('adapter/freifunk'))();
 var Geo = require('vendor/georoute').createGeo();
 
 module.exports = function() {
-	var self = Ti.UI.createWindow({
+	var $ = Ti.UI.createWindow({
 		fullscreen : false,
 		backgroundColor : '#F9EABA',
-		orientationModes : [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT]
+		orientationModes : [Ti.UI.PORTRAIT]
 	});
 
-	self.listview = Ti.UI.createListView({
+	$.listview = Ti.UI.createListView({
 		top : 74,
 		sections : [Ti.UI.createListSection()],
 		backgroundColor : '#fff',
@@ -19,23 +19,34 @@ module.exports = function() {
 		},
 		defaultItemTemplate : 'node',
 	});
-	self.listview.addEventListener('itemclick', function(_e) {
+	$.listview.addEventListener('itemclick', function(_e) {
 		var item = _e.section.getItemAt(_e.itemIndex);
-		var node = JSON.parse(item.properties.itemId);
+		try {
+			var node = JSON.parse(item.properties.itemId);
+		} catch(E) {
+			console.log(E);
+		}
+	
+		/*
 		var win = Ti.UI.createWindow({
 			theme : 'Theme.NoActionBar',
 			fullscreen : true
 		});
-		self.compass = require('ui/compass').createView(node);
-		self.compass.start();
-		win.add(self.compass);
-		win.addEventListener('close', function() {
-			self.compass.stop();
-			self.remove(self.compass);
-			self.compass = null;
-		});
 		win.open();
-		return;
+			*/
+		$.compass = require('ui/compass').createView(node);
+		$.add($.compass);
+		$.compass.start();
+		//win.add($.compass);
+		
+		$.addEventListener('close', function() {
+			$.compass.stop();
+			$.remove($.compass);
+			$.compass = null;
+		});
+
+		
+
 		item.address.color = 'transparent';
 		_e.section.updateItemAt(_e.itemIndex, item);
 		Geo.getAddress({
@@ -50,39 +61,48 @@ module.exports = function() {
 		});
 	});
 
-	self.add(self.listview);
+	$.add($.listview);
 	function updateList() {
-		Freifunk.getNodes(function(nodes) {
-			var items = nodes.map(function(node) {
-				return {
-					properties : {
-						itemId : JSON.stringify(node)
-					},
-					logo : {
-						image : node.logo
-					},
-					name : {
-						text : node.name
-					},
-					address : {
-						text : (node.address.length > 0) ? node.address : 'Klick um Adresse anzuzeigen',
-						opacity : (Ti.Network.online || node.address.length > 0) ? 1 : 0,
-						color : (node.address.length > 0) ? '#555' : '#ccc',
-					},
-					distance : {
-						text : 'Entfernung: ' + node.distance
-					},
-					bearing : {
-						text : '⇧Richtung: ' + node.bearing + '° (' + node.compassPoint + ')'
-					}
-				};
-			});
-			self.listview && self.listview.sections[0] && self.listview.sections[0].setItems(items);
+		require('vendor/permissions').requestPermissions(['ACCESS_COARSE_LOCATION'], function() {
+			if (arguments[0] == true) {
+				Freifunk.getNodes(function(nodes) {
+					var items = nodes.map(function(node) {
+						return {
+							properties : {
+								itemId : JSON.stringify(node)
+							},
+							logo : {
+								image : node.logo
+							},
+							name : {
+								text : node.name
+							},
+							address : {
+								text : (node.address.length > 0) ? node.address : 'Klick um Adresse anzuzeigen',
+								opacity : (Ti.Network.online || node.address.length > 0) ? 1 : 0,
+								color : (node.address.length > 0) ? '#555' : '#ccc',
+							},
+							distance : {
+								text : 'Entfernung: ' + node.distance
+							},
+							bearing : {
+								text : '⇧Richtung: ' + node.bearing + '° (' + node.compassPoint + ')'
+							}
+						};
+					});
+					$.listview && $.listview.sections[0] && $.listview.sections[0].setItems(items);
+				});
+
+			} else {
+				alert('Das Offlinenavigieren klappt nur unter Preisgabe der eigenen Position');
+			}
 		});
-	}
+	};
+	$.addEventListener('updateList', updateList);
 
-
-	self.addEventListener('updateList', updateList);
-	Ti.Android && self.addEventListener('open', require('ui/offlinelist.actionbar'));
-	return self;
+	$.addEventListener('open', require('ui/offlinelist.actionbar'));
+	$.addEventListener('close', function() {
+		$.removeEventListener('updateList', updateList);
+	});
+	return $;
 };

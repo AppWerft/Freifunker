@@ -14,9 +14,12 @@ module.exports = function() {
 	function renderNodes(_args) {
 		$.progress.setRefreshing(false);
 		$.spinner.hide();
-		if (!$.mapView)
+		if (!$.mapView) {
+			console.log('Warning: no instance of mapView');
 			return;
+		}
 		if (_args != null) {
+			console.log(_args);
 			var points = _args.nodes.map(function(node) {
 				var subtitles = [];
 				if (node.clients !== undefined)
@@ -38,9 +41,7 @@ module.exports = function() {
 			setTimeout(function() {
 				$.mapView.regionset = false;
 			}, 1000);
-			Ti.UI.createNotification({
-				message : String.format(L('PARAT'), points.length)
-			}).show();
+
 			ActionBar.setSubtitle(points.length + ' Router ' + _args.nodestotal.online + '/' + _args.nodestotal.offline);
 			MarkerManagerFreifunk && MarkerManagerFreifunk.destroy();
 			var convexHull = new (require('vendor/ConvexHullGrahamScan'))();
@@ -120,6 +121,10 @@ module.exports = function() {
 			userLocationButton : false,
 			mapType : Map.NORMAL_TYPE,
 		});
+		$.add($.mapView);
+		console.log('Info: mapView vreated and added');
+		$.mapView.addEventListener('regionchanged', onRegionChanged);
+		$.mapView.addEventListener('click', onPinclick);
 	} else {
 		console.log('GMS failed');
 		console.log(mapavailable);
@@ -128,7 +133,7 @@ module.exports = function() {
 		top : 74,
 		height : 20
 	});
-	$.mapView && $.add($.mapView);
+
 	if (Ti.Android) {
 		$.progress = require('com.rkam.swiperefreshlayout').createSwipeRefresh({
 			view : view,
@@ -138,9 +143,6 @@ module.exports = function() {
 		});
 		$.add($.progress);
 	}
-
-	$.mapView && $.mapView.addEventListener('regionchanged', onRegionChanged);
-	$.mapView && $.mapView.addEventListener('click', onPinclick);
 
 	var picker = Ti.UI.createPicker({
 		top : 80,
@@ -187,6 +189,8 @@ module.exports = function() {
 		$.mapView.add(picker);
 		picker.setSelectedRow(0, mydomain);
 	});
+	console.log('Info: cityPicker created and added');
+
 	function onPinclick(_e) {
 		$.mapView.removeEventListener('click', onPinclick);
 		setTimeout(function() {

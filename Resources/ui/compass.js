@@ -33,15 +33,18 @@ var getDistBearing = function(φ1, λ1, φ2, λ2) {
 };
 
 var Widget = function(args) {
-	console.log(args);
-	return;
-	if (!Array.isArray(args))
-		return null;
-	this.route = args;
+
+	/*
+	 if (!Array.isArray(args)) {
+	 console.log('Warning: is not array');
+	 return null;
+	 }
+	 this.route = args;
+	 */
 	var that = this;
 	this.nodeposition = {
-		φ : this.route[FIRSTPOINT][0],
-		λ : this.route[FIRSTPOINT][1]
+		φ : args.lat,
+		λ : args.lon
 	};
 	function _onLocation(_e) {
 		if (_e.success) {
@@ -51,13 +54,14 @@ var Widget = function(args) {
 			};
 		}
 	};
+	this.matrix = Ti.UI.create2DMatrix();
 	function _onHeading(_e) {
-		var heading = Math.round(_e.heading.trueHeading || _e.heading.magneticHeading);
+		if (!that.myposition)
+			return;
+		var heading = _e.heading.trueHeading || _e.heading.magneticHeading;
 		if (heading != that.lastheading && that.myposition && that.nodeposition) {
 			var distbear = getDistBearing(that.myposition.φ, that.myposition.λ, that.nodeposition.φ, that.nodeposition.λ);
-			that.arrowView.transform = Ti.UI.create2DMatrix({
-				rotate : distbear.bearing - heading
-			});
+			that.arrowView.setTransform(that.matrix.rotate(distbear.bearing - heading));
 			that.distanceView.setText(Math.round(distbear.distance) + ' m');
 			that.lastheading = heading;
 		}
@@ -67,26 +71,24 @@ var Widget = function(args) {
 	this.view = Ti.UI.createView({
 		backgroundColor : 'transparent'
 	});
-	this.arrowView = Ti.UI.createLabel({
-		text : '⬆',
-		color : '#DD2A66',
-		opacity : 0.8,
-		font : {
-			fontSize : 280
-		}
+	this.arrowView = Ti.UI.createView({
+		backgroundImage : '/assets/arrow.png',
+		width : 320,
+		height : 320,
+		opacity : 0.4,
 	});
 	this.distanceView = Ti.UI.createLabel({
 		text : '∞',
-		color : '#F9EABA',
+		color : '#8fff',
 		height : Ti.UI.SIZE,
-		bottom : 30,
+		bottom : 0,
 		font : {
-			fontSize : 100,
+			fontSize : 27,
 			fontFamily : 'Roboto Condensed'
 		}
 	});
 	this.view.add(this.arrowView);
-	//this.view.add(this.distanceView);
+	this.arrowView.add(this.distanceView);
 	this.view.start = function() {
 		if (Ti.Geolocation.locationServicesEnabled) {
 			Ti.Geolocation.Android.addLocationProvider(Ti.Geolocation.Android.createLocationProvider({

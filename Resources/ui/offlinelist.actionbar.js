@@ -11,6 +11,7 @@ module.exports = function(_event) {
 	var activity = _event.source.getActivity();
 	if (!activity)
 		return;
+		
 	activity.onCreateOptionsMenu = function(_menuevent) {
 		var menu = _menuevent.menu;
 		menu.clear();

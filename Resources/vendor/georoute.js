@@ -143,8 +143,10 @@ Module.prototype = {
 		// distance :
 		var φ1 = φ1.toRadians();
 		var φ2 = φ2.toRadians();
-		var Δφ = (φ2 - φ1).toRadians();
-		var Δλ = (λ2 - λ1).toRadians();
+		var λ1 = λ1.toRadians();
+		var λ2 = λ2.toRadians();
+		var Δφ = φ2 - φ1;
+		var Δλ = λ2 - λ1;
 		var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
 		// bearing :
 		var y = Math.sin(λ2 - λ1) * Math.cos(φ2);
