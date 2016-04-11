@@ -37,8 +37,8 @@
 		"image": "https://pbs.twimg.com/profile_images/448915312742629377/dbpLOlRn_400x400.png"
 	}, {
 		"name": "Chemnitz",
-		"url": "http://map.chemnitz.freifunk.net/nodes.json",
-		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2013/08/frontlogoText.png"
+		"url": "http://meshviewer.chemnitz.freifunk.net/nodes.json",
+		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2014/02/ffc.png"
 	}, {
 		"name": "Cottbus",
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=14.0,51.6,14.6,51.8",
@@ -280,7 +280,7 @@
 	}, {
 		"name": "Stormarn",
 		"image": "https://stormarn.freifunk.net/wp-content/uploads/2015/10/participate_big.png",
-		"url": "http://map.stormarn.freifunk.net/data/nodes.json"
+		"url": "https://map.freifunk-stormarn.de/data/nodes.json"
 	}, {
 		"name": "Stuttgart",
 		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
