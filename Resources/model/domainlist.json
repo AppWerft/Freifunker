@@ -5,7 +5,7 @@
 		"image": "https://freifunk-3laendereck.net/wp-content/uploads/2014/12/header-logo-hd122x122.png"
 	}, {
 		"name": "Aachen",
-		"url": "http://map.freifunk-aachen.de/data/nodes.json",
+		"url": "http://data.aachen.freifunk.net/nodes.json",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png"
 	}, {
 		"name": "Altdorf",
