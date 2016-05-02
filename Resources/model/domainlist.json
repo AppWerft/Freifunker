@@ -299,8 +299,8 @@
 		"url": "https://map.freifunk-troisdorf.de/data/nodes.json"
 	}, {
 		"name": "Uelzen",
-		"image": "https://fbcdn-photos-a-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-0/p200x200/10891775_606089502858963_1447489983805629299_n.jpg?oh=1c0fa2fed00862e9321475369da4514d&oe=55CE7731&__gda__=1443122723_950cc570c0600d1c7a29eb8307b612fe",
-		"url": "http://map.freifunk-uelzen.de/data/nodes.json"
+		"image": "https://www.freifunk-uelzen.de/wp-content/uploads/2016/04/WordPress_neu.jpg",
+		"url": "https://map.freifunk-uelzen.de/data/nodes.json"
 	}, {
 		"name": "Ulm/Neu-Ulm",
 		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
