@@ -171,7 +171,7 @@
 	}, {
 		"name": "Leipzig",
 		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
-		"url": "https://db.leipzig.freifunk.net/uptime/mapbrowser/"
+		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowser/"
 	}, {
 		"name": "Lippe",
 		"url": "http://map.freifunk-lippe.de/data/nodes.json"
