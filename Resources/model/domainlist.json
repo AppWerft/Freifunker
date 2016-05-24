@@ -174,7 +174,7 @@
 		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowserdata/"
 	}, {
 		"name": "Lippe",
-		"url": "http://map.freifunk-lippe.de/data/nodes.json"
+		"url": "https://karte.freifunk-lippe.de/data/nodes.json"
 	}, {
 		"name": "Lübeck",
 		"image": "http://blog.blaudirekt.de/wp-content/uploads/2012/09/Freifunk_Luebeck.png",
