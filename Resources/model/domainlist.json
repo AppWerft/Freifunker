@@ -258,6 +258,10 @@
 		"image": "http://chillr.de/wp-content/uploads/freifunk-rhein-neckar.png",
 		"url": "https://map.ffrn.de/data/nodelist.json"
 	}, {
+		"name": "Rhein-Sieg",
+		"url": "http://map.freifunk-rhein-sieg.de/data/nodes.json",
+		"image": "http://www.freifunk-rhein-sieg.de/wp-content/uploads/2015/07/ffrsk3.png"
+	}, {
 		"name": "Rheinland",
 		"image": "http://freifunk-aachen.de/wp-content/gallery/pressemitteilungen/Logo-Freifunk-Aachen.png",
 		"url": "http://ffmap.freifunk-rheinland.net/nodes.json"
