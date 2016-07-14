@@ -132,8 +132,8 @@
 		"url": "http://hannover.freifunk.net/karte/nodes.json"
 	}, {
 		"name": "Harz",
-		"image": "https://harz.freifunk.net/wiki/lib/exe/fetch.php?media=wiki:logo.png",
-		"url": "http://harz.freifunk.net/meshdata/nodes.json"
+		"image": "https://wiki.harz.freifunk.net/wiki/lib/exe/fetch.php?media=ffhz_logo.png",
+		"url": "https://map.harz.freifunk.net/hopglass/nodes.json"
 	}, {
 		"name": "Hattingen",
 		"url": "http://map.en.freifunk.ruhr/hattingen/json/nodes.json"
