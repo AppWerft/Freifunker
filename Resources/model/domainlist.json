@@ -20,7 +20,7 @@
 		"url": "http://openwifimap.net/api/view_nodes_spatial?bbox=13%2C52.5%2C13.7%2C52.7",
 		"image": "https://pbs.twimg.com/profile_images/59831808/hshn3_400x400.png"
 	}, {
-		"name": "Brauschweig",
+		"name": "Braunschweig",
 		"url": "http://fredo.freifunk-bs.de/output/nodes.json",
 		"image": "https://pbs.twimg.com/profile_images/479041124963602432/1kAcqGvQ.png"
 	}, {
@@ -29,7 +29,7 @@
 		"image": "https://pbs.twimg.com/profile_images/378800000571521357/e228de43427f6b84dd3326f1597b5c3c_400x400.png"
 	}, {
 		"name": "Bodensee",
-		"image":"https://ffbsee.de/images/ffbsee-logo.png",
+		"image": "https://ffbsee.de/images/ffbsee-logo.png",
 		"url": "https://vpn2.ffbsee.de/nodes.json"
 	}, {
 		"name": "Bremen",
@@ -132,8 +132,8 @@
 		"url": "http://hannover.freifunk.net/karte/nodes.json"
 	}, {
 		"name": "Harz",
-		"image": "https://harz.freifunk.net/wiki/lib/exe/fetch.php?media=wiki:logo.png",
-		"url": "http://harz.freifunk.net/meshdata/nodes.json"
+		"image": "https://wiki.harz.freifunk.net/wiki/lib/exe/fetch.php?media=ffhz_logo.png",
+		"url": "https://map.harz.freifunk.net/hopglass/nodes.json"
 	}, {
 		"name": "Hattingen",
 		"url": "http://map.en.freifunk.ruhr/hattingen/json/nodes.json"
@@ -171,10 +171,10 @@
 	}, {
 		"name": "Leipzig",
 		"image": "http://wiki.leipzig.freifunk.net/images/d/d4/Logo.jpg",
-		"url": "http://db.leipzig.freifunk.net/uptime/mapbrowserdata/"
+		"url": "https://db.leipzig.freifunk.net/uptime/google_earth/"
 	}, {
 		"name": "Lippe",
-		"url": "http://map.freifunk-lippe.de/data/nodes.json"
+		"url": "https://karte.freifunk-lippe.de/data/nodes.json"
 	}, {
 		"name": "Lübeck",
 		"image": "http://blog.blaudirekt.de/wp-content/uploads/2012/09/Freifunk_Luebeck.png",
@@ -219,13 +219,16 @@
 		"image": "https://pbs.twimg.com/profile_images/544602531821678593/3jiefMyz.png",
 		"url": "http://map.4830.org/mueritz/tng/nodes.json"
 	}, {
+		"name": "Neanderfunk",
+		"url": "https://met.karte.neanderfunk.de/data/nodelist.json"
+	}, {
 		"name": "Freifunk Nord",
 		"image": "https://nord.freifunk.net/images/freifunk-nord-logo_shadowed.png",
 		"url": "http://mesh.ffnord.net/data/nodes.json"
 	}, {
 		"name": "Osnabrück",
 		"image": "https://blog.nordwest.freifunk.net/wp-content/themes/freifunk-nordwest-wordpress-design/images/logo.png",
-		"url": "http://map.ffnw.de/public/data/batman-v15/nodes.json""
+		"url": "http://map.ffnw.de/public/data/batman-v15/nodes.json"
 	}, {
 		"name": "Ostholstein",
 		"image": "https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
@@ -332,7 +335,7 @@
 		"name": "Wiesbaden",
 		"image": "http://blog.sperrobjekt.de/uploads/img/freifunk_wiesbaden.png",
 		"url": "https://map.wiesbaden.freifunk.net/data/nodelist.json"
-	}, {   
+	}, {
 		"name": "Witten",
 		"image": "https://pbs.twimg.com/profile_images/517054969468309506/hhpxwQmA.png",
 		"url": "https://map.ff-en.de/data/wit/nodes.json"
