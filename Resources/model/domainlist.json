@@ -234,6 +234,9 @@
 		"image": "https://lh3.googleusercontent.com/-PNn4CAwpP54/VRv8JQGjX1I/AAAAAAAAANA/lD-EC9-Sans/s630-fcrop64=1,2e7e3728a8c9ffff/SaarlandSkyline300Weiss.png",
 		"url": "http://ostholstein.freifunk.net/map/nodes.json"
 	}, {
+		"name": "Ostvest",
+		"url": "http://map.ffov.de/data/nodes.json"		
+	}, {
 		"name": "Paderborn",
 		"image": "https://pbs.twimg.com/profile_images/378800000606606576/fde60b784bd9e5267ce83f3832c11515.jpeg",
 		"url": "https://map.hochstift.freifunk.net/nodes.json"
