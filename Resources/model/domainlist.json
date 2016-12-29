@@ -37,7 +37,7 @@
 		"image": "https://pbs.twimg.com/profile_images/448915312742629377/dbpLOlRn_400x400.png"
 	}, {
 		"name": "Chemnitz",
-		"url": "http://meshviewer.chemnitz.freifunk.net/nodes.json",
+		"url": "http://meshviewer.chemnitz.freifunk.net/data/nodes.json",
 		"image": "http://www.chemnitz.freifunk.net/wp-content/uploads/2014/02/ffc.png"
 	}, {
 		"name": "Cottbus",
