@@ -336,6 +336,10 @@
 		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_wy.png",
 		"url": "http://svc.freifunk-weinstrasse.de/weyher/map2/data/nodes.json"
 	}, {
+		"name": "Weyher",
+		"image": "http://freifunk-weyher.de/wp-content/themes/ffweyher/images/logo_kt.png",
+		"url": "http://svc.freifunk-weinstrasse.de/weyher/map/nodes.json"
+	}, {
 		"name": "Wien (Funkfeuer)",
 		"url": "https://map.funkfeuer.at/wien/data.php"
 	}, {
