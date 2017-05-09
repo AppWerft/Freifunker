@@ -316,6 +316,10 @@
 		"image": "https://wiki.freifunk.net/images/thumb/d/d3/Logo_fful_klein.png/400px-Logo_fful_klein.png",
 		"url": "https://vpn5.freifunk-ulm.de/nodes.json"
 	}, {
+		"name": "Vogtland",
+		"image": "https://vogtland.freifunk.net/wordpress/wp-content/uploads/2017/02/freifunk-vogtland_domain-name_h150.png",
+		"url": "https://vpn01.freifunk-vogtland.net/ffv/nodes.json"
+	}, {
 		"name": "Vorderpfalz",
 		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_vp.png",
 		"url": "http://svc.freifunk-weinstrasse.de/rh/map2/data/nodes.json"
