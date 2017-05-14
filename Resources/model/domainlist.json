@@ -69,7 +69,7 @@
 	}, {
 		"name": "Emscherland",
 		"image": "https://wiki.freifunk-rheinland.net/skins/common/images/ffrl-wikilogo.jpg",
-		"url": "http://map.el.freifunk.ruhr/nodes.json"
+		"url": "https://karte.freifunk-emscherland.de/map/nodes.json"
 	}, {
 		"name": "Erfurt",
 		"url": "http://map.erfurt.freifunk.net/nodes.json",
