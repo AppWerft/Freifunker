@@ -196,9 +196,9 @@
 		"image": "https://marburg.freifunk.net/wp-content/uploads/2015/12/FFMR-banner1.png",
 		"url": "https://api.marburg.freifunk.net/nodes.json"
 	}, {
-		"name": "Mayen / Koblenz",
-		"url": "http://status.freifunk-myk.de/data/nodes.json",
-		"image": "http://freifunk-myk.de/lib/tpl/freifunk_two/images/logo.png"
+		"name": "Mayen-Koblenz",
+		"url": "http://map.freifunk-myk.de/hopglass/nodes.json",
+		"image": "http://firmware.freifunk-myk.de/.static/logo.png"
 	}, {
 		"name": "Meschede/Bestwig",
 		"url": "http://map.freifunk-moehne.de/data-meschedebestwig/nodes.json"
@@ -327,6 +327,10 @@
 		"name": "Weser/Ems",
 		"image": "https://pbs.twimg.com/profile_images/547410999599693825/T9gTtMYW.jpeg",
 		"url": "https://map.ffnw.de/public/data/batman-v15/nodes.json"
+	}, {
+		"name": "Westerwald",
+		"image": "https://freifunk-westerwald.de/images/favicon-196x196.png",
+		"url": "http://map.freifunk-westerwald.de/data/nodes.json"
 	}, {
 		"name": "Westpfalz",
 		"image": "https://pbs.twimg.com/profile_images/533298775616270336/BA-uz4Af.png",
