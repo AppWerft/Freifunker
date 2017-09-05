@@ -262,7 +262,7 @@
 		"url": "https://map.ffrn.de/data/nodelist.json"
 	}, {
 		"name": "Rhein-Sieg",
-		"url": "http://map.freifunk-rhein-sieg.de/data/nodes.json",
+		"url": "http://map.freifunk-siegburg.de/data/nodes.json",
 		"image": "http://www.freifunk-rhein-sieg.de/wp-content/uploads/2015/07/ffrsk3.png"
 	}, {
 		"name": "Rheinland",
