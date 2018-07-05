@@ -318,7 +318,7 @@
 	}, {
 		"name": "Vogtland",
 		"image": "https://vogtland.freifunk.net/wordpress/wp-content/uploads/2017/02/freifunk-vogtland_domain-name_h150.png",
-		"url": "https://vpn01.freifunk-vogtland.net/ffv/nodes.json"
+		"url": "https://mapdata.freifunk-vogtland.net/nodes.json"
 	}, {
 		"name": "Vorderpfalz",
 		"image": "http://test.suedwest-netze.de/wp-content/themes/the-box/images/logo_vp.png",
