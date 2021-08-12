@@ -57,7 +57,7 @@
 	}, {
 		"name": "Dresden",
 		"url": "http://api.freifunk-dresden.de/freifunk-app.json",
-		"image": "https://lh5.googleusercontent.com/-0GY62zWLZNk/AAAAAAAAAAI/AAAAAAAAACQ/jAW88TTmtqE/photo.jpg"
+		"image": "https://freifunk-dresden.de/media/logo/logo-dresden.png"
 	}, {
 		"name": "Düsseldorf",
 		"url": "https://map.freifunk-duesseldorf.de/nodes.json",
